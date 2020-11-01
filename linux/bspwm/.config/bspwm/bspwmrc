@@ -1,0 +1,137 @@
+#!/bin/dash
+
+####################################################################
+# autostart
+####################################################################
+
+# appearance settings
+xsetroot -cursor_name left_ptr &
+xrdb -merge .Xresources &
+
+# wallpaper
+[ -f ${XDG_CONFIG_HOME}/wall.jpg ] && feh --no-fehbg --bg-fill ~/.config/wall.jpg &
+
+# compositing
+# experimenta-backends depends on picom-git
+[ -f ${XDG_CONFIG_HOME}/picom.conf ] && picom --experimental-backends -b &
+
+# enable local fonts
+# list discovered fonts: fc-list
+# see font paths: xset q
+find /usr/share/fonts ~/.local/share/fonts -name fonts.dir | while read dir; do
+    xset +fp $(dirname $dir) &
+done
+xset fp rehash &
+fc-cache -fv &
+
+# screensaver
+xset s 600 5 &
+xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
+
+# disable energy star
+xset -dpms &
+# no bell
+xset b off &
+# no key click
+xset c off &
+# disable capslock
+setxkbmap -option "ctrl:nocaps" &
+
+# map super keys to trigger rofi
+# TODO: replace with dmenu
+pidof xcape >/dev/null || xcape -e 'Super_L=Super_L|Shift_L|space;Super_R=Super_R|Shift_R|z' &
+
+### start things
+#/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+#/usr/lib/mate-notification-daemon/mate-notification-daemon &
+# automount removable media
+#pidof devmon >/dev/null || devmon &
+# file manager
+#pidof thunar >/dev/null || thunar --daemon &
+# clipboard history
+#pidof greenclip >/dev/null || greenclip daemon &
+
+# notifications
+pidof dunst >/dev/null || dunst &
+# remove mouse pointer when idle
+pidof unclutter >/dev/null || unclutter &
+# status bar
+pidof polybar >/dev/null || polybar default &
+# network manager menu
+command -v nm-applet && nm-applet &
+# screenshots
+command -v flameshot >/dev/null && flameshot &
+# virtual kvm
+[ -f ${XDG_CONFIG_HOME}/Synergy/license ] && pidof synergys >/dev/null || \
+    synergys -f --name monolith \
+    -c ${XDG_CONFIG_HOME}/Synergy/config --address :24800 \
+    --serial-key $(cat ${XDG_CONFIG_HOME}/Synergy/license) \
+    2>&1 >${XDG_CONFIG_HOME}/Synergy/log &
+
+####################################################################
+# bspwm config
+####################################################################
+
+# If refreshing bspwm, remove all previous rules to prevent doubling up.
+bspc rule -r "*"
+
+bspc config window_gap $WM_GAP
+bspc config top_padding $PANEL_HEIGHT
+
+# Start workspaces on the main monitor.
+# Skipping the display name lets me copy this to different
+# single-display computers easily. If you have multiple monitors,
+# include the name and split desktops across displays.
+#
+# List displays with `xrandr --query`
+#bspc monitor DisplayPort-0 -d 1 2 3 4 5
+#bspc monitor DisplayPort-1 -d 6 7 8 9 10
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+
+# force all new windows to open on specific desktop
+#bspc desktop -f 1
+
+bspc config borderless_monocle true
+bspc config single_monocle true
+bspc config paddingless_monocle false
+bspc config automatic_scheme alternate
+bspc config initial_polarity second_child
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
+## Honor size hints: do not make windows smaller than they wish to be
+bspc config honor_size_hints true
+#bspc config ignore_ewmh_focus true
+
+##Color settings
+bspc config focused_border_color "#7DAEA3"
+bspc config normal_border_color "#45707a"
+bspc config presel_feedback_color "#1ABB9B"
+bspc config border_width $LINE_WIDTH
+
+bspc config focus_follows_pointer true
+#bspc config pointer_follows_focus true
+
+#Settings for manual splitting
+bspc config split_ratio 0.52
+
+#bspc rule -a screenkey --unmanage
+#bspc rule -a lxterminal state=floating center=true sticky=true
+#bspc rule -a conky sticky=on manage=off lower=on
+#bspc rule -a Docky layer=above border=off manage=on
+#bspc rule -a chromium private=on
+bspc rule -a firefox private=on
+bspc rule -a brave private=on
+bspc rule -a Gimp state=floating follow=on
+bspc rule -a mpv state=floating layer=normal
+#bspc rule -a spotify desktop=10 state=pseudo_tiled follow=on
+#bspc rule -a slack private=on
+bspc rule -a libreoffice state=tiled layer=normal
+#bspc desktop 10 --layout monocle
+
+###External rules
+bspc config external_rules_command ${HOME}/bin/bspm-ext
+##Pseudo automatic mode: always splits focused window when opening new window
+#bspc config external_rules_command /usr/bin/pseudo_automatic_mode
+##Adjust new window: splits biggest windows to keep windows about the same size
+#bspc config external_rules_command /usr/bin/adjust-new-window
+

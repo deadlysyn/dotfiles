@@ -1,0 +1,309 @@
+# Show keybindings - keep this updated
+super + F1
+	$TERMINAL -e ~/bin/keybindings
+
+# Close window - to be consistent with "shift modfiers for window changes"
+super + shift + c
+	bspc node -c
+
+# Kill window
+super + shift + x
+	bspc node -k
+
+# Toggle tiling mode of window
+#super + t
+#	bspc node -t {pseudo_tiled,tiled}
+super + shift + t
+	{bspc node -t floating && window-placer $(bspc query -T -d | grep -o '"state":"floating"' | wc -l),bspc node -t tiled}
+# Force all windows of the desktop to tile
+#super + ctrl + t
+#	bspcp tile
+# Force all windows of the desktop to float and arrange them
+#super + shift + t
+#	bspcp float
+
+# Toggle fullscreen
+super + shift + f
+	bspc node -t {fullscreen,tiled}
+
+# Try to keep size and position of the selected window
+super + shift + o
+	bspc node -g private
+
+# Make window sticky
+super + shift + s
+	bspc node -g sticky
+
+# swap current node and biggest local node
+super + shift + g
+	bspc node -s biggest.local || bspc node -s next.local
+
+# Lock a window from closing
+#super + Escape
+#	bspc node -g locked
+
+# Hide windows (functional equivalent of "minimize")
+super + shift + m
+	whid hide
+
+# Show list of hidden windows
+super + ctrl + m
+	whid dmenu
+
+#super + ctrl + h
+#	whid last
+
+# Autopresel (split window in its largest dimension)
+#ctrl + space
+#	auto-presel
+
+# Presel window for splitting in certain direction
+#alt + ctrl + {h,j,k,l}
+#	bspc node -p \~{west,south,north,east}
+
+# Presel the desktop for splitting in certain direction
+#alt + shift + {h,j,k,l}
+#	bspc node @/ -p \~{west,south,north,east}
+
+# Set splitting ratio of windows
+#alt + ctrl + {1-9}
+#	bspc node -o 0.{1-9}
+
+# Move current window to largest space or preselected area if there is one.
+#super + Return
+#	windowpromoter
+
+# Create a new "master area", splitting the whole desktop instead of just windows.
+#alt + Return
+#	bspc node -n @/
+
+# go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} ^{1-9,10}
+
+# Select previous / next desktop
+#super + {n,m}
+#	bspc desktop -f {prev.occupied,next.occupied}
+
+# cycle windows
+alt + {_,shift + }Tab
+	bspc node -f {next,prev}
+
+# Go to specific window
+#super + Tab
+#	WindowSelector
+
+#Focus windows by direction, works with multihead
+super + {h,j,k,l}
+	focusmover {west,south,north,east}
+
+# Move tiled windows. Moving a tiled window to
+# preselected one moves into preselection instead.
+# Moving out of the screen should move the window to next monitor if possible
+super + shift + {h,j,k,l}
+	windowgrabber {west,south,north,east}
+# Different style of movement: transplant into window in chosen direction
+#super + shift + {Left,Down,Up,Right}
+#	euclid_mover {west,south,north,east}
+
+#resize windows
+#super + ctrl + {a,s,w,d}
+#	bspwm_resize.sh {west,south,north,east}
+super + ctrl + {h,j,k,l}
+	bspc node -z {right -20 0,bottom 0 20,bottom 0 -20,right 20 0}
+
+# Layout manipulation/desktop level controls
+# Toggle monocle mode
+#super + f
+#	bspc desktop -l next
+# Balance tree
+super + shift + b
+	bspc node @/ -B
+
+# Balance brother node. If you do this on biggest window of the desktop, it usually means balancing all windows with except the biggest.
+super + alt + b
+	bspc node @brother -B
+
+# Undo balancing (equalize windows)
+super + ctrl + b
+	bspc node @/ -E
+
+# Toggle automatic balancing of windows
+alt + b
+	euclid_balancer
+
+# Mirror and flip leaves of tree
+super + {comma,period}
+	bspc node @/ -F {horizontal,vertical}
+
+# Rotate leaves of tree
+super + shift + {comma,period}
+	bspc node @/ -R {90,270}
+
+# Change window gap
+#super + g
+#	bspc config -d focused window_gap {$gap,$(($gap+$gap)),$(($gap+$gap+$gap))}
+
+# mouse bindings
+#~button1
+#	DidIClickDesktop.sh && gapgrab
+
+#~button2
+#	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmDesktopMenui
+#DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
+
+#~button3
+#	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/LaunchMenu
+
+# Switch workspace by scrolling on the desktop. Causes scrolling issues on some systems.
+#~button4
+#	DidIClickDesktop.sh && bspc desktop -f next
+#~button5
+#	DidIClickDesktop.sh && bspc desktop -f prev
+
+### Add or remove desktops by scrolling
+#super + ctrl + button5
+#	bspcp dsktp rm
+
+#super + ctrl + button4
+#	bspcp dsktp add
+
+# Spawn applications popup menu and manually tile selected
+# app where your mouse was when you opened the menu. Smartsplit only chooses
+# biggest dimension of the window, MouseLaunch only cares which edge is closer.
+# mod5 is alt_gr (first key right from space) on most keyboards.
+#mod5 + @button1
+#	MouseLaunch ; mygtkmenui -- .config/GTKmenu/LaunchMenu
+#	smartsplit ; dboxmenu
+
+# Spawn window manipulation menuq
+# Mod1 is alt
+#    BspwmWindowMenu
+#mod1 + @button1
+#	mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
+
+# run applications
+super + space
+	dmenu_recent -i -l 14 -w 600 -y $PANEL_HEIGHT
+
+# Triggered by just tapping a super key
+super + shift + space
+	rofi -show
+super + shift + space + z
+	rofi -show
+
+# clipboard history
+#super + w
+#	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
+# clear cipboard history
+#super + shift + w
+#	pkill greenclip && greenclip clear && greenclip daemon &
+
+super + Return
+	$TERMINAL
+
+super + b
+	$BROWSER
+
+super + p
+	$PRIVATE_BROWSER
+
+# https://github.com/gokcehan/lf
+super + f
+	$TERMINAL -e lf
+
+# https://github.com/Rigellute/spotify-tui
+super + s
+	$TERMINAL -e spt
+
+# https://github.com/GeorgeFilipkin/pulsemixer
+super + m
+	$TERMINAL -e $MIXER
+
+# https://vscodium.com
+super + v
+	code
+
+super + w
+    feh --no-fehbg --bg-fill ~/.config/wall.jpg
+
+# https://github.com/wee-slack/wee-slack
+super + z
+    $TERMINAL -e weechat
+
+# Media keys
+XF86AudioRaiseVolume
+	volume up
+XF86AudioLowerVolume
+	volume down
+XF86AudioMute
+	volume mute
+XF86AudioNext
+	playerctl next
+XF86AudioPrev
+	playerctl previous
+XF86AudioPause
+	playerctl pause-pause
+XF86AudioPlay
+	playerctl play-pause
+XF86AudioStop
+	playerctl stop
+XF86MonBrightnessUp
+	xbacklight -inc 10
+XF86MonBrightnessDown
+	xbacklight -dec 10
+# alternates because brightnes buttons lock X on my thinkpad.
+super + shift + equal
+	xbacklight -inc 10
+super + shift + minus
+	xbacklight -dec 10
+
+# cycle dunst
+super + alt + d
+	{pkill dunst,\
+	dunst }
+
+# show dunst history
+super + d
+	dunstctl history-pop
+
+# close all dunst messages
+super + shift + d
+	dunstctl close-all
+
+# reload bspwm config (minus autostart)
+super + alt + r
+	${XDG_CONFIG_HOME}/bspwm/bspwmrc
+
+# restart polybar
+super + alt + p
+	polybar-msg cmd restart
+
+# reload sxhkd config
+super + alt + s
+	pkill -USR1 -x sxhkd
+
+#edit this file
+alt + ctrl + space
+	$TERMINAL -e $EDITOR ${XDG_CONFIG_HOME}/sxhkd/sxhkdrc
+
+# Toggle compositing
+super + alt + c
+	{pkill picom ,\
+	picom --experimental-backends -b }
+
+# screensaver - activates xsecurelock
+super + Escape
+	xset s activate
+
+# Cleanly quit bspwm
+super + shift + Escape
+	bspc {quit 1 && pkill polybar && pkill polybar,wm -r}
+
+super + shift + BackSpace
+	prompt "Poweroff?" poweroff
+
+ctrl + alt + Delete
+	prompt "Reboot?" reboot
+

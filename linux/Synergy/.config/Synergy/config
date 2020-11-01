@@ -1,0 +1,39 @@
+section: screens
+	monolith:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none 
+		switchCornerSize = 0
+	bender.local:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none 
+		switchCornerSize = 0
+end
+
+section: aliases
+end
+
+section: links
+	monolith:
+		right = bender.local
+	bender.local:
+		left = monolith
+end
+
+section: options
+	heartbeat = 2000
+	relativeMouseMoves = false
+	screenSaverSync = true
+	win32KeepForeground = false
+	disableLockToScreen = false
+	clipboardSharing = true
+	clipboardSharingSize = 10240
+	switchCorners = none 
+	switchCornerSize = 0
+end
+

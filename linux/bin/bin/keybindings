@@ -1,0 +1,66 @@
+#!/bin/bash
+#
+# output sxhkd cheat sheet
+
+	less 	<<-EOF
+	List of some useful keybindings.
+	More can be found from the file ~/.config/sxhkd/sxhkdrc.
+
+	### Window manipulation ######################################################
+
+		Alt + Tab                     |- Cycle windows (all desktops)
+		Super + <hjkl>                |- Move focus to direction
+		Super + shift + <hjkl>        |- Move focused window to direction
+		Super + ctrl + <hjkl>         |- Resize focused window to direction
+		Super + 1-0                   |- Focus the desktop with that number
+		Super + shift + 1-0           |- Move window to desktop
+		Super + <,.>                  |- Mirror and flip leaves
+		Super + shift + <,.>          |- Rotate leaves
+
+		Super + shift + b             |- Balance windows
+		Super + alt + b               |- Balance all except biggest window
+		Super + ctrl + b              |- Undo balance (equalize)
+		Super + shift + c             |- Close window
+		Super + shift + x             |- Kill window
+		Super + shift + f             |- Toggle fullscreen
+		Super + shift + g             |- Swap current/biggest window
+		Super + shift + o             |- Toggle private (Avoids splitting)
+		Super + shift + m             |- Minimize window
+		Super + ctrl + m              |- Minimized window list
+		Super + shift + s             |- Togle sticky
+		Super + shift + t             |- Toggle tiling
+
+		Super + shift + q             |- Quit bspwm
+
+	### Applications #############################################################
+
+		Super Key                     |- Rofi (Launcher)
+		Super + enter                 |- Terminal
+		Super + space                 |- Dmenu (Run applications)
+		Super + b                     |- Browser
+		Super + p                     |- Browser (private)
+		Super + f                     |- Explore files with lf
+		Super + m                     |- Mixer
+		Super + s                     |- Spotify
+		Super + v                     |- VS Code
+
+	### Services #################################################################
+
+		Super + d                     |- Dunst history
+		Super + shift + d             |- Close all dunst windows
+		Super + alt + d               |- Cycle dunst
+		Super + alt + c               |- Toggle compositing
+		Super + alt + p               |- Restart polybar
+		Super + alt + r               |- Re-run bspwmrc
+		Super + alt + s               |- Restart sxhkd
+		Super + shift + p             |- Shutdown (poweroff)
+		Super + shift + backspace     |- Reboot
+		Super + shift + escape        |- Logout
+		Super + escape                |- Lock screen
+
+	### Mouse ####################################################################
+
+		Super + drag                  |- Moves tiled window
+		Super + rightclick drag       |- Resizes window
+
+	EOF

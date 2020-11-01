@@ -1,0 +1,23 @@
+#!/bin/sh
+
+if [[ $# -lt 1 ]]; then
+  echo "Must provide package(s) to stow."
+  exit 1
+fi
+
+if ! command -v stow >/dev/null; then
+  echo "Stow not found."
+  exit 2
+fi
+
+printf "=== Dry run...\n"
+stow -n -v -t "$HOME" "$@"
+
+[[ $? -ne 0 ]] && exit 255
+
+printf "\n=== Looks good? (CTRL-C to abort; ENTER to proceed) "
+read
+stow -v -t "$HOME" "$@"
+
+exit $?
+

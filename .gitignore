@@ -1,0 +1,11 @@
+.netrwhist
+spell
+*.spl
+history
+zsh_history
+.histfile
+bundle
+*.gpg
+plugged
+.zcompdump
+plug.vim

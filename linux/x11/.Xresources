@@ -1,0 +1,16 @@
+!*.color0: #111
+*.alpha: 0.9
+rofi.font: SauceCodePro Nerd Font Medium 12
+*.font: monospace:size=10
+
+! https://wiki.manjaro.org/index.php?title=Improve_Font_Rendering
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+
+! no giant mouse
+Xcursor.size: 14
