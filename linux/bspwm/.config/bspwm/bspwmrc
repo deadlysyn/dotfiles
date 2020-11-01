@@ -44,28 +44,15 @@ setxkbmap -option "ctrl:nocaps" &
 pidof xcape >/dev/null || xcape -e 'Super_L=Super_L|Shift_L|space;Super_R=Super_R|Shift_R|z' &
 
 ### start things
-#/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
-#/usr/lib/mate-notification-daemon/mate-notification-daemon &
-# automount removable media
-#pidof devmon >/dev/null || devmon &
-# file manager
-#pidof thunar >/dev/null || thunar --daemon &
-# clipboard history
-#pidof greenclip >/dev/null || greenclip daemon &
-
 # notifications
 pidof dunst >/dev/null || dunst &
 # remove mouse pointer when idle
 pidof unclutter >/dev/null || unclutter &
 # status bar
 pidof polybar >/dev/null || polybar default &
-# network manager menu
-command -v nm-applet && nm-applet &
-# screenshots
-command -v flameshot >/dev/null && flameshot &
 # virtual kvm
 [ -f ${XDG_CONFIG_HOME}/Synergy/license ] && pidof synergys >/dev/null || \
-    synergys -f --name monolith \
+    synergys -f --name $(hostname) \
     -c ${XDG_CONFIG_HOME}/Synergy/config --address :24800 \
     --serial-key $(cat ${XDG_CONFIG_HOME}/Synergy/license) \
     2>&1 >${XDG_CONFIG_HOME}/Synergy/log &
