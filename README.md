@@ -22,7 +22,7 @@ bail (move existing configs out of the way and try again).
 
 ```console
 cd linux
-../scripts/install bspwm polybar sxhkd
+../install bspwm polybar sxhkd
 ```
 
 # License
