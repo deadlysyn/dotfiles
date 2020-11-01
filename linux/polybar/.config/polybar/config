@@ -65,10 +65,12 @@ modules-center = date
 ;modules-right = pulseaudio pacman cpu memory temperature wlan date
 modules-right = pulseaudio temperature cpu memory wlan
 
-tray-position = right
-tray-background = ${colors.background}
-tray-padding = 0
-tray-scale = 1.0
+; going trayless these days...
+tray-position = none
+;tray-position = right
+;tray-background = ${colors.background}
+;tray-padding = 0
+;tray-scale = 1.0
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
