@@ -24,8 +24,9 @@ xset fp rehash &
 fc-cache -fv &
 
 # screensaver
-xset s 600 5 &
-xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
+xset s blank &
+xset s 600 &
+xautolock -time 10 -locker slock &
 
 # disable energy star
 xset -dpms &
