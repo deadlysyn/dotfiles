@@ -65,6 +65,10 @@ vscodium() {
     private=on;
 }
 
+vivaldi() {
+    private=on;
+}
+
 # jetbrains_idea() {
 # 	local name;
 
@@ -88,12 +92,14 @@ case $instance.$class in
 	(*.Spotify) spotify;;
 	(*.Slack) slack;;
 	(*.VSCodium) vscodium;;
+	(*.Vivaldi-stable) vivaldi-stable;;
 	#(jetbrains-idea.jetbrains-idea) jetbrains_idea;;
 	(.)
 		case $(ps -p "$(xdo pid "$id")" -o comm= 2>/dev/null) in
 			(spotify) spotify;;
 			(slack) slack;;
 			(vscodium) vscodium;;
+			(vivaldi-stable) vivaldi;;
 		esac;;
 esac;
 
