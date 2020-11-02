@@ -43,9 +43,7 @@ export GTK2_RC_FILES="${HOME}/.gtkrc-2.0"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # default apps
-#export BROWSER="firefox"
-#export PRIVATE_BROWSER="$BROWSER -private-window -foreground"
-export BROWSER="/bin/brave"
+export BROWSER="/bin/vivaldi-stable"
 export PRIVATE_BROWSER="$BROWSER --incognito"
 export EDITOR="/bin/nvim"
 export MIXER="/bin/pulsemixer"
