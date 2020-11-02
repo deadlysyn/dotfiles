@@ -22,9 +22,9 @@ screenchange-reload = true
 format-underline = ${colors.blue}
 
 [bar/default]
-; I lave this out so I can easily load the same config on multiple
-; single-display computers. If you have multiple monitors you
-; likely want a [bar/...] section per monitor with display names.
+; I leave this out so I can easily load the same config on multiple
+; single-display computers. If you have multiple monitors you'll
+; need a [bar/...] section per monitor with display names.
 ;monitor = DisplayPort-0
 monitor-exact = true
 monitor-strict = false
@@ -49,7 +49,7 @@ foreground = ${colors.foreground}
 line-color = ${colors.blue}
 line-size = ${env:LINE_WIDTH:3}
 padding-left = 0
-padding-right = 2
+padding-right = 0
 module-margin-left = 0
 module-margin-right = 2
 
@@ -96,7 +96,7 @@ format-underline =
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:100:...%
+label = ${env:PANEL_TITLE_LABEL:40}
 format-underline =
 
 [module/cpu]

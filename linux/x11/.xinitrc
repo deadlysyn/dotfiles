@@ -57,6 +57,7 @@ export FONT2="SauceCodePro Nerd Font Mono:size=10;1"
 export FONT3="Noto Color Emoji:scale=8:antialais=false:style=Regular;2"
 export LINE_WIDTH=3
 export PANEL_HEIGHT=30
+export PANEL_TITLE_LABEL="%title:0:100:...%"
 export WM_GAP=15
 if [ -e /sys/module/battery ]; then
     export FONT1="Source Code Pro Medium:pixelsize=8"
@@ -64,6 +65,7 @@ if [ -e /sys/module/battery ]; then
     export FONT3="Noto Color Emoji:scale=10:antialais=false:style=Regular;2"
     export LINE_WIDTH=2
     export PANEL_HEIGHT=20
+    export PANEL_TITLE_LABEL="%title:0:40:...%"
     export WM_GAP=10
 fi
 
