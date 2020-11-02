@@ -28,7 +28,7 @@ xset s blank &
 xset s 600 &
 # slock had more problems working consistently on a variety of hardware.
 # mostly the hackish dimmer script needing per-system adjustment.
-xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock
+xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
 
 # disable energy star
 xset -dpms &
