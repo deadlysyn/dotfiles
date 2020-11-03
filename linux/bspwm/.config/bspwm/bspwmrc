@@ -24,11 +24,11 @@ xset fp rehash &
 fc-cache -fv &
 
 # screensaver
-xset s blank &
-xset s 600 &
+xset s 300 &
 # slock had more problems working consistently on a variety of hardware.
 # mostly the hackish dimmer script needing per-system adjustment.
-xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
+#xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
+xss-lock -l -- xsecurelock &
 
 # disable energy star
 xset -dpms &
@@ -38,10 +38,6 @@ xset b off &
 xset c off &
 # disable capslock
 setxkbmap -option "ctrl:nocaps" &
-
-# map super keys to trigger rofi
-# TODO: replace with dmenu
-pidof xcape >/dev/null || xcape -e 'Super_L=Super_L|Shift_L|space;Super_R=Super_R|Shift_R|z' &
 
 ### start things
 # notifications
@@ -107,18 +103,17 @@ bspc config split_ratio 0.52
 #bspc rule -a lxterminal state=floating center=true sticky=true
 #bspc rule -a conky sticky=on manage=off lower=on
 #bspc rule -a Docky layer=above border=off manage=on
+#bspc rule -a brave private=on
 #bspc rule -a chromium private=on
-bspc rule -a firefox private=on
-bspc rule -a brave private=on
+#bspc rule -a firefox private=on
+#bspc rule -a vivaldi-stable private=on
 bspc rule -a Gimp state=floating follow=on
 bspc rule -a mpv state=floating layer=normal
-#bspc rule -a spotify desktop=10 state=pseudo_tiled follow=on
-#bspc rule -a slack private=on
 bspc rule -a libreoffice state=tiled layer=normal
 #bspc desktop 10 --layout monocle
 
 ###External rules
-bspc config external_rules_command ${HOME}/bin/bspm-ext
+bspc config external_rules_command ${HOME}/bin/bspwm-ext
 ##Pseudo automatic mode: always splits focused window when opening new window
 #bspc config external_rules_command /usr/bin/pseudo_automatic_mode
 ##Adjust new window: splits biggest windows to keep windows about the same size
