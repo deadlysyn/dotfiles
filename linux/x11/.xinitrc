@@ -62,9 +62,9 @@ if [ -e /sys/module/battery ]; then
     export FONT2="SauceCodePro Nerd Font Mono:size=8;1"
     export FONT3="Noto Color Emoji:scale=10:antialais=false:style=Regular;2"
     export LINE_WIDTH=2
-    export PANEL_HEIGHT=20
+    export PANEL_HEIGHT=15
     export PANEL_TITLE_LABEL="%title:0:40:...%"
-    export WM_GAP=10
+    export WM_GAP=8
 fi
 
 xhost +local:root > /dev/null 2>&1
