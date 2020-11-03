@@ -213,6 +213,10 @@ super + p
 super + f
 	$TERMINAL -e lf
 
+# https://wiki.archlinux.org/index.php/Flameshot
+super + g
+    flameshot gui
+
 # https://github.com/Rigellute/spotify-tui
 super + s
 	$TERMINAL -e spt

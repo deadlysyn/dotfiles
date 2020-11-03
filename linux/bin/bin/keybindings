@@ -12,7 +12,7 @@
 		Super + <hjkl>                |- Move focus to direction
 		Super + shift + <hjkl>        |- Move focused window to direction
 		Super + ctrl + <hjkl>         |- Resize focused window to direction
-		Super + 1-0                   |- Focus the desktop with that number
+		Super + 1-0                   |- Focus desktop with that number
 		Super + shift + 1-0           |- Move window to desktop
 		Super + <,.>                  |- Mirror and flip leaves
 		Super + shift + <,.>          |- Rotate leaves
