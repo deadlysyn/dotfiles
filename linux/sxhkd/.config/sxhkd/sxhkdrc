@@ -295,7 +295,7 @@ alt + ctrl + space
 # Toggle compositing
 super + alt + c
 	{pkill picom ,\
-	picom --experimental-backends -b }
+	picom -b }
 
 # screensaver - activates xsecurelock
 super + Escape
