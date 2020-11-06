@@ -144,61 +144,9 @@ super + shift + {comma,period}
 #super + g
 #	bspc config -d focused window_gap {$gap,$(($gap+$gap)),$(($gap+$gap+$gap))}
 
-# mouse bindings
-#~button1
-#	DidIClickDesktop.sh && gapgrab
-
-#~button2
-#	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmDesktopMenui
-#DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
-
-#~button3
-#	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/LaunchMenu
-
-# Switch workspace by scrolling on the desktop. Causes scrolling issues on some systems.
-#~button4
-#	DidIClickDesktop.sh && bspc desktop -f next
-#~button5
-#	DidIClickDesktop.sh && bspc desktop -f prev
-
-### Add or remove desktops by scrolling
-#super + ctrl + button5
-#	bspcp dsktp rm
-
-#super + ctrl + button4
-#	bspcp dsktp add
-
-# Spawn applications popup menu and manually tile selected
-# app where your mouse was when you opened the menu. Smartsplit only chooses
-# biggest dimension of the window, MouseLaunch only cares which edge is closer.
-# mod5 is alt_gr (first key right from space) on most keyboards.
-#mod5 + @button1
-#	MouseLaunch ; mygtkmenui -- .config/GTKmenu/LaunchMenu
-#	smartsplit ; dboxmenu
-
-# Spawn window manipulation menuq
-# Mod1 is alt
-#    BspwmWindowMenu
-#mod1 + @button1
-#	mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
-
 # run applications
 super + space
-	dmenu_recent -i -l 14 -w 600 -y $PANEL_HEIGHT
-
-# Triggered by just tapping a super key
-super + shift + space
-	rofi -show
-super + shift + space + z
-	rofi -show
-
-# clipboard history
-#super + w
-#	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
-
-# clear cipboard history
-#super + shift + w
-#	pkill greenclip && greenclip clear && greenclip daemon &
+	dmenu_run
 
 super + Return
 	$TERMINAL
