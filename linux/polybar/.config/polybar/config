@@ -22,10 +22,6 @@ screenchange-reload = true
 format-underline = ${colors.blue}
 
 [bar/default]
-; I leave this out so I can easily load the same config on multiple
-; single-display computers. If you have multiple monitors you'll
-; need a [bar/...] section per monitor with display names.
-;monitor = DisplayPort-0
 monitor-exact = true
 monitor-strict = false
 wm-restack = bspwm
@@ -48,33 +44,20 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 line-color = ${colors.blue}
 line-size = ${env:LINE_WIDTH:3}
-padding-left = 0
-padding-right = 0
+padding-left = 1
+padding-right = 1
 module-margin-left = 0
 module-margin-right = 2
 
-;font-0 = Source Code Pro Medium:pixelsize=10
-;font-1 = SauceCodePro Nerd Font Mono:size=10;1
-;font-2 = Noto Color Emoji:scale=8:antialais=false:style=Regular;2
 font-0 = ${env:FONT1}
 font-1 = ${env:FONT2}
 font-2 = ${env:FONT3}
 
 modules-left = bspwm xwindow
-modules-center = date
+;modules-center = date
 ;modules-right = pulseaudio pacman cpu memory temperature wlan date
-modules-right = pulseaudio temperature cpu memory wlan
-
-; going trayless these days...
+modules-right = pulseaudio temperature cpu memory wlan date
 tray-position = none
-;tray-position = right
-;tray-background = ${colors.background}
-;tray-padding = 0
-;tray-scale = 1.0
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-;cursor-click = pointer
 
 [module/bspwm]
 type = internal/bspwm
@@ -102,45 +85,34 @@ format-underline =
 [module/cpu]
 type = internal/cpu
 interval = 2
-;format-prefix = "💻 "
-format-prefix = "🚀 "
-label = %percentage:3%%
-;click-left = $TERMINAL -e htop
+format-prefix = "💻 "
+label = %percentage%%
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = "🧠 "
-label = %percentage_used:3%%
-;label = %percentage_free%%
-;label = %gb_used:8%/%gb_total:8%
+label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
 interface = ${env:WIFI:wlan0}
-interval = 2
-format-connected = 🔃 <label-connected>
-label-connected = %upspeed:8% %downspeed:8% %essid%
+interval = 3
+format-connected = 📡 <label-connected>
+label-connected = %essid% %upspeed% %downspeed%
 format-disconnected = <label-disconnected>
 label-disconnected = no wifi
 format-packetloss = <animation-packetloss> <label-connected>
 animation-packetloss-0 = 😠
 animation-packetloss-1 = 😱
-;format-connected = 📶 <label-connected>
-;format-connected = 📡 <label-connected>
-;format-connected = 🛰 <label-connected>
-;label-connected = %essid% %upspeed:8% %downspeed:8%
 
 [module/date]
 type = internal/date
 interval = 60
-;date = %Y %a %b %d
 date = %a %b %d
 time = %H:%M
 label = %date% %time%
-;format-prefix = "🕓 "
-;format-prefix = "📅 "
-format-underline =
+format-prefix = "📅 "
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -149,12 +121,10 @@ type = internal/pulseaudio
 ;sink = alsa_output.pci-0000_12_00.3.analog-stereo
 format-volume = <ramp-volume> <label-volume>
 label-muted = 🔇 muted
-#label-muted-foreground = #999
 label-muted-foreground = ${colors.lightgray}
 ramp-volume-0 = 🔈
 ramp-volume-1 = 🔉
 ramp-volume-2 = 🔊
-;click-right = pavucontrol
 
 [module/temperature]
 type = internal/temperature
@@ -165,6 +135,5 @@ warn-temperature = 80
 label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.red}
-;format-prefix = "🔥 "
 format-prefix = "🌡 "
 
