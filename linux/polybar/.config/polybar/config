@@ -39,7 +39,6 @@ dpi-y = 0
 
 width = 100%
 height = ${env:PANEL_HEIGHT:30}
-
 offset-x = 0
 offset-y = 0
 radius = 0.0
