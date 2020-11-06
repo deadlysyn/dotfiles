@@ -12,7 +12,7 @@ xrdb -merge .Xresources &
 [ -f ${XDG_CONFIG_HOME}/wall.jpg ] && feh --no-fehbg --bg-fill ~/.config/wall.jpg &
 
 # compositing
-[ -f ${XDG_CONFIG_HOME}/picom.conf ] && picom -b &
+[ -f ${XDG_CONFIG_HOME}/picom.conf ] && picom --experimental-backends -b &
 
 # enable local fonts
 # list discovered fonts: fc-list
