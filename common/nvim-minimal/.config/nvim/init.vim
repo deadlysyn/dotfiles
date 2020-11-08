@@ -8,7 +8,6 @@ if !exists('g:vscode')
   call plug#begin('~/.config/nvim/plugged')
     Plug 'editorconfig/editorconfig-vim'
     Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
     Plug 'junegunn/fzf.vim'
     Plug 'mileszs/ack.vim'
