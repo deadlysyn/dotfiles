@@ -3,12 +3,13 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " used to ignore gitignore files
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+"let $FZF_DEFAULT_COMMAND = 'rg --column --line-number --noheading --color=always --ignore-case ""'
 "let Grep_Skip_Dirs = '.git node_modules'
 
-" Use ag to grep
-set grepprg=ag\ --vimgrep\ --smart-case
-let g:ackprg = 'ag --vimgrep --smart-case'
+" Use rg (ripgrep) to grep
+set grepprg=rg\ --vimgrep\ --no-heading
+set grepformat=%f:%l:%c:%m,%f:%l:%m
+let g:ackprg = 'rg --vimgrep --no-heading'
 
 " remap '<leader>g' to grep directory for word under cursor
 nnoremap <leader>g :Ack! "\b<cword>\b" <CR>
@@ -17,10 +18,20 @@ nnoremap <leader>g :Ack! "\b<cword>\b" <CR>
 " fzf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
+
+"nnoremap <C-p>a :Rg 
+nnoremap <C-p> :Rg 
+
 "nmap <Leader>b :Buffers<CR>
 "nmap <Leader>f :Files<CR>
 
-nnoremap <C-p> :FZF<CR>
+"nnoremap <C-p> :FZF<CR>
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-h': 'split',
@@ -28,7 +39,7 @@ let g:fzf_action = {
   \}
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-" Customize fzf colors to match your color scheme
+" Customize fzf colors to match color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -60,7 +71,7 @@ let g:gitgutter_max_signs = 500
 nnoremap <silent> <leader>gg :GitGutterToggle<cr>
 
 " Use ag vs grep
-let g:gitgutter_grep = 'ag'
+let g:gitgutter_grep = 'rg'
 
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '~'
