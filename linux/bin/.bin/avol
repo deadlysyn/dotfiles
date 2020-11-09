@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 #
 # Manage ALSA Master channel
  
@@ -15,10 +15,10 @@ state() {
 test $# -eq 0 && echo "`level` `state`" && exit 0
 
 case $1 in
-    up)      amixer set Master ${2:-5}%+ >/dev/null;;
-    down)      amixer set Master ${2:-5}%- >/dev/null;;
-    mute)      amixer set Master toggle >/dev/null;;
+    up)     amixer set Master ${2:-5}%+ >/dev/null;;
+    down)   amixer set Master ${2:-5}%- >/dev/null;;
+    mute)   amixer set Master toggle >/dev/null;;
     state|level) $1;;
     set)    amixer set Master $2% >/dev/null;;
-    *)    amixer set Master $1% >/dev/null;;
+    *)      amixer set Master $1% >/dev/null;;
 esac

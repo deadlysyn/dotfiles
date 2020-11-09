@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/dash
 if [ $(pgrep pulseaudio >/dev/null) ]; then
-		volume_command=pulseaudio-ctl 
-	else
-		volume_command=avol
+    volume_command=pulseaudio-ctl 
+else
+    volume_command=avol
 fi
 
 $volume_command $@; volume_status.sh
+
