@@ -45,7 +45,7 @@ foreground = ${colors.foreground}
 line-color = ${colors.blue}
 line-size = ${env:LINE_WIDTH:3}
 padding-left = 0
-padding-right = 0
+padding-right = 2
 module-margin-left = 0
 module-margin-right = 2
 
