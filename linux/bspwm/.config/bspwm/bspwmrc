@@ -113,7 +113,7 @@ bspc rule -a libreoffice state=tiled layer=normal
 #bspc desktop 10 --layout monocle
 
 ###External rules
-bspc config external_rules_command ${HOME}/bin/bspwm-ext
+bspc config external_rules_command ${HOME}/.bin/bspwm-ext
 ##Pseudo automatic mode: always splits focused window when opening new window
 #bspc config external_rules_command /usr/bin/pseudo_automatic_mode
 ##Adjust new window: splits biggest windows to keep windows about the same size
