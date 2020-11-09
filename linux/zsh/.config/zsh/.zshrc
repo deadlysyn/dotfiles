@@ -36,7 +36,7 @@ export LESS_TERMCAP_so=$'\E[01;47;34m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 
-PATH="${HOME}/bin:/usr/local/bin:/usr/local/sbin:/usr/bin/core_perl:/bin:/sbin:/usr/bin:/usr/sbin"
+PATH="${HOME}/.bin:${HOME}/bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin"
 export PATH
 
 export GOPATH="${HOME}/go"
