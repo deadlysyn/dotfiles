@@ -1,6 +1,12 @@
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 if !exists('g:vscode')
   call plug#begin('~/.config/nvim/plugged')
-    "Plug 'chriskempson/base16-vim'
+    " Plug 'chriskempson/base16-vim'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'vim-airline/vim-airline'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
@@ -13,7 +19,7 @@ if !exists('g:vscode')
     Plug 'sheerun/vim-polyglot'
     Plug 'elzr/vim-json'
     Plug 'stephpy/vim-yaml'
-    Plug 'ervandew/supertab'
+    " Plug 'ervandew/supertab'
     Plug 'preservim/nerdtree'
     Plug 'wesQ3/vim-windowswap'
     Plug 'godlygeek/tabular'
@@ -25,7 +31,7 @@ if !exists('g:vscode')
     " Plug 'leafgarland/typescript-vim'
     " Plug 'peitalin/vim-jsx-typescript'
     " Plug 'HerringtonDarkholme/yats.vim'
-    "Plug 'morhetz/gruvbox'
+    " Plug 'morhetz/gruvbox'
   call plug#end()
 
   source ~/.config/nvim/include/00-simple.vim
