@@ -1,6 +1,6 @@
 # Show keybindings - keep this updated
 super + F1
-	$TERMINAL -e ~/bin/keybindings
+	$TERMINAL -e keybindings
 
 # Close window - to be consistent with "shift modfiers for window changes"
 super + shift + c
