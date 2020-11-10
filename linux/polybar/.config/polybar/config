@@ -19,7 +19,7 @@ foreground = #ddc7a1
 
 [settings]
 screenchange-reload = true
-format-underline = ${colors.blue}
+format-underline = ${colors.darkblue}
 
 [bar/default]
 monitor-exact = true
@@ -67,7 +67,7 @@ label-focused-foreground = ${colors.background}
 label-focused-underline = ${colors.blue}
 label-focused-padding = 1
 label-occupied = %index%
-label-occupied-underline = ${colors.blue}
+label-occupied-underline = ${colors.darkblue}
 label-occupied-padding = 1
 label-urgent = %index%!
 label-urgent-background = ${colors.red}
