@@ -7,7 +7,7 @@ rofi.font: SauceCodePro Nerd Font Medium 12
 Xft.dpi: 96
 Xft.antialias: true
 Xft.hinting: true
-Xft.rgba: rgb
+Xft.rgba: bgr
 Xft.autohint: false
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
