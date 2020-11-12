@@ -1,8 +1,6 @@
 [global]
     frame_width = 1
-    #frame_color = "#788388"
     frame_color = "#7DAEA3"
-
     font = Source Code Pro Medium 10
 
     # Allow a small subset of html markup:
@@ -152,51 +150,29 @@
     icon_position = left
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/Adwaita/32x32/status/:/usr/share/icons/Adwaita/32x32/devices/
+    icon_path = /usr/share/icons/Adwaita/24x24/status/:/usr/share/icons/Adwaita/24x24/devices/
 
     # Limit icons size.
-    max_icon_size=28
-
-[shortcuts]
-
-    # Shortcuts are specified as [modifier+][modifier+]...key
-    # Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
-    # "mod3" and "mod4" (windows-key).
-    # Xev might be helpful to find names for keys.
-
-    # Close notification.
-    #close = mod1+space
-
-    # Close all notifications.
-    # close_all = ctrl+shift+space
-    #close_all = ctrl+mod1+space
-
-    # Redisplay last message(s).
-    # On the US keyboard layout "grave" is normally above TAB and left
-    # of "1".
-    #history = ctrl+mod4+h
-
-    # Context menu.
-    #context = ctrl+mod1+c
+    max_icon_size=24
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#263238"
-    foreground = "#556064"
+    background = "#282828"
+    foreground = "#DDC7A1"
     timeout = 10
 
 [urgency_normal]
-    background = "#263238"
-    foreground = "#F9FAF9"
+    background = "#282828"
+    foreground = "#DDC7A1"
     timeout = 10
-    icon = /usr/share/icons/Adwaita/32x32/status/dialog-information-symbolic.symbolic.png
+    icon = /usr/share/icons/Adwaita/24x24/status/dialog-information-symbolic.symbolic.png
 
 [urgency_critical]
-    background = "#D62929"
-    foreground = "#F9FAF9"
+    background = "#282828"
+    foreground = "#EA6962"
     timeout = 0
-    icon = /usr/share/icons/Adwaita/32x32/status/dialog-warning-symbolic.symbolic.png
+    icon = /usr/share/icons/Adwaita/24x24/status/dialog-warning-symbolic.symbolic.png
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
