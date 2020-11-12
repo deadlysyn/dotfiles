@@ -165,9 +165,10 @@ super + f
 super + g
     flameshot gui
 
-# https://github.com/Rigellute/spotify-tui
 super + s
-	$TERMINAL -e spt
+    spotify
+# https://github.com/Rigellute/spotify-tui
+#	$TERMINAL -e spt
 
 # https://github.com/GeorgeFilipkin/pulsemixer
 super + m
@@ -180,9 +181,10 @@ super + v
 super + w
     feh --no-fehbg --bg-fill ~/.config/wall.jpg
 
-# https://github.com/wee-slack/wee-slack
 super + z
-    $TERMINAL -e weechat
+    slack
+# https://github.com/wee-slack/wee-slack
+#    $TERMINAL -e weechat
 
 # Media keys
 XF86AudioRaiseVolume
