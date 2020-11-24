@@ -1,7 +1,7 @@
 unsetopt BEEP               # Be quiet
 unsetopt EXTENDEDGLOB       # Ignore #/~/^ in expansion
 unsetopt NOTIFY             # Be quieter about bg jobs
-setopt CORRECT              # Correct misspelled commands
+unsetopt CORRECT            # Don't correct misspelled commands
 setopt NOMATCH              # Error on bad filename patterns
 setopt AUTO_CD              # Don't need cd to change dirs
 stty stop undef             # Disable ctrl-s freezing terminal
@@ -86,19 +86,6 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# Use lf to switch directories and bind it to ctrl-o
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-    fi
-}
-
-bindkey -s '^o' 'lfcd\n'
-
 # edit line in vim with ctrl-e
 autoload -Uz edit-command-line
 zle -N edit-command-line
@@ -173,6 +160,7 @@ alias vi="nvim"
 alias vim="nvim"
 #alias tc="tmux show-buffer | pbcopy"
 alias c="code -n ."
+alias p="bluetoothctl power on; bluetoothctl connect CA:CD:EC:C0:B8:9D"
 alias docker-clean=' \
   docker container prune -f ; \
   docker image prune -f ; \
