@@ -110,6 +110,7 @@ bspc rule -a vivaldi-stable private=on
 bspc rule -a Gimp state=floating follow=on
 bspc rule -a mpv state=floating layer=normal
 bspc rule -a libreoffice state=tiled layer=normal
+bspc rule -a Steam manage=off
 #bspc desktop 10 --layout monocle
 
 ###External rules
