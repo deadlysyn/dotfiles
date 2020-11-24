@@ -226,7 +226,7 @@ super + d
 super + shift + d
 	dunstctl close-all
 
-# reload bspwm config (minus autostart)
+# reload bspwm config
 super + alt + r
 	${XDG_CONFIG_HOME}/bspwm/bspwmrc
 
