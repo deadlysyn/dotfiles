@@ -157,6 +157,9 @@ super + b
 super + p
 	$PRIVATE_BROWSER
 
+super + e
+	mailspring
+
 # https://github.com/gokcehan/lf
 super + f
 	$TERMINAL -e lf
@@ -206,11 +209,6 @@ XF86AudioStop
 XF86MonBrightnessUp
 	xbacklight -inc 10
 XF86MonBrightnessDown
-	xbacklight -dec 10
-# alternates because brightnes buttons lock X on my thinkpad.
-super + shift + equal
-	xbacklight -inc 10
-super + shift + minus
 	xbacklight -dec 10
 
 # cycle dunst
