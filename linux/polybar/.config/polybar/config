@@ -77,10 +77,10 @@ label-empty = %index%
 label-empty-padding = 1
 format-underline =
 
-[module/xwindow]
-type = internal/xwindow
-label = ${env:PANEL_TITLE_LABEL:40}
-format-underline =
+; [module/xwindow]
+; type = internal/xwindow
+; label = ${env:PANEL_TITLE_LABEL:40}
+; format-underline =
 
 [module/cpu]
 type = internal/cpu
