@@ -14,12 +14,12 @@ green = #1abb9b
 darkgreen = #222d32
 blue = #7daea3
 darkblue = #45707a
-background = #cc1d2021
+background = #ee1d2021
 foreground = #ddc7a1
 
 [settings]
 screenchange-reload = true
-format-underline = ${colors.darkblue}
+;format-underline = ${colors.darkblue}
 
 [bar/default]
 monitor-exact = true
@@ -46,6 +46,8 @@ line-color = ${colors.blue}
 line-size = ${env:LINE_WIDTH:3}
 padding-left = 0
 padding-right = 2
+;padding-top = 2
+;padding-bottom = 2
 module-margin-left = 0
 module-margin-right = 2
 
@@ -53,10 +55,10 @@ font-0 = ${env:FONT1}
 font-1 = ${env:FONT2}
 font-2 = ${env:FONT3}
 
-modules-left = bspwm xwindow
-;modules-center = date
+modules-left = bspwm
+modules-center = xwindow
 ;modules-right = pulseaudio pacman cpu memory temperature wlan date
-modules-right = pulseaudio temperature cpu memory wlan date
+modules-right = date wlan cpu memory temperature pulseaudio
 tray-position = none
 
 [module/bspwm]
@@ -77,10 +79,10 @@ label-empty = %index%
 label-empty-padding = 1
 format-underline =
 
-; [module/xwindow]
-; type = internal/xwindow
-; label = ${env:PANEL_TITLE_LABEL:40}
-; format-underline =
+[module/xwindow]
+type = internal/xwindow
+label = ${env:PANEL_TITLE_LABEL:40}
+format-underline =
 
 [module/cpu]
 type = internal/cpu
