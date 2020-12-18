@@ -106,11 +106,12 @@ bspc config split_ratio 0.52
 #bspc rule -a brave private=on
 #bspc rule -a chromium private=on
 #bspc rule -a firefox private=on
-bspc rule -a vivaldi-stable private=on
+bspc rule -a chromium private=on
 bspc rule -a Gimp state=floating follow=on
 bspc rule -a mpv state=floating layer=normal
 bspc rule -a libreoffice state=tiled layer=normal
 bspc rule -a Steam manage=off
+bspc rule -a mailspring desktop=^9
 #bspc desktop 10 --layout monocle
 
 ###External rules
