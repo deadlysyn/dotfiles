@@ -59,6 +59,7 @@ spotify() {
 
 slack() {
     desktop=^9;
+    private=on;
 }
 
 vscodium() {
