@@ -47,11 +47,11 @@ pidof unclutter >/dev/null || unclutter &
 # status bar
 pidof polybar >/dev/null || polybar default &
 # virtual kvm
-[ -f ${XDG_CONFIG_HOME}/Synergy/license ] && pidof synergys >/dev/null || \
-    synergys -f --name $(uname -n) \
-    -c ${XDG_CONFIG_HOME}/Synergy/config --address :24800 \
-    --serial-key $(cat ${XDG_CONFIG_HOME}/Synergy/license) \
-    2>&1 >${XDG_CONFIG_HOME}/Synergy/log &
+#[ -f ${XDG_CONFIG_HOME}/Synergy/license ] && pidof synergys >/dev/null || \
+#    synergys -f --name $(uname -n) \
+#    -c ${XDG_CONFIG_HOME}/Synergy/config --address :24800 \
+#    --serial-key $(cat ${XDG_CONFIG_HOME}/Synergy/license) \
+#    2>&1 >${XDG_CONFIG_HOME}/Synergy/log &
 
 ####################################################################
 # bspwm config
