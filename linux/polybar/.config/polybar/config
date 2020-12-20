@@ -55,10 +55,11 @@ font-0 = ${env:FONT1}
 font-1 = ${env:FONT2}
 font-2 = ${env:FONT3}
 
-modules-left = bspwm
-modules-center = xwindow
+modules-left = bspwm xwindow
+modules-center = date
 ;modules-right = pulseaudio pacman cpu memory temperature wlan date
-modules-right = date wlan cpu memory temperature pulseaudio
+;modules-right = date wlan cpu memory temperature pulseaudio
+modules-right = cpu memory temperature network pulseaudio
 tray-position = none
 
 [module/bspwm]
@@ -87,7 +88,8 @@ format-underline =
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "💻 "
+;format-prefix = "💻 "
+format-prefix = "🚀 "
 label = %percentage%%
 
 [module/memory]
@@ -96,17 +98,29 @@ interval = 2
 format-prefix = "🧠 "
 label = %percentage_used%%
 
-[module/wlan]
+[module/network]
 type = internal/network
-interface = ${env:WIFI:wlan0}
+interface = enp4s0
 interval = 3
-format-connected = 📡 <label-connected>
-label-connected = %essid% %upspeed% %downspeed%
+format-connected = 🔃 <label-connected>
+label-connected = %upspeed% %downspeed%
 format-disconnected = <label-disconnected>
-label-disconnected = no wifi
+label-disconnected = not connected
 format-packetloss = <animation-packetloss> <label-connected>
 animation-packetloss-0 = 😠
 animation-packetloss-1 = 😱
+
+; [module/wlan]
+; type = internal/network
+; interface = ${env:WIFI:wlan0}
+; interval = 3
+; format-connected = 📡 <label-connected>
+; label-connected = %essid% %upspeed% %downspeed%
+; format-disconnected = <label-disconnected>
+; label-disconnected = no wifi
+; format-packetloss = <animation-packetloss> <label-connected>
+; animation-packetloss-0 = 😠
+; animation-packetloss-1 = 😱
 
 [module/date]
 type = internal/date
@@ -114,7 +128,7 @@ interval = 60
 date = %a %b %d
 time = %H:%M
 label = %date% %time%
-format-prefix = "📅 "
+;format-prefix = "📅 "
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -127,15 +141,17 @@ label-muted-foreground = ${colors.lightgray}
 ramp-volume-0 = 🔈
 ramp-volume-1 = 🔉
 ramp-volume-2 = 🔊
+click-right = st -e pulsemixer
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-;hwmon-path = /sys/class/hwmon/hwmon2/temp3_input
-hwmon-path = /sys/class/hwmon/hwmon3/temp3_input
+hwmon-path = /sys/class/hwmon/hwmon2/temp3_input
+;hwmon-path = /sys/class/hwmon/hwmon3/temp3_input
 warn-temperature = 80
 label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.red}
-format-prefix = "🌡 "
+;format-prefix = "🌡 "
+format-prefix = "🔥 "
 
