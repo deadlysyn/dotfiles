@@ -190,15 +190,15 @@ XF86AudioLowerVolume
 XF86AudioMute
 	volume mute
 XF86AudioNext
-	playerctl next
+	playerctl -p spotify next
 XF86AudioPrev
-	playerctl previous
+	playerctl -p spotify previous
 XF86AudioPause
-	playerctl pause-pause
+	playerctl -p spotify play-pause
 XF86AudioPlay
-	playerctl play-pause
+	playerctl -p spotify play-pause
 XF86AudioStop
-	playerctl stop
+	playerctl -p spotify stop
 XF86MonBrightnessUp
 	xbacklight -inc 10
 XF86MonBrightnessDown
@@ -236,7 +236,7 @@ alt + ctrl + space
 # Toggle compositing
 super + alt + c
 	{pkill picom ,\
-	picom --experimental-backends -b }
+	picom -b }
 
 # screensaver - activates xsecurelock
 super + Escape
