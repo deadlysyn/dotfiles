@@ -136,10 +136,7 @@ elif [[ -f/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-[[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
-
-# npx fallback - must come after nvm
-command -v npx >/dev/null && source <(npx --shell-auto-fallback zsh)
+#[[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
 
 # setup ssh
 #export SUDO_ASKPASS="/usr/X11R6/bin/ssh-askpass"
@@ -168,7 +165,6 @@ alias docker-clean=' \
   docker volume prune -f '
 #alias av="aws-vault exec --ecs-server"
 #alias al="aws-vault login"
-alias vpn="sudo /bin/openvpn --config ${HOME}/.config/openvpn/sonatype.conf"
 alias charmap="devour gucharmap"
 alias pdf="devour zathura"
 alias reader="devour zathura"
