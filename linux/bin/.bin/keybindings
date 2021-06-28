@@ -34,7 +34,6 @@
 
 	### Applications #############################################################
 
-		Super Key                     |- Rofi (Launcher)
 		Super + enter                 |- Terminal
 		Super + space                 |- Dmenu (Run applications)
 		Super + b                     |- Browser
