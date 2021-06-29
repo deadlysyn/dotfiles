@@ -1,0 +1,10 @@
+[Unit]
+Description=spotifyd
+
+[Service]
+ExecStart=/bin/spotifyd --no-daemon --use-keyring
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
