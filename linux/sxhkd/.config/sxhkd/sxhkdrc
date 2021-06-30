@@ -1,20 +1,20 @@
 # Show keybindings - keep this updated
 super + F1
-	$TERMINAL -e keybindings
+    $TERMINAL -e keybindings
 
 # Close window - to be consistent with "shift modfiers for window changes"
 super + shift + c
-	bspc node -c
+    bspc node -c
 
 # Kill window
 super + shift + x
-	bspc node -k
+    bspc node -k
 
 # Toggle tiling mode of window
 #super + t
 #	bspc node -t {pseudo_tiled,tiled}
 super + shift + t
-	{bspc node -t floating && window-placer $(bspc query -T -d | grep -o '"state":"floating"' | wc -l),bspc node -t tiled}
+    {bspc node -t floating && window-placer $(bspc query -T -d | grep -o '"state":"floating"' | wc -l),bspc node -t tiled}
 # Force all windows of the desktop to tile
 #super + ctrl + t
 #	bspcp tile
@@ -24,19 +24,19 @@ super + shift + t
 
 # Toggle fullscreen
 super + shift + f
-	bspc node -t {fullscreen,tiled}
+    bspc node -t {fullscreen,tiled}
 
 # Try to keep size and position of the selected window
 super + shift + o
-	bspc node -g private
+    bspc node -g private
 
 # Make window sticky
 super + shift + s
-	bspc node -g sticky
+    bspc node -g sticky
 
 # swap current node and biggest local node
 super + shift + g
-	bspc node -s biggest.local || bspc node -s next.local
+    bspc node -s biggest.local || bspc node -s next.local
 
 # Lock a window from closing
 #super + Escape
@@ -44,11 +44,11 @@ super + shift + g
 
 # Hide windows (functional equivalent of "minimize")
 super + shift + m
-	whid hide
+    whid hide
 
 # Show list of hidden windows
 super + ctrl + m
-	whid dmenu
+    whid dmenu
 
 #super + ctrl + h
 #	whid last
@@ -79,7 +79,7 @@ super + ctrl + m
 
 # go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} ^{1-9,10}
+    bspc {desktop -f,node -d} ^{1-9,10}
 
 # Select previous / next desktop
 #super + {n,m}
@@ -87,7 +87,7 @@ super + {_,shift + }{1-9,0}
 
 # cycle windows
 alt + {_,shift + }Tab
-	bspc node -f {next,prev}
+    bspc node -f {next,prev}
 
 # Go to specific window
 #super + Tab
@@ -95,13 +95,13 @@ alt + {_,shift + }Tab
 
 #Focus windows by direction, works with multihead
 super + {h,j,k,l}
-	focusmover {west,south,north,east}
+    focusmover {west,south,north,east}
 
 # Move tiled windows. Moving a tiled window to
 # preselected one moves into preselection instead.
 # Moving out of the screen should move the window to next monitor if possible
 super + shift + {h,j,k,l}
-	windowgrabber {west,south,north,east}
+    windowgrabber {west,south,north,east}
 # Different style of movement: transplant into window in chosen direction
 #super + shift + {Left,Down,Up,Right}
 #	euclid_mover {west,south,north,east}
@@ -109,8 +109,17 @@ super + shift + {h,j,k,l}
 #resize windows
 #super + ctrl + {a,s,w,d}
 #	bspwm_resize.sh {west,south,north,east}
+#super + ctrl + {h,j,k,l}
+#	bspc node -z {right -20 0,bottom 0 20,bottom 0 -20,right 20 0}
+#super + ctrl + alt + {Left,Down,Up,Right}
 super + ctrl + {h,j,k,l}
-	bspc node -z {right -20 0,bottom 0 20,bottom 0 -20,right 20 0}
+  n=10; \
+  { d1=left;   d2=right;  dx=-$n; dy=0;   \
+  , d1=bottom; d2=top;    dx=0;   dy=$n;  \
+  , d1=top;    d2=bottom; dx=0;   dy=-$n; \
+  , d1=right;  d2=left;   dx=$n;  dy=0;   \
+  } \
+  bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
 
 # Layout manipulation/desktop level controls
 # Toggle monocle mode
@@ -118,27 +127,27 @@ super + ctrl + {h,j,k,l}
 #	bspc desktop -l next
 # Balance tree
 super + shift + b
-	bspc node @/ -B
+    bspc node @/ -B
 
 # Balance brother node. If you do this on biggest window of the desktop, it usually means balancing all windows with except the biggest.
 super + alt + b
-	bspc node @brother -B
+    bspc node @brother -B
 
 # Undo balancing (equalize windows)
 super + ctrl + b
-	bspc node @/ -E
+    bspc node @/ -E
 
 # Toggle automatic balancing of windows
 alt + b
-	euclid_balancer
+    euclid_balancer
 
 # Mirror and flip leaves of tree
 super + {comma,period}
-	bspc node @/ -F {horizontal,vertical}
+    bspc node @/ -F {horizontal,vertical}
 
 # Rotate leaves of tree
 super + shift + {comma,period}
-	bspc node @/ -R {90,270}
+    bspc node @/ -R {90,270}
 
 # Change window gap
 #super + g
@@ -146,109 +155,124 @@ super + shift + {comma,period}
 
 # run applications
 super + space
-	dmenu_run
+    dmenu_run
 
 super + Return
-	$TERMINAL
+    $TERMINAL
 
 super + b
-	$BROWSER
+    $BROWSER
 
 super + p
-	$PRIVATE_BROWSER
+    $PRIVATE_BROWSER
 
 super + e
-	mailspring
+    thunderbird
+    #mailspring
 
 super + f
-	$TERMINAL -e lf
+    $TERMINAL -e lf
 
 super + g
     flameshot gui
 
 super + s
-    spotify
+    $TERMINAL -e spt
+    #spotify
 
 # https://github.com/GeorgeFilipkin/pulsemixer
 super + m
-	$TERMINAL -e $MIXER
+    $TERMINAL -e $MIXER
 
 super + v
-	code
+    codium
 
 super + w
-    feh --no-fehbg --bg-fill ~/.config/wall.jpg
+    chromium
+    #feh --no-fehbg --bg-fill ~/.config/wall.jpg
 
 super + z
     slack
 
 # Media keys
 XF86AudioRaiseVolume
-	volume up
+    pulseaudio-ctl up
+
 XF86AudioLowerVolume
-	volume down
+    pulseaudio-ctl down
+
 XF86AudioMute
-	volume mute
+    pulseaudio-ctl mute
+
 XF86AudioNext
-	playerctl -p spotify next
+    #spt playback -n
+    playerctl --all-players next
+
 XF86AudioPrev
-	playerctl -p spotify previous
+    playerctl --all-players previous
+    #spt playback -p
+
 XF86AudioPause
-	playerctl -p spotify play-pause
+    playerctl --all-players play-pause
+    #spt playback -t
+
 XF86AudioPlay
-	playerctl -p spotify play-pause
+    playerctl --all-players play-pause
+    #spt playback -t
+
 XF86AudioStop
-	playerctl -p spotify stop
-XF86MonBrightnessUp
-	xbacklight -inc 10
-XF86MonBrightnessDown
-	xbacklight -dec 10
+    playerctl --all-players stop
+
+#XF86MonBrightnessUp
+#   xbacklight -inc 10
+#XF86MonBrightnessDown
+#   xbacklight -dec 10
 
 # cycle dunst
 super + alt + d
-	{pkill dunst,\
-	dunst }
+    {pkill dunst,\
+    dunst }
 
 # show dunst history
 super + d
-	dunstctl history-pop
+    dunstctl history-pop
 
 # close all dunst messages
 super + shift + d
-	dunstctl close-all
+    dunstctl close-all
 
 # reload bspwm config
 super + alt + r
-	${XDG_CONFIG_HOME}/bspwm/bspwmrc
+    ${XDG_CONFIG_HOME}/bspwm/bspwmrc
 
 # restart polybar
 super + alt + p
-	polybar-msg cmd restart
+    polybar-msg cmd restart
 
 # reload sxhkd config
 super + alt + s
-	pkill -USR1 -x sxhkd
+    pkill -USR1 -x sxhkd
 
-#edit this file
+# edit this file
 alt + ctrl + space
-	$TERMINAL -e $EDITOR ${XDG_CONFIG_HOME}/sxhkd/sxhkdrc
+    $TERMINAL -e $EDITOR ${XDG_CONFIG_HOME}/sxhkd/sxhkdrc
 
 # Toggle compositing
 super + alt + c
-	{pkill picom ,\
-	picom -b }
+    {pkill picom ,\
+    picom -b }
 
 # screensaver - activates xsecurelock
 super + Escape
-	xset s activate
+    xset s activate
 
 # Cleanly quit bspwm
 super + shift + Escape
-	bspc {quit 1 && pkill polybar && pkill polybar,wm -r}
+    bspc {quit 1 && pkill polybar && pkill polybar,wm -r}
 
 super + shift + BackSpace
-	prompt "Poweroff?" poweroff
+    prompt "Poweroff?" poweroff
 
 ctrl + alt + Delete
-	prompt "Reboot?" reboot
+    prompt "Reboot?" reboot
 
