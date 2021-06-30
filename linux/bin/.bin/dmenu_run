@@ -1,2 +1,0 @@
-#!/bin/dash
-dmenu_path | dmenu -h $PANEL_HEIGHT "$@" | ${SHELL:-"/bin/dash"} &
