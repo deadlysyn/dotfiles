@@ -1,5 +1,5 @@
-!*.color0: #111
-!*.alpha: 0.9
+*.color0: #111
+*.alpha: 0.9
 rofi.font: SauceCodePro Nerd Font Medium 12
 *.font: monospace:size=10
 
