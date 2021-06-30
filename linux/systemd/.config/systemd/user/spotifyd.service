@@ -2,7 +2,7 @@
 Description=spotifyd
 
 [Service]
-ExecStart=/bin/spotifyd --no-daemon --use-keyring
+ExecStart=/bin/spotifyd --no-daemon
 ExecReload=/bin/kill -s HUP $MAINPID
 Restart=on-failure
 
