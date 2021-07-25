@@ -151,7 +151,7 @@ super + shift + {comma,period}
 
 # Change window gap
 #super + g
-#	bspc config -d focused window_gap {$gap,$(($gap+$gap)),$(($gap+$gap+$gap))}
+#    bspc config -d focused window_gap {$gap,$(($gap+$gap)),$(($gap+$gap+$gap))}
 
 # run applications
 super + space
@@ -163,12 +163,14 @@ super + Return
 super + b
     $BROWSER
 
+super + c
+    codium
+
 super + p
     $PRIVATE_BROWSER
 
 super + e
     thunderbird
-    #mailspring
 
 super + f
     $TERMINAL -e lf
@@ -177,22 +179,24 @@ super + g
     flameshot gui
 
 super + s
-    $TERMINAL -e spt
-    #spotify
+    spotify
+    #$TERMINAL -e spt
 
-# https://github.com/GeorgeFilipkin/pulsemixer
 super + m
     $TERMINAL -e $MIXER
 
 super + v
-    codium
+    $TERMINAL -e vpn
 
+# fallback when things don't play nice with firefox...
 super + w
-    chromium
-    #feh --no-fehbg --bg-fill ~/.config/wall.jpg
+    chromium --incognito
+
+super + x
+    slack
 
 super + z
-    slack
+    zoom
 
 # Media keys
 XF86AudioRaiseVolume
