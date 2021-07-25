@@ -53,8 +53,8 @@ export MIXER="/bin/pulsemixer"
 export TERMINAL="/usr/local/bin/st"
 
 # scale various UI components for desktop vs laptop (not perfect)
-export FONT1="Source Code Pro Medium:pixelsize=11"
-export FONT2="SauceCodePro Nerd Font Mono:size=11;1"
+export FONT1="Source Code Pro Medium:pixelsize=10"
+export FONT2="SauceCodePro Nerd Font Mono:size=10;1"
 export FONT3="Noto Color Emoji:scale=8:antialais=false:style=Regular;2"
 export LINE_WIDTH=3
 export PANEL_HEIGHT=30
