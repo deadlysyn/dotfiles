@@ -22,3 +22,5 @@
 ; 	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ; [init]
 ; 	templateDir = /home/mrh/.git-templates/git-secrets
+[init]
+	defaultBranch = main
