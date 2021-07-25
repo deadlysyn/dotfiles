@@ -37,11 +37,15 @@
 		Super + enter                 |- Terminal
 		Super + space                 |- Dmenu (Run applications)
 		Super + b                     |- Browser
+		Super + c                     |- VS Codium
 		Super + p                     |- Browser (private)
 		Super + f                     |- Explore files with lf
 		Super + m                     |- Mixer
 		Super + s                     |- Spotify
-		Super + v                     |- VS Code
+		Super + v                     |- VPN
+		Super + w                     |- Chromium
+		Super + x                     |- Slack
+		Super + z                     |- Zoom
 
 	### Services #################################################################
 
