@@ -44,8 +44,8 @@ radius = 0.0
 border-size = 0
 background = ${colors.background}
 foreground = ${colors.foreground}
-;line-color = ${colors.blue}
-line-color = ${colors.purple}
+line-color = ${colors.blue}
+;line-color = ${colors.purple}
 line-size = ${env:LINE_WIDTH:3}
 padding-left = 0
 padding-right = 2
@@ -62,7 +62,8 @@ modules-left = bspwm xwindow
 modules-center = date
 ;modules-right = pulseaudio pacman cpu memory temperature wlan date
 ;modules-right = date wlan cpu memory temperature pulseaudio
-modules-right = cpu memory temperature network pulseaudio
+;modules-right = cpu memory temperature network pulseaudio
+modules-right = cpu memory network pulseaudio
 tray-position = none
 
 [module/bspwm]
@@ -70,12 +71,12 @@ type = internal/bspwm
 label-focused = %index%
 label-focused-background = ${colors.lightgray}
 label-focused-foreground = ${colors.background}
-;label-focused-underline = ${colors.blue}
-label-focused-underline = ${colors.purple}
+label-focused-underline = ${colors.blue}
+;label-focused-underline = ${colors.purple}
 label-focused-padding = 1
 label-occupied = %index%
-;label-occupied-underline = ${colors.darkblue}
-label-occupied-underline = ${colors.darkpurple}
+label-occupied-underline = ${colors.darkblue}
+;label-occupied-underline = ${colors.darkpurple}
 label-occupied-padding = 1
 label-urgent = %index%!
 label-urgent-background = ${colors.red}
@@ -93,8 +94,9 @@ format-underline =
 [module/cpu]
 type = internal/cpu
 interval = 2
-;format-prefix = "💻 "
-format-prefix = "🚀 "
+format-prefix = "💻 "
+;format-prefix = "🚀 "
+;format-prefix = "🔥 "
 label = %percentage%%
 
 [module/memory]
