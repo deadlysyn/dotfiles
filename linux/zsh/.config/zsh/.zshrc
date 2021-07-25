@@ -156,7 +156,7 @@ alias ll="ls -al --color"
 alias vi="nvim"
 alias vim="nvim"
 #alias tc="tmux show-buffer | pbcopy"
-alias c="code -n ."
+alias c="codium -n ."
 alias p="bluetoothctl power on; bluetoothctl connect CA:CD:EC:C0:B8:9D"
 alias docker-clean=' \
   docker container prune -f ; \
