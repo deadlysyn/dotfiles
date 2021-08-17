@@ -188,10 +188,6 @@ super + m
 super + v
     $TERMINAL -e vpn
 
-# fallback when things don't play nice with firefox...
-super + w
-    chromium --incognito
-
 super + x
     slack
 

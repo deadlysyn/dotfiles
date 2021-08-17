@@ -1,80 +1,4 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ack.vim / ag
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" used to ignore gitignore files
-"let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-"let Grep_Skip_Dirs = '.git node_modules'
-
-" Use rg (ripgrep) to grep
-set grepprg=rg\ --vimgrep\ --no-heading
-set grepformat=%f:%l:%c:%m,%f:%l:%m
-let g:ackprg = 'rg --vimgrep --no-heading'
-
-" remap '<leader>g' to grep directory for word under cursor
-nnoremap <leader>g :Ack! "\b<cword>\b" <CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" coc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-let g:coc_global_extensions = [
-  \ 'coc-css',
-  \ 'coc-eslint',
-  \ 'coc-html',
-  \ 'coc-json',
-  \ 'coc-yaml',
-  \ 'coc-pairs',
-  \ 'coc-prettier',
-  \ 'coc-go',
-  \ 'coc-sh',
-  \ 'coc-markdownlint',
-  \ 'coc-fzf-preview'
-  \ ]
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" fzf
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"nmap <Leader>b :Buffers<CR>
-"nmap <Leader>f :Files<CR>
-
-command! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
-      \   <bang>0 ? fzf#vim#with_preview('up:60%')
-      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-      \   <bang>0)
-
-"nnoremap <C-p>a :Rg 
-nnoremap <C-p> :Rg 
-
-"nnoremap <C-p> :FZF<CR>
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-h': 'split',
-  \ 'ctrl-v': 'vsplit'
-  \}
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gitgutter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -90,9 +14,7 @@ let g:gitgutter_max_signs = 500
 " Easily turn gitgutter on/off
 nnoremap <silent> <leader>gg :GitGutterToggle<cr>
 
-" Use ag vs grep
 let g:gitgutter_grep = 'rg'
-
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_modified_removed = '-'
@@ -100,22 +22,41 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '^'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" airline
+" lsp-config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"let g:airline_theme = 'base16'
-"let g:airline_theme = 'gruvbox'
-let g:airline_theme = 'gruvbox_material'
+" LSP config (the mappings used in the default file don't quite work right)
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
-" Show open buffers in tabline when only one tab open
-let g:airline#extensions#tabline#enabled = 1
+" auto-format
+autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.css lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.sh lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.yml lua vim.lsp.buf.formatting_sync(nil, 100)
 
-" Use straight vs powerline style tabs
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = ''
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" telescope
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Adjust tabline format
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
+nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
+nnoremap <Leader>pf :lua require('telescope.builtin').find_files()<CR>
+nnoremap <leader>pw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
+nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
+nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
+nnoremap <leader>gw :lua require('telescope').extensions.git_worktree.git_worktrees()<CR>
+nnoremap <leader>gm :lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-go
@@ -185,10 +126,8 @@ let g:vim_json_syntax_conceal = 0
 
 " force *.md as markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
 " enable fenced code block syntax highlighting
-let g:markdown_fenced_languages = ['html', 'css', 'bash=sh', 'javascript', 'go', 'python']
-
+let g:markdown_fenced_languages = ['html', 'css', 'bash=sh', 'javascript', 'go']
 " disable markdown syntax concealing
 let g:markdown_syntax_conceal = 0
 
@@ -206,25 +145,4 @@ let g:NERDTreeGitStatusWithFlags = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " Toggle
 nmap <silent> <C-n> :NERDTreeToggle<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nerd-commenter
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-vmap cc <plug>NERDCommenterToggle
-nmap cc <plug>NERDCommenterToggle
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-supertab
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
