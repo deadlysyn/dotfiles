@@ -43,13 +43,14 @@ export GTK2_RC_FILES="${HOME}/.gtkrc-2.0"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # default apps
+export BROWSER="/bin/brave"
+export PRIVATE_BROWSER="$BROWSER --incognito"
 #export BROWSER="/bin/chromium"
 #export PRIVATE_BROWSER="$BROWSER --incognito"
-export BROWSER="/bin/firefox"
-export PRIVATE_BROWSER="$BROWSER --private-window"
+#export BROWSER="/bin/firefox"
+#export PRIVATE_BROWSER="$BROWSER --private-window"
 export EDITOR="/bin/nvim"
 export MIXER="/bin/pulsemixer"
-#export TERMINAL="/bin/st"
 export TERMINAL="/usr/local/bin/st"
 
 # scale various UI components for desktop vs laptop (not perfect)
