@@ -9,3 +9,4 @@ bundle
 plugged
 .zcompdump
 plug.vim
+packer_compiled.lua
