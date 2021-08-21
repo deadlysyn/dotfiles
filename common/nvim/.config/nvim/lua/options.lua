@@ -11,6 +11,8 @@ local g   = vim.g
 
 g.mapleader = ' ' -- must be set early
 g.elite_mode = 1 -- unbind arrows (reused to size splits)
+g.gruvbox_material_background = 'medium'
+-- g.everforest_background = 'medium'
 
 o.background = 'dark'
 o.termguicolors = true
