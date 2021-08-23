@@ -1,27 +1,35 @@
--- require('telescope').load_extension('session-lens')
--- require('telescope').load_extension('heading')
-
-local set_keymap = require('../common').set_keymap
-set_keymap(
-    'n',
-    '<leader>ff',
-    '<cmd>Telescope find_files find_command=fd,--hidden,--no-ignore,--exclude,*.git,--type,f<cr>'
-)
-set_keymap('n', '<leader>fd', '<cmd>Telescope git_files<cr>')
-set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
-set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
-set_keymap('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
-set_keymap('n', '<leader>fl', '<cmd>Telescope lsp_document_symbols<cr>')
-set_keymap('n', '<leader>fk', '<cmd>Telescope keymaps<cr>')
-set_keymap('n', '<leader>fm', '<cmd>Telescope heading<cr>')
-
+-- require("telescope").load_extension("git_worktree")
+require("telescope").load_extension("fzy_native")
 local actions = require('telescope.actions')
+
 require('telescope').setup({
     defaults = require('telescope.themes').get_ivy({
+        file_sorter = require("telescope.sorters").get_fzy_sorter,
+        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+        qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
         mappings = {
             i = {
                 ['<esc>'] = actions.close,
+                ["<C-x>"] = false,
+                ["<C-q>"] = actions.send_to_qflist,
             },
         },
     }),
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true,
+        },
+    },
 })
+
+-- local M = {}
+-- M.search_dotfiles = function()
+--     require("telescope.builtin").find_files({
+--         prompt_title = "< VimRC >",
+--         cwd = vim.env.DOTFILES,
+--         hidden = true,
+--     })
+-- end
+-- return M
