@@ -30,6 +30,5 @@ cd 3rd/luamake
 compile/install.sh
 cd ../..
 ./3rd/luamake/luamake rebuild
-cp bin/Linux/lua-language-server ~/bin
 
 echo "Run `nvim +PackerInstall` to finish setup"
