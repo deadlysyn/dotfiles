@@ -5,7 +5,7 @@ cmd('autocmd BufNewFile,BufReadPost *.md set filetype=markdown')
 
 g.NERDTreeShowHidden = 1
 g.NERDTreeMinimalUI = 1
-g.NERDTreeIgnore = { '^node_modules$' }
+g.NERDTreeIgnore = { '^node_modules$', '.git' }
 g.NERDTreeStatusline = ''
 g.NERDTreeGitStatusWithFlags = 1
 
