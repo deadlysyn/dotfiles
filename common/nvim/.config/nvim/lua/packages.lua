@@ -11,6 +11,7 @@ return require('packer').startup({
         use('nvim-lua/popup.nvim')
         use('nvim-telescope/telescope.nvim')
         use('nvim-telescope/telescope-fzy-native.nvim')
+        -- use('ThePrimeagen/git-worktree.nvim')
         -- status line
         use('hoob3rt/lualine.nvim')
         use('kyazdani42/nvim-web-devicons')
