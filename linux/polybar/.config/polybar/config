@@ -16,12 +16,9 @@ blue = #7daea3
 darkblue = #45707a
 background = #ee1d2021
 foreground = #ddc7a1
-purple = #d1c4e9
-darkpurple = #7c4dff
 
 [settings]
 screenchange-reload = true
-;format-underline = ${colors.darkblue}
 
 [bar/default]
 monitor-exact = true
@@ -45,20 +42,19 @@ border-size = 0
 background = ${colors.background}
 foreground = ${colors.foreground}
 line-color = ${colors.blue}
-;line-color = ${colors.purple}
 line-size = ${env:LINE_WIDTH:3}
 padding-left = 0
-padding-right = 2
-;padding-top = 2
-;padding-bottom = 2
+padding-right= 1
+padding-bottom = 2
 module-margin-left = 0
 module-margin-right = 2
 
 font-0 = ${env:FONT1}
-font-1 = ${env:FONT2}
+; font-1 = ${env:FONT2}
+font-1 = "Material\-Design\-Iconic\-Font:size=16;2"
 font-2 = ${env:FONT3}
 
-modules-left = bspwm xwindow
+modules-left = bspwm title
 modules-center = date
 ;modules-right = pulseaudio pacman cpu memory temperature wlan date
 ;modules-right = date wlan cpu memory temperature pulseaudio
@@ -72,70 +68,73 @@ label-focused = %index%
 label-focused-background = ${colors.lightgray}
 label-focused-foreground = ${colors.background}
 label-focused-underline = ${colors.blue}
-;label-focused-underline = ${colors.purple}
 label-focused-padding = 1
 label-occupied = %index%
 label-occupied-underline = ${colors.darkblue}
-;label-occupied-underline = ${colors.darkpurple}
 label-occupied-padding = 1
 label-urgent = %index%!
-label-urgent-background = ${colors.red}
-label-urgent-foreground = ${colors.yellow}
+; label-urgent-background = ${colors.red}
+label-urgent-foreground = ${colors.red}
 label-urgent-padding = 1
 label-empty = %index%
 label-empty-padding = 1
 format-underline =
 
-[module/xwindow]
+[module/title]
 type = internal/xwindow
-label = ${env:PANEL_TITLE_LABEL:40}
+; label = ${env:PANEL_TITLE_LABEL:40}
 format-underline =
+format-prefix = 
+format = <label>
+label = " %title%"
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "💻 "
-;format-prefix = "🚀 "
+format-prefix = " "
+; format-prefix = "💻 "
 ;format-prefix = "🔥 "
 label = %percentage%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "🧠 "
+format-prefix = " "
+; format-prefix = "🧠 "
 label = %percentage_used%%
 
 [module/network]
 type = internal/network
 interface = enp4s0
 interval = 3
-format-connected = 🔃 <label-connected>
+; format-connected = 🔃 <label-connected>
+format-connected =  <label-connected>
 label-connected = %upspeed% %downspeed%
 format-disconnected = <label-disconnected>
-label-disconnected = not connected
+label-disconnected = disconnected
 format-packetloss = <animation-packetloss> <label-connected>
-animation-packetloss-0 = 😠
-animation-packetloss-1 = 😱
+animation-packetloss-0 = 
 
 ; [module/wlan]
 ; type = internal/network
 ; interface = ${env:WIFI:wlan0}
 ; interval = 3
-; format-connected = 📡 <label-connected>
+; format-connected =  <label-connected>
 ; label-connected = %essid% %upspeed% %downspeed%
 ; format-disconnected = <label-disconnected>
-; label-disconnected = no wifi
+; label-disconnected = disconnected
 ; format-packetloss = <animation-packetloss> <label-connected>
-; animation-packetloss-0 = 😠
-; animation-packetloss-1 = 😱
+; animation-packetloss-0 = 
 
 [module/date]
 type = internal/date
 interval = 60
-date = %a %b %d
-time = %H:%M
+; date = %a %b %d
+date = " %a %b %d"
+; time = %H:%M
 label = %date% %time%
 ;format-prefix = "📅 "
+time = " %H:%M"
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -143,12 +142,16 @@ type = internal/pulseaudio
 ; If not, uses default sink
 ;sink = alsa_output.pci-0000_12_00.3.analog-stereo
 format-volume = <ramp-volume> <label-volume>
-label-muted = 🔇 muted
-label-muted-foreground = ${colors.lightgray}
-ramp-volume-0 = 🔈
-ramp-volume-1 = 🔉
-ramp-volume-2 = 🔊
-click-right = st -e pulsemixer
+; label-muted = 🔇 muted
+label-muted =  muted
+; label-muted-foreground = ${colors.lightgray}
+; ramp-volume-0 = 🔈
+; ramp-volume-1 = 🔉
+; ramp-volume-2 = 🔊
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+; click-right = st -e pulsemixer
 
 ;[module/temperature]
 ;type = internal/temperature
