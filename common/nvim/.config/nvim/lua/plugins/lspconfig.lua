@@ -2,8 +2,13 @@
 -- local on_attach = function(client)
 -- end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 require('lspconfig').bashls.setup({})
-require('lspconfig').cssls.setup({})
+require('lspconfig').cssls.setup({
+  capabilities = capabilities
+})
 
 require('lspconfig').diagnosticls.setup({
   -- on_attach=on_attach_vim,
@@ -112,8 +117,6 @@ require'lspconfig'.dockerls.setup{}
 require('lspconfig').gopls.setup({})
 
 --Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 require('lspconfig').html.setup({
   capabilities = capabilities
 })
@@ -128,7 +131,6 @@ require('lspconfig').jsonls.setup({
   }
 })
 
--- require('lspconfig').pyright.setup({})
 require('lspconfig').rust_analyzer.setup({})
 
 require('lspconfig').sqlls.setup({
