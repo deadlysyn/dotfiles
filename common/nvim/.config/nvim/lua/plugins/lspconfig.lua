@@ -10,10 +10,62 @@ require('lspconfig').diagnosticls.setup({
   filetypes = { "sh", "coffee" },
   init_options = {
     filetypes = {
-      sh = "shellcheck",
-      coffee = "coffeelint"
+      coffee = "coffeelint",
+      ["javascript.jsx"] = "eslint",
+      javascript = "eslint",
+      javascriptreact = "eslint",
+      typescriptreact = "eslint",
+      sh = "shellcheck"
     },
     linters = {
+      coffeelint = {
+        sourceName = "coffeelint",
+        command = "coffeelint",
+        debounce = 100,
+        args = { "--color=never", "--reporter=csv", "--stdin" },
+        offsetLine = 0,
+        offsetColumn = 0,
+        formatLines = 1,
+        formatPattern = {
+          -- column output is inconsistent :-/
+          "^\\S+,(\\d+),\\S+,(.*)$",
+          {
+            line = 1,
+            message = 2
+          };
+        },
+        securities = {
+          error = "error",
+          warning = "warning",
+          note = "info"
+        };
+      },
+      eslint = {
+        sourceName = "eslint",
+        command = "./node_modules/.bin/eslint",
+        rootPatterns = { ".eslintrc", ".eslintrc.json", ".eslintrc.cjs", ".eslintrc.js", ".eslintrc.yml", ".eslintrc.yaml", "package.json" },
+        debounce = 100,
+        args = {
+          "--stdin",
+          "--stdin-filename",
+          "%filepath",
+          "--format",
+          "json",
+        },
+        parseJson = {
+          errorsRoot = "[0].messages",
+          line = "line",
+          column = "column",
+          endLine = "endLine",
+          endColumn = "endColumn",
+          message = "${message} [${ruleId}]",
+          security = "severity",
+        },
+        securities = {
+          [2] = "error",
+          [1] = "warning"
+        }
+      },
       shellcheck = {
         sourceName = "shellcheck",
         command = "shellcheck",
@@ -29,29 +81,6 @@ require('lspconfig').diagnosticls.setup({
             column = 2,
             message = 4,
             security = 3
-          };
-        },
-        securities = {
-          error = "error",
-          warning = "warning",
-          note = "info"
-        };
-      },
-      coffeelint = {
-        sourceName = "coffeelint",
-        command = "coffeelint",
-        debounce = 100,
-        args = { "--color=never", "--reporter=csv", "--stdin" },
-        offsetLine = 0,
-        offsetColumn = 0,
-        formatLines = 1,
-        formatPattern = {
-          -- "^[^:]+:(\\d+):(\\d+):\\s+([^:]+):\\s+(.*)$",
-          -- need to add column
-          "^\\S+,(\\d+),\\S+,(.*)$",
-          {
-            line = 1,
-            message = 2
           };
         },
         securities = {
