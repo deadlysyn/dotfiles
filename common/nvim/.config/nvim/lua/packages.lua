@@ -14,15 +14,15 @@ return require('packer').startup({
         -- use('ThePrimeagen/git-worktree.nvim')
         -- status line
         use('hoob3rt/lualine.nvim')
-        use('kyazdani42/nvim-web-devicons')
-        -- bling
+        use('kyazdani42/nvim-web-devicons') -- bling
         use('editorconfig/editorconfig-vim') -- editorconfig support
         use('farmergreg/vim-lastplace') -- reopen files at your last edit position
         use('preservim/nerdtree') -- simple file tree
         use('tpope/vim-commentary') -- toggle comment
-        use('tpope/vim-repeat') -- allow commands from plugin do repeat
+        use('tpope/vim-repeat') -- allow commands from plugin to repeat
         use('tpope/vim-surround') -- toggle surround
         use('lewis6991/gitsigns.nvim') -- git signs
+        -- TODO: run prettier via diagnosticls
         use({
             'prettier/vim-prettier', -- auto formatter
             run = 'yarn install',
@@ -39,30 +39,42 @@ return require('packer').startup({
             'nvim-treesitter/nvim-treesitter', -- treesitter
             run = ':TSUpdate',
         })
-        -- use('nvim-treesitter/playground') -- treesitter playground
-        -- use('nvim-treesitter/nvim-treesitter-textobjects') -- treesitter textobj e.g., class, function
         use('neovim/nvim-lspconfig') -- lsp client config
         use('glepnir/lspsaga.nvim')
-        use('hrsh7th/nvim-compe') -- completion
         use('hrsh7th/vim-vsnip') -- snippets; required for some completions
-        use('hrsh7th/vim-vsnip-integ') -- vsnip integration for nvim-compe
         use('mattn/emmet-vim') -- html/css snippets
+        use {
+          "hrsh7th/nvim-cmp", -- completion
+          requires = {
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-path",
+            "f3fora/cmp-spell",
+            "hrsh7th/cmp-vsnip"
+          }
+        }
+
+        -- black magic
+        -- use { "codota/tabnine-vim" }
+        -- use {'tzachar/cmp-tabnine', run='./install.sh' }
+
+        -- temporary to make hubot dev easier...
+        use('kchmck/vim-coffee-script')
+        use('crispgm/nvim-go')
         -- use('elzr/vim-json')
         -- use('stephpy/vim-yaml')
         -- use('rust-lang/rust.vim') -- rust lang support
         -- use('racer-rust/vim-racer')
-        -- use('nathangrigg/vim-beancount') -- beancount ftplugin
         -- use('leafgarland/typescript-vim')
         -- use('peitalin/vim-jsx-typescript')
+
         -- awesome, but reducing bloat...
         -- use('tpope/vim-fugitive')
         -- use('phaazon/hop.nvim') -- jump to anywhere within 2 strokes
-        -- use('crispgm/telescope-heading.nvim') -- markdown heading
         -- use('akinsho/nvim-toggleterm.lua') -- terminal
         -- use('rmagatti/auto-session') -- auto session
         -- use('rmagatti/session-lens') -- session lens for telescope
         -- use('AndrewRadev/undoquit.vim') -- restore closed tabs
-        -- use('monaqa/dial.nvim') -- <c-a> <c-x> enhancement
     end,
     config = {
         display = {
