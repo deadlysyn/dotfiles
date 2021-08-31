@@ -45,6 +45,7 @@ o.showtabline = 2 -- always show tabline
 o.completeopt = 'menuone,noselect'
 o.wildmenu = true -- wildmenu, auto complete for commands
 o.wildmode = { 'longest', 'full' }
+o.wildignore:append('**/.git/*', '**/node_modules/*')
 o.wildignorecase = true
 o.splitright = true -- split to right
 o.splitbelow = true -- split to below
