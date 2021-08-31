@@ -1,12 +1,12 @@
 local cmd = vim.cmd
 local g = vim.g
 
-cmd('autocmd BufNewFile,BufReadPost *.md set filetype=markdown')
+cmd("autocmd BufNewFile,BufReadPost *.md set filetype=markdown")
 
 g.NERDTreeShowHidden = 1
 g.NERDTreeMinimalUI = 1
-g.NERDTreeIgnore = { '^node_modules$', '.git' }
-g.NERDTreeStatusline = ''
+g.NERDTreeIgnore = { "^node_modules$", ".git" }
+g.NERDTreeStatusline = ""
 g.NERDTreeGitStatusWithFlags = 1
 
 -- Automaticaly close nvim if NERDTree is only thing left open

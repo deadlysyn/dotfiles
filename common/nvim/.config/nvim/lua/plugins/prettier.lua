@@ -1,13 +1,13 @@
 local vim = vim
-local g   = vim.g
+local g = vim.g
 -- local cmd = vim.cmd
 
 -- g['prettier#autoformat'] = 1
 -- g['prettier#autoformat_require_pragma'] = 0
-g['prettier#autoformat_config_files'] = { '.prettierrc', '.prettierrc.yml', '.prettierrc.yaml', '.prettierrc.json' }
-g['prettier#exec_cmd_async'] = 0
-g['prettier#quickfix_enabled'] = 1 -- doesn't play well with async
-g['prettier#exec_cmd_path'] = vim.fn.exepath('prettier')
+g["prettier#autoformat_config_files"] = { ".prettierrc", ".prettierrc.yml", ".prettierrc.yaml", ".prettierrc.json" }
+g["prettier#exec_cmd_async"] = 0
+g["prettier#quickfix_enabled"] = 1 -- doesn't play well with async
+g["prettier#exec_cmd_path"] = vim.fn.exepath("prettier")
 
 -- w/o this must trigger with <leader>p
 -- cmd(
