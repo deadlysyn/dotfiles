@@ -38,7 +38,6 @@ return require("packer").startup({
 			run = ":TSUpdate",
 		})
 		use("neovim/nvim-lspconfig") -- lsp client config
-		use("glepnir/lspsaga.nvim")
 		use("hrsh7th/vim-vsnip") -- snippets; required for some completions
 		use("mattn/emmet-vim") -- html/css snippets
 		use({
@@ -67,6 +66,7 @@ return require("packer").startup({
 		-- use('peitalin/vim-jsx-typescript')
 
 		-- awesome, but reducing bloat...
+		-- use("glepnir/lspsaga.nvim")
 		-- use("kyazdani42/nvim-web-devicons") -- bling
 		-- use("preservim/nerdtree") -- simple file tree
 		-- use('tpope/vim-fugitive')
