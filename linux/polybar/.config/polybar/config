@@ -107,9 +107,8 @@ label = %percentage_used%%
 type = internal/network
 interface = enp4s0
 interval = 3
-; format-connected = 🔃 <label-connected>
-format-connected =  <label-connected>
-label-connected = %upspeed% %downspeed%
+format-connected = <label-connected>
+label-connected = ↑ %upspeed% ↓ %downspeed%
 format-disconnected = <label-disconnected>
 label-disconnected = disconnected
 format-packetloss = <animation-packetloss> <label-connected>
@@ -129,12 +128,12 @@ animation-packetloss-0 = 
 [module/date]
 type = internal/date
 interval = 60
-; date = %a %b %d
-date = " %a %b %d"
-; time = %H:%M
-label = %date% %time%
+date = %a %b %d
+time = %H:%M
+; time = " %H:%M"
+; date = " %a %b %d"
 ;format-prefix = "📅 "
-time = " %H:%M"
+label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
