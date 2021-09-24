@@ -24,3 +24,6 @@
 ; 	templateDir = /home/mrh/.git-templates/git-secrets
 [init]
 	defaultBranch = main
+; https://golang.org/doc/faq#git_https
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
