@@ -50,14 +50,14 @@ return require("packer").startup({
 				"hrsh7th/cmp-vsnip",
 			},
 		})
+		use("crispgm/nvim-go")
+		-- temporary to make hubot dev easier...
+		use("kchmck/vim-coffee-script")
 
 		-- black magic
 		-- use { "codota/tabnine-vim" }
 		-- use {'tzachar/cmp-tabnine', run='./install.sh' }
 
-		-- temporary to make hubot dev easier...
-		use("kchmck/vim-coffee-script")
-		use("crispgm/nvim-go")
 		-- use('elzr/vim-json')
 		-- use('stephpy/vim-yaml')
 		-- use('rust-lang/rust.vim') -- rust lang support
