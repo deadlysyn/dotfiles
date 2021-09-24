@@ -1,5 +1,5 @@
 *.color0: #111
-*.alpha: 0.90
+*.alpha: 0.95
 *.font: monospace:size=10
 
 ! https://wiki.manjaro.org/index.php?title=Improve_Font_Rendering
