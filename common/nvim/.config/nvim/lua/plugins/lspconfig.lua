@@ -142,9 +142,9 @@ require("lspconfig").jsonls.setup({
 
 require("lspconfig").rust_analyzer.setup({})
 
-require("lspconfig").sqlls.setup({
-	cmd = { "/bin/sql-language-server", "up", "--method", "stdio" },
-})
+-- require("lspconfig").sqlls.setup({
+-- 	cmd = { "/bin/sql-language-server", "up", "--method", "stdio" },
+-- })
 
 local user = vim.fn.expand("$USER")
 local sumneko_root_path = "/home/" .. user .. "/src/lua-language-server"
