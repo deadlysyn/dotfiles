@@ -108,11 +108,10 @@ type = internal/network
 interface = enp4s0
 interval = 3
 format-connected = <label-connected>
+;label-connected = ↑ %upspeed:8% ↓ %downspeed:8%
 label-connected = ↑ %upspeed% ↓ %downspeed%
 format-disconnected = <label-disconnected>
 label-disconnected = disconnected
-format-packetloss = <animation-packetloss> <label-connected>
-animation-packetloss-0 = 
 
 ; [module/wlan]
 ; type = internal/network
