@@ -4,6 +4,9 @@
 # autostart
 ####################################################################
 
+# less blue light
+xflux -z 40741 &
+
 # appearance settings
 xsetroot -cursor_name left_ptr &
 xrdb -merge .Xresources &
