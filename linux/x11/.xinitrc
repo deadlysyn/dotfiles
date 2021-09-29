@@ -43,10 +43,12 @@ export GTK2_RC_FILES="${HOME}/.gtkrc-2.0"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # default apps
-export BROWSER="/bin/brave"
+# when changing default browser be aware of
+# https://wiki.archlinux.org/title/Xdg-utils#xdg-settings
+# export BROWSER="/bin/brave"
+# export PRIVATE_BROWSER="$BROWSER --incognito"
+export BROWSER="/bin/chromium"
 export PRIVATE_BROWSER="$BROWSER --incognito"
-#export BROWSER="/bin/chromium"
-#export PRIVATE_BROWSER="$BROWSER --incognito"
 #export BROWSER="/bin/firefox"
 #export PRIVATE_BROWSER="$BROWSER --private-window"
 export EDITOR="/bin/nvim"
