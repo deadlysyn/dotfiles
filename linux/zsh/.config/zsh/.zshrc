@@ -176,7 +176,7 @@ alias reader="devour zathura"
 alias pulse="devour pavucontrol"
 alias mixer="pulsemixer"
 alias view="devour sxiv"
-alias thumb="devour sxiv -t"
+alias thumb="devour sxiv -t ."
 alias mpv="devour mpv"
 alias player="devour mpv"
 
