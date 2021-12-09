@@ -1,4 +1,4 @@
-vim.cmd [[
+vim.cmd([[
 
 " let &t_8f = "\\<Esc>[38;2;%lu;%lu;%lum"
 " let &t_8b = "\\<Esc>[48;2;%lu;%lu;%lum"
@@ -38,4 +38,4 @@ autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.yml lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.coffee lua vim.lsp.buf.formatting_sync(nil, 100)
 
-]]
+]])
