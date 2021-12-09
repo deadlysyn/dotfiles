@@ -13,7 +13,11 @@ return require("packer").startup({
 		use("nvim-telescope/telescope-fzy-native.nvim")
 		-- use('ThePrimeagen/git-worktree.nvim')
 		-- status line
-		use("hoob3rt/lualine.nvim")
+		use({
+			"nvim-lualine/lualine.nvim",
+			reqires = { "kyazdani42/nvim-web-devicons", opt = true },
+		})
+		use("nvim-lualine/lualine.nvim")
 		use("editorconfig/editorconfig-vim") -- editorconfig support
 		use("farmergreg/vim-lastplace") -- reopen files at your last edit position
 		use("tpope/vim-commentary") -- toggle comment
@@ -67,7 +71,6 @@ return require("packer").startup({
 
 		-- awesome, but reducing bloat...
 		-- use("glepnir/lspsaga.nvim")
-		-- use("kyazdani42/nvim-web-devicons") -- bling
 		-- use("preservim/nerdtree") -- simple file tree
 		-- use('tpope/vim-fugitive')
 		-- use('phaazon/hop.nvim') -- jump to anywhere within 2 strokes
