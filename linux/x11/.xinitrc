@@ -35,7 +35,7 @@ export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 
 # try to identify proper wifi interface used in
 # configs; might need to hard code.
-export WIFI=$(ip link | awk '/wlan|wlp.*UP/ {print $2}' | cut -d: -f1 2>/dev/null)
+#export WIFI=$(/bin/ip link | /bin/awk '/wlan|wlp.*UP/ {print $2}' | /bin/cut -d: -f1 2>/dev/null)
 
 export BSPWM_SOCKET="/tmp/bspwm-socket"
 export SXHKD_SHELL="/bin/dash"
@@ -73,12 +73,13 @@ export WM_GAP=15
 #     export WM_GAP=10
 # fi
 
-xhost +local:root > /dev/null 2>&1
+/bin/xhost +local:root > /dev/null 2>&1
 
-eval $(gnome-keyring-daemon --start)
-export SSH_AUTH_SOCK
+eval $(/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+export $(/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
+/bin/dbus-update-activation-environment --systemd DISPLAY
 
-pidof sxhkd >/dev/null || sxhkd &
+/bin/pidof sxhkd >/dev/null || /bin/sxhkd -m -1 >/dev/null 2>&1 &
 
-exec dbus-launch --sh-syntax --exit-with-session bspwm
+exec /bin/dbus-launch --sh-syntax --exit-with-session bspwm
 
