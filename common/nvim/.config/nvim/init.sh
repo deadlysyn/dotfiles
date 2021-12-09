@@ -21,6 +21,7 @@ yarn global add yaml-language-server
 yay -S rust-analyzer
 yay -S shellcheck
 yay -S shfmt
+yay -S tflint-bin
 yay -S terraform-ls-bin
 
 # Lua LSP
