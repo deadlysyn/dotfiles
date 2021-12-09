@@ -1,4 +1,55 @@
--- TODO: investigate on_attach use case
+local vim = vim
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = false,
+    virtual_text = true,
+    signs = true,
+    update_in_insert = false,
+  }
+)
+
+local signs = {
+  Error = "",
+  Warn = "",
+  Info = "",
+  Hint = "ﴞ",
+}
+
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl})
+end
+
+-- vim.lsp.protocol.CompletionItemKind = {
+-- 	" (text)",
+-- 	" (method)",
+-- 	" (function)",
+-- 	" (constructor)",
+-- 	"ﰠ (field)",
+-- 	" (variable)",
+-- 	" (class)",
+-- 	" (interface)",
+-- 	" (module)",
+-- 	" (property)",
+-- 	" (unit)",
+-- 	" (value)",
+-- 	" (enum)",
+-- 	" (key)",
+-- 	"﬌ (snippet)",
+-- 	" (color)",
+-- 	" (file)",
+-- 	" (reference)",
+-- 	" (folder)",
+-- 	" (enum member)",
+-- 	" (constant)",
+-- 	" (struct)",
+-- 	" (event)",
+-- 	" (operator)",
+-- 	" (type)",
+-- }
+
+-- TODO: move keybindings into appropriate on_attach functions
 -- local on_attach = function(client)
 -- end
 
@@ -27,7 +78,7 @@ require("lspconfig").diagnosticls.setup({
 			coffeelint = {
 				sourceName = "coffeelint",
 				command = "coffeelint",
-				debounce = 100,
+				debounce = 150,
 				args = { "--color=never", "--reporter=csv", "--stdin" },
 				offsetLine = 0,
 				offsetColumn = 0,
@@ -58,7 +109,7 @@ require("lspconfig").diagnosticls.setup({
 					".eslintrc.yaml",
 					"package.json",
 				},
-				debounce = 100,
+				debounce = 150,
 				args = {
 					"--stdin",
 					"--stdin-filename",
@@ -83,7 +134,7 @@ require("lspconfig").diagnosticls.setup({
 			shellcheck = {
 				sourceName = "shellcheck",
 				command = "shellcheck",
-				debounce = 100,
+				debounce = 150,
 				args = { "--format=gcc", "-" },
 				offsetLine = 0,
 				offsetColumn = 0,
@@ -106,6 +157,7 @@ require("lspconfig").diagnosticls.setup({
 		},
 		formatFiletypes = {
 			sh = "shfmt",
+			terraform = "terraform",
 		},
 		formatters = {
 			shfmt = {
@@ -115,7 +167,14 @@ require("lspconfig").diagnosticls.setup({
 					"2",
 					"-bn",
 					"-ci",
-					"-sr",
+					"-p",
+				},
+			},
+			terraform = {
+				command = "terraform",
+				args = {
+					"fmt",
+					"-",
 				},
 			},
 		},
@@ -178,6 +237,17 @@ require("lspconfig").sumneko_lua.setup({
 	},
 })
 
-require("lspconfig").terraformls.setup({})
+require("lspconfig").terraformls.setup({
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+
+require("lspconfig").tflint.setup({
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+
 require("lspconfig").tsserver.setup({})
 require("lspconfig").yamlls.setup({})
