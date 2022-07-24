@@ -36,6 +36,7 @@ autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.sh lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.yml lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.tf !terraform fmt
+"autocmd BufWritePost *.tf !terraform fmt <afile>:p:S
+autocmd BufWritePost *.tf silent! execute "!terraform fmt >/dev/null 2>&1" | redraw!
 
 ]])
