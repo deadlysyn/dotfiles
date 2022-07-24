@@ -3,7 +3,14 @@
 *.font: monospace:size=10
 
 ! https://wiki.manjaro.org/index.php?title=Improve_Font_Rendering
+! https://linuxreviews.org/HOWTO_set_DPI_in_Xorg
+! xrdb -query|grep dpi
+! default
 Xft.dpi: 96
+! actual see https://www.sven.de/dpi
+!Xft.dpi: 102.46
+! round up
+!Xft.dpi: 120
 Xft.antialias: true
 Xft.hinting: true
 Xft.rgba: bgr
