@@ -42,7 +42,7 @@ return require("packer").startup({
 			run = ":TSUpdate",
 		})
 		use("neovim/nvim-lspconfig") -- lsp client config
-		use("hrsh7th/vim-vsnip") -- snippets; required for some completions
+		-- use("hrsh7th/vim-vsnip") -- snippets; required for some completions
 		use("mattn/emmet-vim") -- html/css snippets
 		use({
 			"hrsh7th/nvim-cmp", -- completion
