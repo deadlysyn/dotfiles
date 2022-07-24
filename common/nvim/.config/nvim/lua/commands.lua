@@ -25,7 +25,7 @@ autocmd FileType gitcommit setlocal spell
 autocmd Filetype gitcommit setlocal spell textwidth=70
 
 " use four space tabs for python
-autocmd FileType yaml setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType py setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
 " auto format
 autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 100)
@@ -36,6 +36,6 @@ autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.sh lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.yml lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.coffee lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.tf !terraform fmt
 
 ]])

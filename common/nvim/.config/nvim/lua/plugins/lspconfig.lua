@@ -20,33 +20,33 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- vim.lsp.protocol.CompletionItemKind = {
--- 	" (text)",
--- 	" (method)",
--- 	" (function)",
--- 	" (constructor)",
--- 	"ﰠ (field)",
--- 	" (variable)",
--- 	" (class)",
--- 	" (interface)",
--- 	" (module)",
--- 	" (property)",
--- 	" (unit)",
--- 	" (value)",
--- 	" (enum)",
--- 	" (key)",
--- 	"﬌ (snippet)",
--- 	" (color)",
--- 	" (file)",
--- 	" (reference)",
--- 	" (folder)",
--- 	" (enum member)",
--- 	" (constant)",
--- 	" (struct)",
--- 	" (event)",
--- 	" (operator)",
--- 	" (type)",
--- }
+vim.lsp.protocol.CompletionItemKind = {
+	" (text)",
+	" (method)",
+	" (function)",
+	" (constructor)",
+	"ﰠ (field)",
+	" (variable)",
+	" (class)",
+	" (interface)",
+	" (module)",
+	" (property)",
+	" (unit)",
+	" (value)",
+	" (enum)",
+	" (key)",
+	"﬌ (snippet)",
+	" (color)",
+	" (file)",
+	" (reference)",
+	" (folder)",
+	" (enum member)",
+	" (constant)",
+	" (struct)",
+	" (event)",
+	" (operator)",
+	" (type)",
+}
 
 -- TODO: move keybindings into appropriate on_attach functions
 -- local on_attach = function(client)
@@ -57,16 +57,16 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require('lspconfig').bashls.setup({})
+
 require('lspconfig').cssls.setup({
     capabilities = capabilities,
 })
 
 require('lspconfig').diagnosticls.setup({
     -- on_attach=on_attach_vim,
-    filetypes = { 'sh', 'coffee' },
+    filetypes = { 'sh' },
     init_options = {
         filetypes = {
-            coffee = 'coffeelint',
             ['javascript.jsx'] = 'eslint',
             javascript = 'eslint',
             javascriptreact = 'eslint',
@@ -74,28 +74,6 @@ require('lspconfig').diagnosticls.setup({
             sh = 'shellcheck',
         },
         linters = {
-            coffeelint = {
-                sourceName = 'coffeelint',
-                command = 'coffeelint',
-                debounce = 150,
-                args = { '--color=never', '--reporter=csv', '--stdin' },
-                offsetLine = 0,
-                offsetColumn = 0,
-                formatLines = 1,
-                formatPattern = {
-                    -- column output is inconsistent :-/
-                    '^\\S+,(\\d+),\\S+,(.*)$',
-                    {
-                        line = 1,
-                        message = 2,
-                    },
-                },
-                securities = {
-                    error = 'error',
-                    warning = 'warning',
-                    note = 'info',
-                },
-            },
             eslint = {
                 sourceName = 'eslint',
                 command = './node_modules/.bin/eslint',
@@ -181,6 +159,7 @@ require('lspconfig').diagnosticls.setup({
 })
 
 require('lspconfig').dockerls.setup({})
+
 require('lspconfig').gopls.setup({})
 
 --Enable (broadcasting) snippet capability for completion

@@ -55,8 +55,6 @@ return require('packer').startup({
             },
         })
         use('crispgm/nvim-go')
-        -- temporary to make hubot dev easier...
-        use('kchmck/vim-coffee-script')
 
         -- black magic
         -- use { "codota/tabnine-vim" }
