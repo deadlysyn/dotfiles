@@ -18,6 +18,8 @@ npm i -g vscode-langservers-extracted
 
 yarn global add yaml-language-server
 
+yay -S fd
+yay -S quicktype
 yay -S rust-analyzer
 yay -S shellcheck
 yay -S shfmt
