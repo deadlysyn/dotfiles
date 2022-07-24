@@ -6,7 +6,7 @@ section: screens
 		xtestIsXineramaUnaware = false
 		switchCorners = none 
 		switchCornerSize = 0
-	bender.local:
+	bender:
 		halfDuplexCapsLock = false
 		halfDuplexNumLock = false
 		halfDuplexScrollLock = false
@@ -20,8 +20,8 @@ end
 
 section: links
 	monolith:
-		right = bender.local
-	bender.local:
+		right = bender
+	bender:
 		left = monolith
 end
 
