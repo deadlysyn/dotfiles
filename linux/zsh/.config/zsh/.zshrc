@@ -2,6 +2,7 @@ unsetopt BEEP               # Be quiet
 unsetopt EXTENDEDGLOB       # Ignore #/~/^ in expansion
 unsetopt NOTIFY             # Be quieter about bg jobs
 unsetopt CORRECT            # Don't correct misspelled commands
+setopt INTERACTIVE_COMMENTS # Allow comments in interactive shells
 setopt NOMATCH              # Error on bad filename patterns
 setopt AUTO_CD              # Don't need cd to change dirs
 stty stop undef             # Disable ctrl-s freezing terminal

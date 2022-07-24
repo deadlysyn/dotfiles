@@ -11,5 +11,5 @@ export EDITOR="/bin/nvim"
 export FCEDIT="/bin/nvim"
 export VISUAL="/bin/nvim"
 #export SUDO_ASKPASS="/usr/X11R6/bin/ssh-askpass"
-export SSH_KEY_PATH="${HOME}/.ssh/id_rsa"
+export SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
 
