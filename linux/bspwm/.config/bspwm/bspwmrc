@@ -50,9 +50,15 @@ pidof unclutter >/dev/null || unclutter &
 # status bar
 pidof polybar >/dev/null || polybar default &
 # virtual kvm
+# [ -f ${XDG_CONFIG_HOME}/Synergy/license ] && pidof synergys >/dev/null || \
+#     synergys -f --name $(uname -n) \
+#     -c ${XDG_CONFIG_HOME}/Synergy/config --address :24800 \
+#     --serial-key $(cat ${XDG_CONFIG_HOME}/Synergy/license) \
+#     2>&1 >${XDG_CONFIG_HOME}/Synergy/log &
 #[ -f ${XDG_CONFIG_HOME}/Synergy/license ] && pidof synergys >/dev/null || \
-#    synergys -f --name $(uname -n) \
-#    -c ${XDG_CONFIG_HOME}/Synergy/config --address :24800 \
+#    synergys --address monolith:24800 \
+#    --config ${XDG_CONFIG_HOME}/Synergy/config \
+#    --no-tray \
 #    --serial-key $(cat ${XDG_CONFIG_HOME}/Synergy/license) \
 #    2>&1 >${XDG_CONFIG_HOME}/Synergy/log &
 
@@ -115,7 +121,7 @@ bspc config split_ratio 0.50
 bspc rule -a Gimp state=floating follow=on
 bspc rule -a mpv state=floating layer=normal
 bspc rule -a libreoffice state=tiled layer=normal
-bspc rule -a mailspring desktop=^9
+bspc rule -a Peek state=floating follow=on
 #bspc desktop 10 --layout monocle
 
 ###External rules
@@ -124,4 +130,3 @@ bspc config external_rules_command ${HOME}/.bin/bspwm-ext
 #bspc config external_rules_command /usr/bin/pseudo_automatic_mode
 ##Adjust new window: splits biggest windows to keep windows about the same size
 #bspc config external_rules_command /usr/bin/adjust-new-window
-
