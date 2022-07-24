@@ -1,10 +1,32 @@
 require("nvim-treesitter.configs").setup({
 	highlight = {
-		enable = true,
+		enable = true
 	},
-	ensure_installed = "maintained",
+	ensure_installed = {
+    "bash",
+    "c",
+    "cmake",
+    "css",
+    "dockerfile",
+    "go",
+    "gomod",
+    "graphql",
+    "hcl",
+    "html",
+    "javascript",
+    "json",
+    "lua",
+    "markdown",
+    "python",
+    "regex",
+    "rego",
+    "toml",
+    "tsx",
+    "typescript",
+    "yaml"
+  },
 	indent = {
-		enable = true,
+		enable = true
 	},
 	incremental_selection = {
 		enable = true,
@@ -12,7 +34,7 @@ require("nvim-treesitter.configs").setup({
 			init_selection = "gnn",
 			node_incremental = "grn",
 			scope_incremental = "grc",
-			node_decremental = "grm",
+			node_decremental = "grm"
 		},
 	},
 	playground = {
