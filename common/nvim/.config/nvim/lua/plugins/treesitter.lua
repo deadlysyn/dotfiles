@@ -24,6 +24,7 @@ require('nvim-treesitter.configs').setup({
         'tsx',
         'typescript',
         'yaml',
+        'terraform'
     },
     indent = {
         enable = true,
