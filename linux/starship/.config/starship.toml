@@ -1,9 +1,0 @@
-#[hostname]
-#ssh_only = false
-#disabled = false
-
-[time]
-disabled = false
-
-[kubernetes]
-disabled = false

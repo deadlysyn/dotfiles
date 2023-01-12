@@ -1,0 +1,25 @@
+scan_timeout = 100
+command_timeout = 3000
+
+#[hostname]
+#ssh_only = false
+#disabled = false
+
+[time]
+disabled = false
+
+[aws]
+format = '[$symbol($profile )(\($region\) )]($style)'
+#[aws.region_aliases]
+#us-west-2 = 'usw2'
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '
+#ignore_branches = ['master', 'main']
+
+#[kubernetes]
+#format = '[⛵ $cluster \($namespace\)](dimmed green) '
+#disabled = false
+
+[terraform]
+format = '[💠 $workspace \($version\)]($style) '
