@@ -17,7 +17,6 @@ return require('packer').startup({
             'nvim-lualine/lualine.nvim',
             reqires = { 'kyazdani42/nvim-web-devicons', opt = true },
         })
-        use('nvim-lualine/lualine.nvim')
         use('editorconfig/editorconfig-vim') -- editorconfig support
         use('farmergreg/vim-lastplace') -- reopen files at your last edit position
         use('tpope/vim-commentary') -- toggle comment
