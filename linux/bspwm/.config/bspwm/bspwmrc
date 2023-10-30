@@ -5,23 +5,23 @@
 ####################################################################
 
 # less blue light
-xflux -z 40741 -k 3500 &
+redshift -r -l 37.98:-84.47
 
 # appearance settings
 xsetroot -cursor_name left_ptr &
 xrdb -merge .Xresources &
 
 # wallpaper
-[ -f ${XDG_CONFIG_HOME}/wall.jpg ] && feh --no-fehbg --bg-fill ~/.config/wall.jpg &
+[ -f "${XDG_CONFIG_HOME}/wall.jpg" ] && feh --no-fehbg --bg-fill ~/.config/wall.jpg &
 
 # compositing
-[ -f ${XDG_CONFIG_HOME}/picom.conf ] && picom -b &
+[ -f "${XDG_CONFIG_HOME}/picom.conf" ] && picom -b &
 
 # enable local fonts
 # list discovered fonts: fc-list
 # see font paths: xset q
 find /usr/share/fonts ~/.local/share/fonts -name fonts.dir | while read dir; do
-    xset +fp $(dirname $dir) &
+    xset +fp "$(dirname "${dir}")" &
 done
 xset fp rehash &
 fc-cache -fv &

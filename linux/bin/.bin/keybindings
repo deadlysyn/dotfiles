@@ -55,9 +55,9 @@
 		Super + alt + p               |- Restart polybar
 		Super + alt + r               |- Re-run bspwmrc
 		Super + alt + s               |- Restart sxhkd
-		Super + shift + p             |- Shutdown (poweroff)
-		Super + shift + backspace     |- Reboot
-		Super + shift + escape        |- Logout
+		Super + shift + backspace     |- Shutdown (poweroff)
+		ctrl + alt + delete           |- Reboot
+		Super + shift + escape        |- Quit X
 		Super + escape                |- Lock screen
 
 	### Mouse ####################################################################

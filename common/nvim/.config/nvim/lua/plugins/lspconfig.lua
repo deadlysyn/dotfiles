@@ -187,37 +187,68 @@ require('lspconfig').rust_analyzer.setup({})
 -- 	cmd = { "/bin/sql-language-server", "up", "--method", "stdio" },
 -- })
 
-local user = vim.fn.expand('$USER')
-local sumneko_root_path = '/home/' .. user .. '/src/lua-language-server'
-local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
-
-require('lspconfig').sumneko_lua.setup({
-    cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
-    settings = {
+require'lspconfig'.lua_ls.setup {
+  on_init = function(client)
+    local path = client.workspace_folders[1].name
+    if not vim.loop.fs_stat(path..'/.luarc.json') and not vim.loop.fs_stat(path..'/.luarc.jsonc') then
+      client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
         Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT',
-                -- Setup your lua path
-                path = vim.split(package.path, ';'),
-            },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { 'vim' },
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = {
-                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                    [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-                },
-            },
-            telemetry = {
-                enable = false,
-            },
-        },
-    },
-})
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT'
+          },
+          -- Make the server aware of Neovim runtime files
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME
+              -- "${3rd}/luv/library"
+              -- "${3rd}/busted/library",
+            }
+            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+            -- library = vim.api.nvim_get_runtime_file("", true)
+          }
+        }
+      })
+
+      client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+    end
+    return true
+  end
+}
+
+-- sumneko is deprecated
+-- local user = vim.fn.expand('$USER')
+-- local sumneko_root_path = '/home/' .. user .. '/src/lua-language-server'
+-- local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
+-- require('lspconfig').sumneko_lua.setup({
+--     cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
+--     settings = {
+--         Lua = {
+--             runtime = {
+--                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+--                 version = 'LuaJIT',
+--                 -- Setup your lua path
+--                 path = vim.split(package.path, ';'),
+--             },
+--             diagnostics = {
+--                 -- Get the language server to recognize the `vim` global
+--                 globals = { 'vim' },
+--             },
+--             workspace = {
+--                 -- Make the server aware of Neovim runtime files
+--                 library = {
+--                     [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+--                     [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+--                 },
+--             },
+--             telemetry = {
+--                 enable = false,
+--             },
+--         },
+--     },
+-- })
 
 require('lspconfig').terraformls.setup({
     flags = {

@@ -164,7 +164,8 @@ super + b
     $BROWSER
 
 super + c
-    codium
+    chromium
+    #codium
 
 super + p
     $PRIVATE_BROWSER
@@ -205,23 +206,19 @@ XF86AudioMute
     pulseaudio-ctl mute
 
 XF86AudioNext
-    #spt playback -n
-    playerctl --all-players next
+    playerctl -p spotify -s next
 
 XF86AudioPrev
-    playerctl --all-players previous
-    #spt playback -p
+    playerctl -p spotify -s previous
 
 XF86AudioPause
-    playerctl --all-players play-pause
-    #spt playback -t
+    playerctl -p spotify -s play-pause
 
 XF86AudioPlay
-    playerctl --all-players play-pause
-    #spt playback -t
+    playerctl -p spotify -s play-pause
 
 XF86AudioStop
-    playerctl --all-players stop
+    playerctl -p spotify -s stop
 
 #XF86MonBrightnessUp
 #   xbacklight -inc 10
