@@ -139,10 +139,6 @@ fi
 
 #[[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
 
-# setup ssh
-#export SUDO_ASKPASS="/usr/X11R6/bin/ssh-askpass"
-export SSH_KEY_PATH="${HOME}/.ssh/id_rsa"
-
 # look pretty
 function set_win_title(){
   echo -ne "\033]0; ${USER}@${HOST}:${PWD} \007"

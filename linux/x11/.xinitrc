@@ -76,11 +76,15 @@ export WM_GAP=15
 
 /bin/xhost +local:root > /dev/null 2>&1
 
-eval $(/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
-export $(/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
-/bin/dbus-update-activation-environment --systemd DISPLAY
+export SSH_ASKPASS="/bin/xaskpass"
+export SSH_ASKPASS_REQUIRE=prefer
+export SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
+eval `/bin/keychain --eval --noask ${SSH_KEY_PATH}`
+
+# eval $(/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+# export $(/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
+# /bin/dbus-update-activation-environment --systemd DISPLAY
 
 /bin/pidof sxhkd >/dev/null || /bin/sxhkd -m -1 >/dev/null 2>&1 &
 
-exec /bin/dbus-launch --sh-syntax --exit-with-session bspwm
-
+# exec /bin/dbus-launch --sh-syntax --exit-with-session bspwm
