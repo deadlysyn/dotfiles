@@ -51,9 +51,10 @@ export BROWSER="/bin/chromium"
 export PRIVATE_BROWSER="$BROWSER --incognito"
 #export BROWSER="/bin/firefox"
 #export PRIVATE_BROWSER="$BROWSER --private-window"
-export EDITOR="/bin/nvim"
+export EDITOR="lvim"
 export MIXER="/bin/pulsemixer"
-export TERMINAL="/usr/local/bin/st"
+#export TERMINAL="/usr/local/bin/st"
+export TERMINAL="/bin/alacritty"
 
 # scale various UI components for desktop vs laptop (not perfect)
 export FONT1="Source Code Pro Medium:pixelsize=10"
