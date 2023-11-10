@@ -5,7 +5,7 @@
 ####################################################################
 
 # less blue light
-redshift -r -l 37.98:-84.47
+redshift -r -l 37.98:-84.47 &
 
 # appearance settings
 xsetroot -cursor_name left_ptr &
@@ -20,7 +20,7 @@ xrdb -merge .Xresources &
 # enable local fonts
 # list discovered fonts: fc-list
 # see font paths: xset q
-find /usr/share/fonts ~/.local/share/fonts -name fonts.dir | while read dir; do
+find /usr/share/fonts ~/.local/share/fonts -name fonts.dir | while read -r dir; do
     xset +fp "$(dirname "${dir}")" &
 done
 xset fp rehash &

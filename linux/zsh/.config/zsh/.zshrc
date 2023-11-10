@@ -159,8 +159,8 @@ fi
 
 alias ls="ls --color"
 alias ll="ls -al --color"
-alias vi="nvim"
-alias vim="nvim"
+alias vi="lvim"
+alias vim="lvim"
 #alias tc="tmux show-buffer | pbcopy"
 alias c="codium -n ."
 alias p="bluetoothctl power on; bluetoothctl connect CA:CD:EC:C0:B8:9D"
