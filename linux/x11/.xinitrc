@@ -87,4 +87,5 @@ eval `/bin/keychain --eval --noask ${SSH_KEY_PATH}`
 
 /bin/pidof sxhkd >/dev/null || /bin/sxhkd -m -1 >/dev/null 2>&1 &
 
-exec /bin/dbus-launch --sh-syntax --exit-with-session bspwm
+# exec /bin/dbus-launch --sh-syntax --exit-with-session bspwm
+exec /bin/bspwm
