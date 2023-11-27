@@ -8,6 +8,9 @@ lvim.builtin.project.active = false
 lvim.builtin.terminal.active = false
 lvim.builtin.theme.active = false
 
+-- needs to come before setting colorscheme
+vim.g.gruvbox_material_background = 'hard'
+vim.g.gruvbox_better_performance = 1
 lvim.colorscheme = "gruvbox-material"
 lvim.format_on_save = true
 
