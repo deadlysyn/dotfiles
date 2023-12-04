@@ -53,7 +53,6 @@ vim.opt.wildignorecase = true
 -- vim.opt.shiftround = true  -- round indent spacing to shiftwidth
 -- vim.opt.softtabstop = 2    -- soft tab stop
 -- vim.opt.listchars = 'tab:>-,trail:.,extends:#,nbsp:.'
---
 
 lvim.builtin.gitsigns.opts.signs["untracked"] = {
   hl = "GitSignsAdd",
@@ -61,3 +60,7 @@ lvim.builtin.gitsigns.opts.signs["untracked"] = {
   numhl = "GitSignsAddNr",
   linehl = "GitSignsAddLn",
 }
+
+-- <tab> and <shift-tab> navigation
+lvim.keys.normal_mode["<tab>"] = "gt"
+lvim.keys.normal_mode["<s-tab>"] = "gT"
