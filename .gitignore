@@ -10,3 +10,4 @@ plugged
 .zcompdump
 plug.vim
 packer_compiled.lua
+lazy-lock.json
