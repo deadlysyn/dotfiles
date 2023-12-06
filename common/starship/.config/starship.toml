@@ -1,25 +1,46 @@
+format = '$directory$all$git_branch$git_commit$git_state$git_metrics$git_status$line_break$time$character'
+
 scan_timeout = 100
 command_timeout = 3000
 
-#[hostname]
-#ssh_only = false
-#disabled = false
+[aws]
+symbol = '☁️ '
+format = '[$symbol($profile)\($region\)]($style)'
+# [aws.region_aliases]
+# ap-southeast-2 = 'aps2'
+# ca-central-1 = 'cac1'
+# eu-central-1 = 'euc1'
+# eu-west-2 = 'euw2'
+# us-east-1 = 'use1'
+# us-east-2 = 'use2'
+# us-west-1 = 'usw1'
+# us-west-2 = 'usw2'
+
+[directory]
+truncation_symbol = '…/'
+
+[git_branch]
+symbol = ''
+format = '[ $symbol $branch(:$remote_branch) ]($style) '
+
+[golang]
+symbol = '🐹 '
+format = '[$symbol($version )]($style)'
+
+[kubernetes]
+disabled = false
+symbol = '☸️ '
+format = '[$symbol($context)\($namespace\)]($style) '
+# detect_extensions = ['yaml']
+
+[package]
+symbol = '📦 '
+format = '[$symbol($version )]($style) '
+
+[terraform]
+symbol = '💠 '
+format = '[$symbol($version )]($style) '
 
 [time]
 disabled = false
-
-[aws]
-format = '[$symbol($profile )(\($region\) )]($style)'
-#[aws.region_aliases]
-#us-west-2 = 'usw2'
-
-[git_branch]
-format = '[$symbol$branch(:$remote_branch)]($style) '
-#ignore_branches = ['master', 'main']
-
-#[kubernetes]
-#format = '[⛵ $cluster \($namespace\)](dimmed green) '
-#disabled = false
-
-[terraform]
-format = '[💠 $workspace \($version\)]($style) '
+format = '[$time]($style) '
