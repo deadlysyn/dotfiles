@@ -37,15 +37,12 @@ export LESS_TERMCAP_so=$'\E[01;47;34m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 
-PATH="${HOME}/.local/bin:${HOME}/bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin"
-export PATH
-
 export HOMEBREW_PREFIX="/opt/homebrew";
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
 export HOMEBREW_REPOSITORY="/opt/homebrew";
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
 export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+export PATH="${HOME}/.local/bin:${HOME}/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin"
 
 export GOPATH="$HOME/go"
 export GOROOT="$(brew --prefix golang)/libexec"
@@ -101,9 +98,6 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-# setup ssh
-export SSH_KEY_PATH="${HOME}/.ssh/id_rsa"
-
 # look pretty
 function set_win_title(){
   echo -ne "\033]0; ${USER}@${HOST}:${PWD} \007"
@@ -116,8 +110,13 @@ else
     PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 fi
 
+alias k="kubectl"
 alias ls="ls --color"
 alias ll="ls -al --color"
+alias tf="terraform"
+alias tfa="terraform apply"
+alias tfp="terraform plan"
+alias tfv="terraform validate"
 alias vi="lvim"
 alias vim="lvim"
 alias docker-clean=' \
@@ -125,3 +124,6 @@ alias docker-clean=' \
   docker image prune -f ; \
   docker network prune -f ; \
   docker volume prune -f '
+
+# local functions we don't want in git
+[[ -e "${HOME}/.zsh_functions" ]] && . "${HOME}/.zsh_functions"
