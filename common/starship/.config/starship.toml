@@ -1,4 +1,4 @@
-format = '$directory$all$git_branch$git_commit$git_state$git_metrics$git_status$line_break$time$character'
+format = '$username$hostname$directory$all$git_branch$git_commit$git_state$git_metrics$git_status$line_break$time$character'
 
 scan_timeout = 100
 command_timeout = 3000
@@ -27,11 +27,19 @@ format = '[ $symbol $branch(:$remote_branch) ]($style) '
 symbol = '🐹 '
 format = '[$symbol($version )]($style)'
 
+[hostname]
+ssh_only = true
+format = '[@$hostname]($style) '
+style = 'bold dimmed blue'
+
 [kubernetes]
 disabled = false
 symbol = '☸️ '
 format = '[$symbol($context)\($namespace\)]($style) '
 # detect_extensions = ['yaml']
+
+[localip]
+disabled = true
 
 [package]
 symbol = '📦 '
@@ -44,3 +52,7 @@ format = '[$symbol($version )]($style) '
 [time]
 disabled = false
 format = '[$time]($style) '
+
+[username]
+format = '[$user]($style)'
+style_user = 'bold dimmed blue'
