@@ -1,11 +1,11 @@
-format = '$directory$all$git_branch$git_commit$git_state$git_metrics$git_status$line_break$time$character'
+format = '$directory$all$git_branch$git_commit$git_state$git_metrics$git_status$cmd_duration$line_break$time$character'
 
-scan_timeout = 100
 command_timeout = 3000
+scan_timeout = 100
 
 [aws]
 symbol = '☁️ '
-format = '[$symbol($profile)\($region\)]($style)'
+format = '[$symbol($profile)\($region\)]($style) '
 # [aws.region_aliases]
 # ap-southeast-2 = 'aps2'
 # ca-central-1 = 'cac1'
@@ -16,12 +16,15 @@ format = '[$symbol($profile)\($region\)]($style)'
 # us-west-1 = 'usw1'
 # us-west-2 = 'usw2'
 
+[cmd_duration]
+format = 'took [$duration]($style)'
+
 [directory]
 truncation_symbol = '…/'
 
 [git_branch]
 symbol = ''
-format = '[ $symbol $branch(:$remote_branch) ]($style) '
+format = '[$symbol $branch(:$remote_branch) ]($style)'
 
 [golang]
 symbol = '🐹 '
@@ -35,12 +38,12 @@ format = '[$symbol($context)\($namespace\)]($style) '
 
 [package]
 symbol = '📦 '
-format = '[$symbol($version )]($style) '
+format = '[$symbol($version )]($style)'
 
 [terraform]
 symbol = '💠 '
-format = '[$symbol($version )]($style) '
+format = '[$symbol($version )]($style)'
 
 [time]
 disabled = false
-format = '[$time]($style) '
+format = '[$time]($style)'
