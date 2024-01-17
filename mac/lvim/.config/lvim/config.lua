@@ -60,7 +60,10 @@ lvim.builtin.gitsigns.opts.signs["untracked"] = {
   numhl = "GitSignsAddNr",
   linehl = "GitSignsAddLn",
 }
+lvim.builtin.gitsigns.opts.current_line_blame = true
 
 -- <tab> and <shift-tab> navigation
-lvim.keys.normal_mode["<tab>"] = "gt"
-lvim.keys.normal_mode["<s-tab>"] = "gT"
+-- lvim.keys.normal_mode["<tab>"] = "gt"
+-- lvim.keys.normal_mode["<s-tab>"] = "gT"
+lvim.keys.normal_mode["<tab>"] = ":bn<CR>"
+lvim.keys.normal_mode["<s-tab>"] = ":bp<CR>"
