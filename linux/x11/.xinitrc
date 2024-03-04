@@ -79,9 +79,7 @@ export WM_GAP=15
 export SSH_ASKPASS="/bin/xaskpass"
 export SSH_ASKPASS_REQUIRE="prefer"
 export SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
-# https://www.funtoo.org/Funtoo:Keychain
-# https://man.archlinux.org/man/keychain.1
-eval `/bin/keychain --eval --noask ${SSH_KEY_PATH}`
+eval `/bin/ssh-agent -s`
 
 # eval $(/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 # export $(/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
