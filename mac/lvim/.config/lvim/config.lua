@@ -48,11 +48,18 @@ vim.opt.list = true                         -- show tabs with listchars
 vim.opt.wildmode = 'longest,full'
 vim.opt.wildignore = '**/cache/*,**/tmp/*,**/.git/*,**/node_modules/*'
 vim.opt.wildignorecase = true
-
 -- vim.opt.shortmess = 'atI'
 -- vim.opt.shiftround = true  -- round indent spacing to shiftwidth
 -- vim.opt.softtabstop = 2    -- soft tab stop
 -- vim.opt.listchars = 'tab:>-,trail:.,extends:#,nbsp:.'
+
+-- experiment to see if we get better vim-go behavior
+-- see :help hidden
+vim.opt.hidden = false
+-- https://github.com/akinsho/bufferline.nvim/issues/610
+-- lvim.builtin.bufferline.options.custom_filter = function(buf, buf_nums)
+--   return vim.fn.bufname(buf) == "[No Name]"
+-- end
 
 lvim.builtin.gitsigns.opts.signs["untracked"] = {
   hl = "GitSignsAdd",

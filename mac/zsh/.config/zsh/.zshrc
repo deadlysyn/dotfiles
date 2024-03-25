@@ -8,7 +8,7 @@ setopt AUTO_CD              # Don't need cd to change dirs
 stty stop undef             # Disable ctrl-s freezing terminal
 
 # history
-export HISTFILE="${XDG_CONFIG_HOME}/zsh/history"
+export HISTFILE="${HOME}/.config/zsh/history"
 export HISTSIZE=10000
 export SAVEHIST=10000
 setopt SHARE_HISTORY
@@ -91,6 +91,7 @@ export FZF_ALT_C_COMMAND="${FZF_DEFAULT_COMMAND}"
 # --color fg:242,bg:236,hl:65,fg+:15,bg+:239,hl+:108
 # --color info:108,prompt:109,spinner:108,pointer:168,marker:168
 # '
+#[[ -f "${HOME}/.config/zsh/.fzf.zsh" ]] && source ~/.fzf.zsh
 
 # keep these last
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -110,7 +111,8 @@ else
     PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 fi
 
-alias k="kubectl"
+alias k="kubectl --request-timeout=1h"
+alias rc="source ${HOME}/.config/zsh/.zshrc"
 alias ls="ls --color"
 alias ll="ls -al --color"
 alias tf="terraform"
