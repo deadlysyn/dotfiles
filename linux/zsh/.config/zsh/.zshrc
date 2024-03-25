@@ -130,6 +130,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#777777'
 
 if [[ -f ~/src/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
     source ~/src/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
@@ -176,4 +177,3 @@ alias view="devour sxiv"
 alias thumb="devour sxiv -t ."
 alias mpv="devour mpv"
 alias player="devour mpv"
-
