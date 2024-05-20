@@ -8,21 +8,96 @@ lvim.builtin.project.active = false
 lvim.builtin.terminal.active = false
 lvim.builtin.theme.active = false
 
+-- NOTE: using neo-tree
+lvim.builtin.nvimtree.active = false
+lvim.builtin.which_key.mappings["e"] = {
+  "<cmd>NeoTreeShowToggle<CR>", ""
+}
+
 -- needs to come before setting colorscheme
 vim.g.gruvbox_material_background = 'hard'
 vim.g.gruvbox_better_performance = 1
 lvim.colorscheme = "gruvbox-material"
-lvim.format_on_save = true
+-- lvim.format_on_save = true
+lvim.format_on_save.enabled = true
 
 lvim.plugins = {
-  { "sainnhe/gruvbox-material" },
+  { "crispgm/nvim-go" },
   { "editorconfig/editorconfig-vim" },
   { "farmergreg/vim-lastplace" },
-  { "crispgm/nvim-go" },
+  { "mrjones2014/nvim-ts-rainbow" },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require("neo-tree").setup({
+        close_if_last_window = true,
+        window = {
+          position = "left",
+          width = 30,
+        },
+        buffers = {
+          follow_current_file = true,
+        },
+        filesystem = {
+          follow_current_file = true,
+          filtered_items = {
+            hide_dotfiles = false,
+            hide_gitignored = false,
+            hide_by_name = {
+              "node_modules"
+            },
+            never_show = {
+              ".DS_Store",
+              "thumbs.db"
+            },
+          },
+        },
+      })
+    end
+  },
+  {
+    "nvim-telescope/telescope-fzy-native.nvim",
+    -- build = "make",
+    event = "BufRead",
+  },
+  { "sainnhe/gruvbox-material" },
+  { "tpope/vim-repeat" },
+  {
+    "tpope/vim-surround",
+    -- make sure to change the value of `timeoutlen` if it's not triggering correctly, see https://github.com/tpope/vim-surround/issues/117
+    --   setup = function()
+    --     vim.o.timeoutlen = 500
+    --   end
+  },
+}
+
+-- enable after installing nvim-ts-rainbow
+lvim.builtin.treesitter.rainbow.enable = true
+
+-- require 'lspconfig'.eslint.setup {}
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  { command = "eslint",
+    args = { "--no-warn-ignored" },
+    filetypes = { "typescript", "typescriptreact" }
+  }
+}
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  {
+    command = "prettier",
+    filetypes = { "typescript", "typescriptreact" },
+  },
 }
 
 -- defaults: https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/config/settings.lua
-vim.opt.mouse = ""                          -- disable mouse
+-- vim.opt.mouse = ""                          -- disable mouse
 vim.opt.background = 'dark'
 vim.opt.ttimeout = true                     -- adjust key sequence timeout
 vim.opt.joinspaces = false                  -- no double spaces on join
