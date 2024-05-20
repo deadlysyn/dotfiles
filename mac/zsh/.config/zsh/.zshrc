@@ -83,18 +83,20 @@ bindkey '^e' edit-command-line
 # setup direnv
 eval "$(direnv hook zsh)"
 
-# fzf + ag configuration
-export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
-export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
-export FZF_ALT_C_COMMAND="${FZF_DEFAULT_COMMAND}"
+# fzf + rg configuration
+#export FZF_DEFAULT_COMMAND='rg --nocolor -g ""'
+#export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+#export FZF_ALT_C_COMMAND="${FZF_DEFAULT_COMMAND}"
 # export FZF_DEFAULT_OPTS='
 # --color fg:242,bg:236,hl:65,fg+:15,bg+:239,hl+:108
 # --color info:108,prompt:109,spinner:108,pointer:168,marker:168
 # '
 #[[ -f "${HOME}/.config/zsh/.fzf.zsh" ]] && source ~/.fzf.zsh
+eval "$(fzf --zsh)"
 
 # keep these last
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+SUGGEST="/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[[ -f "${SUGGEST}" ]] && source "${SUGGEST}"
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
@@ -113,6 +115,7 @@ fi
 
 alias k="kubectl --request-timeout=1h"
 alias rc="source ${HOME}/.config/zsh/.zshrc"
+alias vrc="vi ${HOME}/.config/zsh/.zshrc"
 alias ls="ls --color"
 alias ll="ls -al --color"
 alias tf="terraform"
@@ -126,6 +129,9 @@ alias docker-clean=' \
   docker image prune -f ; \
   docker network prune -f ; \
   docker volume prune -f '
+
+# https://github.com/rupa/z
+[[ -e "${HOME}/bin/z.sh" ]] && . "${HOME}/bin/z.sh"
 
 # local functions we don't want in git
 [[ -e "${HOME}/.zsh_functions" ]] && . "${HOME}/.zsh_functions"
