@@ -9,8 +9,9 @@ stty stop undef             # Disable ctrl-s freezing terminal
 
 # history
 export HISTFILE="${HOME}/.config/zsh/history"
-export HISTSIZE=10000
+export HISTSIZE=20000
 export SAVEHIST=10000
+export SHELL_SESSIONS_DISABLE=1
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
