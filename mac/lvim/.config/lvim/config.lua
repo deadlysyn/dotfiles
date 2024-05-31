@@ -7,12 +7,19 @@ lvim.builtin.alpha.active = false
 lvim.builtin.project.active = false
 lvim.builtin.terminal.active = false
 lvim.builtin.theme.active = false
+lvim.builtin.nvimtree.active = false
 
--- NOTE: using neo-tree
+-- using neotree
 lvim.builtin.nvimtree.active = false
 lvim.builtin.which_key.mappings["e"] = {
-  "<cmd>NeoTreeShowToggle<CR>", ""
+  "<cmd>Neotree toggle<CR>", ""
 }
+
+-- Fix HCL comments
+-- https://github.com/numToStr/Comment.nvim/issues/382
+local ft = require('Comment.ft')
+ft.hcl = { '#%s', '/*%s*/' }
+require('Comment').setup()
 
 -- needs to come before setting colorscheme
 vim.g.gruvbox_material_background = 'hard'
@@ -39,13 +46,17 @@ lvim.plugins = {
         close_if_last_window = true,
         window = {
           position = "left",
-          width = 30,
+          width = 40,
         },
         buffers = {
-          follow_current_file = true,
+          follow_current_file = {
+            enabled = true,
+          },
         },
         filesystem = {
-          follow_current_file = true,
+          follow_current_file = {
+            enabled = true,
+          },
           filtered_items = {
             hide_dotfiles = false,
             hide_gitignored = false,
