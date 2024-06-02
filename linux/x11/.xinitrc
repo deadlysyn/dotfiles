@@ -47,10 +47,10 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 # https://wiki.archlinux.org/title/Xdg-utils#xdg-settings
 # export BROWSER="/bin/brave"
 # export PRIVATE_BROWSER="$BROWSER --incognito"
-export BROWSER="/bin/chromium"
-export PRIVATE_BROWSER="$BROWSER --incognito"
-#export BROWSER="/bin/firefox"
-#export PRIVATE_BROWSER="$BROWSER --private-window"
+#export BROWSER="/bin/chromium"
+#export PRIVATE_BROWSER="$BROWSER --incognito"
+export BROWSER="/bin/firefox"
+export PRIVATE_BROWSER="$BROWSER --private-window"
 export EDITOR="lvim"
 export MIXER="/bin/pulsemixer"
 #export TERMINAL="/usr/local/bin/st"
@@ -76,14 +76,14 @@ export WM_GAP=15
 
 /bin/xhost +local:root > /dev/null 2>&1
 
-export SSH_ASKPASS="/bin/xaskpass"
-export SSH_ASKPASS_REQUIRE="prefer"
+# export SSH_ASKPASS="/bin/xaskpass"
+# export SSH_ASKPASS_REQUIRE="prefer"
 export SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
 eval `/bin/ssh-agent -s`
 
 # eval $(/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 # export $(/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
-# /bin/dbus-update-activation-environment --systemd DISPLAY
+/bin/dbus-update-activation-environment --systemd DISPLAY
 
 /bin/pidof sxhkd >/dev/null || /bin/sxhkd -m -1 >/dev/null 2>&1 &
 
