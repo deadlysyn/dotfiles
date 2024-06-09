@@ -8,7 +8,8 @@ setopt AUTO_CD              # Don't need cd to change dirs
 stty stop undef             # Disable ctrl-s freezing terminal
 
 # history
-export HISTFILE="${XDG_CONFIG_HOME}/zsh/history"
+# export HISTFILE="${XDG_CONFIG_HOME}/zsh/history"
+export HISTFILE="${HOME}/.config/zsh/history"
 export HISTSIZE=10000
 export SAVEHIST=10000
 setopt SHARE_HISTORY
