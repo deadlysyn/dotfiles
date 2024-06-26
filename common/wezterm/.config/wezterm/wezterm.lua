@@ -62,6 +62,7 @@ config.scrollback_lines = 10000
 config.audible_bell = 'Disabled'
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
+config.window_decorations = "RESIZE"
 
 config.disable_default_key_bindings = true
 config.leader = { key = 'a', mods = 'ALT', timeout_milliseconds = 2000 }
@@ -103,7 +104,5 @@ config.keys = {
   -- { key = 'Enter', mods = 'LEADER',      action = act.ActivateCopyMode },
   -- { key = 'p',     mods = 'LEADER',      action = act.PasteFrom },
 }
-
-config.window_decorations = "RESIZE"
 
 return config
