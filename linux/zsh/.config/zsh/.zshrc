@@ -111,7 +111,7 @@ _has() {
   return $( whence $1 >/dev/null )
 }
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 if _has fzf && _has ag; then
   export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
@@ -133,13 +133,20 @@ export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#777777'
 
-if [[ -f ~/src/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
-    source ~/src/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-elif [[ -f/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# if [[ -f ~/src/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]]; then
+#     source ~/src/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+# elif [[ -f/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+#     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# fi
+
+[[ -z "$NVM_DIR" ]] && export NVM_DIR="$HOME/.nvm"
+if [[ -e '/usr/share/nvm' ]]; then
+  source /usr/share/nvm/nvm.sh
+  source /usr/share/nvm/install-nvm-exec
 fi
 
-#[[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
+# https://github.com/rupa/z
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 # look pretty
 function set_win_title(){
