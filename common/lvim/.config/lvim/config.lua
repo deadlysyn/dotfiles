@@ -55,5 +55,5 @@ require('Comment').setup()
 -- import extra configs
 local try_require = require('util').try_require
 try_require('plugins')
-try_require('binds')
+try_require('keymaps')
 try_require('options')
