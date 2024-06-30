@@ -22,12 +22,12 @@ lvim.keys.normal_mode['n'] = 'nzzzv'
 lvim.keys.normal_mode['N'] = 'Nzzzv'
 
 -- paste over selection without loosing buffer content
-lvim.keys.visual_mode['<leader>p'] = '\"_dP'
+lvim.keys.visual_mode['<leader>p'] = '"_dP'
 
 -- <leader>y yanks to system clipboard
-lvim.keys.normal_mode['<leader>y'] = '\"+y'
-lvim.keys.normal_mode['<leader>Y'] = '\"+Y'
-lvim.keys.visual_mode['<leader>y'] = '\"+y'
+lvim.keys.normal_mode['<leader>y'] = '"+y'
+lvim.keys.normal_mode['<leader>Y'] = '"+Y'
+lvim.keys.visual_mode['<leader>y'] = '"+y'
 
 -- does anyone use this?
 lvim.keys.normal_mode['Q'] = '<nop>'
