@@ -26,31 +26,31 @@ require('Comment').setup()
 -- require('lspconfig').eslint.setup({})
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#graphql
 -- require 'lspconfig'.graphql.setup {}
-local linters = require('lvim.lsp.null-ls.linters')
-linters.setup({
-  {
-    command = 'eslint',
-    -- args = { "--no-warn-ignored" },
-    filetypes = {
-      'javascript',
-      'javascriptreact',
-      'typescript',
-      'typescriptreact',
-    },
-  },
-})
-local formatters = require('lvim.lsp.null-ls.formatters')
-formatters.setup({
-  {
-    command = 'prettier',
-    filetypes = {
-      'javascript',
-      'javascriptreact',
-      'typescript',
-      'typescriptreact',
-    },
-  },
-})
+-- local linters = require('lvim.lsp.null-ls.linters')
+-- linters.setup({
+--   {
+--     command = 'eslint',
+--     -- args = { "--no-warn-ignored" },
+--     filetypes = {
+--       'javascript',
+--       'javascriptreact',
+--       'typescript',
+--       'typescriptreact',
+--     },
+--   },
+-- })
+-- local formatters = require('lvim.lsp.null-ls.formatters')
+-- formatters.setup({
+--   {
+--     command = 'prettier',
+--     filetypes = {
+--       'javascript',
+--       'javascriptreact',
+--       'typescript',
+--       'typescriptreact',
+--     },
+--   },
+-- })
 
 -- import extra configs
 local try_require = require('util').try_require
