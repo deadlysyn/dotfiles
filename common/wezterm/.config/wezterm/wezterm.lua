@@ -14,7 +14,7 @@ config.font = wezterm.font(
     style = 'Normal',
   }
 )
-config.font_size = 14
+config.font_size = 12
 config.line_height = 1.1
 -- disable ligatures; line vs dot zero
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0', 'zero' }
@@ -94,38 +94,38 @@ end
 
 if wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
   config.keys = {
-    { key = 'N',  mods = 'CTRL|SHIFT', action = act.SpawnWindow },
-    { key = 'R',  mods = 'CTRL|SHIFT', action = act.ReloadConfiguration },
-    { key = '+',  mods = 'CTRL|SHIFT', action = act.IncreaseFontSize },
-    { key = '-',  mods = 'CTRL|SHIFT', action = act.DecreaseFontSize },
-    { key = '0',  mods = 'CTRL|SHIFT', action = act.ResetFontSize },
+    { key = 'N', mods = 'CTRL|SHIFT', action = act.SpawnWindow },
+    { key = 'R', mods = 'CTRL|SHIFT', action = act.ReloadConfiguration },
+    { key = '+', mods = 'CTRL|SHIFT', action = act.IncreaseFontSize },
+    { key = '-', mods = 'CTRL|SHIFT', action = act.DecreaseFontSize },
+    { key = '0', mods = 'CTRL|SHIFT', action = act.ResetFontSize },
     -- tab management
-    { key = 't',  mods = 'ALT',        action = act.SpawnTab('CurrentPaneDomain') },
-    { key = 'w',  mods = 'ALT',        action = act.CloseCurrentTab({ confirm = false }) },
-    { key = 'l',  mods = 'ALT',        action = act.ActivateTabRelative(1) },
-    { key = 'h',  mods = 'ALT',        action = act.ActivateTabRelative(-1) },
-    { key = '1',  mods = 'ALT',        action = act.ActivateTab(0) },
-    { key = '2',  mods = 'ALT',        action = act.ActivateTab(1) },
-    { key = '3',  mods = 'ALT',        action = act.ActivateTab(2) },
-    { key = '4',  mods = 'ALT',        action = act.ActivateTab(3) },
-    { key = '5',  mods = 'ALT',        action = act.ActivateTab(4) },
-    { key = '6',  mods = 'ALT',        action = act.ActivateTab(5) },
-    { key = '7',  mods = 'ALT',        action = act.ActivateTab(6) },
-    { key = '8',  mods = 'ALT',        action = act.ActivateTab(7) },
-    { key = '9',  mods = 'ALT',        action = act.ActivateTab(8) },
+    { key = 't', mods = 'ALT',        action = act.SpawnTab('CurrentPaneDomain') },
+    { key = 'w', mods = 'ALT',        action = act.CloseCurrentTab({ confirm = false }) },
+    { key = 'l', mods = 'ALT',        action = act.ActivateTabRelative(1) },
+    { key = 'h', mods = 'ALT',        action = act.ActivateTabRelative(-1) },
+    { key = '1', mods = 'ALT',        action = act.ActivateTab(0) },
+    { key = '2', mods = 'ALT',        action = act.ActivateTab(1) },
+    { key = '3', mods = 'ALT',        action = act.ActivateTab(2) },
+    { key = '4', mods = 'ALT',        action = act.ActivateTab(3) },
+    { key = '5', mods = 'ALT',        action = act.ActivateTab(4) },
+    { key = '6', mods = 'ALT',        action = act.ActivateTab(5) },
+    { key = '7', mods = 'ALT',        action = act.ActivateTab(6) },
+    { key = '8', mods = 'ALT',        action = act.ActivateTab(7) },
+    { key = '9', mods = 'ALT',        action = act.ActivateTab(8) },
     -- pane management
-    { key = '%',  mods = 'CTRL|SHIFT', action = act.SplitVertical({ domain = 'CurrentPaneDomain' }) },
-    { key = '\\', mods = 'CTRL|SHIFT', action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
-    { key = 'h',  mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection('Left') },
-    { key = 'j',  mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection('Down') },
-    { key = 'k',  mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection('Up') },
-    { key = 'l',  mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection('Right') },
-    { key = 'x',  mods = 'CTRL|SHIFT', action = act.CloseCurrentPane({ confirm = false }) },
-    { key = 'z',  mods = 'CTRL|SHIFT', action = act.TogglePaneZoomState },
+    { key = '%', mods = 'CTRL|SHIFT', action = act.SplitVertical({ domain = 'CurrentPaneDomain' }) },
+    { key = '|', mods = 'CTRL|SHIFT', action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
+    { key = 'h', mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection('Left') },
+    { key = 'j', mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection('Down') },
+    { key = 'k', mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection('Up') },
+    { key = 'l', mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection('Right') },
+    { key = 'x', mods = 'CTRL|SHIFT', action = act.CloseCurrentPane({ confirm = false }) },
+    { key = 'z', mods = 'CTRL|SHIFT', action = act.TogglePaneZoomState },
     -- copy/paste TBD
     -- { key = 'Enter', mods = 'CTRL',       action = act.ActivateCopyMode },
-    { key = 'c',  mods = 'CTRL',       action = act.CopyTo('Clipboard') },
-    { key = 'v',  mods = 'CTRL',       action = act.PasteFrom('Clipboard') },
+    { key = 'c', mods = 'ALT',        action = act.CopyTo('Clipboard') },
+    { key = 'v', mods = 'ALT',        action = act.PasteFrom('Clipboard') },
     -- {
     --   key = 'U',
     --   mods = 'CTRL|SHIFT',
