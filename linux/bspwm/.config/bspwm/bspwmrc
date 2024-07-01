@@ -33,9 +33,11 @@ fc-cache -fv >"${LOG}" 2>&1 &
 xsetroot -cursor_name left_ptr &
 xrdb -merge .Xresources &
 # compositing
-[ -f "${XDG_CONFIG_HOME}/picom.conf" ] && picom -b >"${LOG}" 2>&1 &
+picom -b >"${LOG}" 2>&1 &
 # wallpaper
-[ -f "${XDG_CONFIG_HOME}/wall.jpg" ] && feh --no-fehbg --bg-fill ~/.config/wall.jpg >"${LOG}" 2>&1 &
+feh --no-fehbg --bg-fill \
+  ~/.config/wallpaper/yosemite-valley-wide.jpg \
+  ~/.config/wallpaper/matrix.jpg >"${LOG}" 2>&1 &
 
 # screensaver
 xset s 300 &
