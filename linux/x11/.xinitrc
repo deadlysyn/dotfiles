@@ -68,7 +68,7 @@ export WM_GAP=10
 
 # KISS
 export SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
-eval "$(bin/ssh-agent -s)"
+eval "$(/bin/ssh-agent -s)"
 
 /bin/pidof sxhkd >/dev/null || /bin/sxhkd -m -1 >/dev/null 2>&1 &
 
