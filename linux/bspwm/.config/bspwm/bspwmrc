@@ -1,36 +1,44 @@
 #!/bin/bash
 
+LOG="${HOME}/bspwmrc.log"
+
 ####################################################################
-# autostart
+# configure second monitor if present
 ####################################################################
 
-# less blue light
-redshift -r -l 37.98:-84.47 &
+MON1="DisplayPort-0"
+MON2="HDMI-A-0"
+if xrandr -q | grep -q "${MON2} connected"; then
+  xrandr --output "${MON1}" --mode 3840x2160 --rotate normal \
+    --output "${MON2}" --mode 2560x1440 --rotate right \
+    --right-of "${MON1}" >"${LOG}" 2>&1 &
+fi
 
-# appearance settings
-xsetroot -cursor_name left_ptr &
-xrdb -merge .Xresources &
-
-# wallpaper
-[ -f "${XDG_CONFIG_HOME}/wall.jpg" ] && feh --no-fehbg --bg-fill ~/.config/wall.jpg &
-
-# compositing
-[ -f "${XDG_CONFIG_HOME}/picom.conf" ] && picom -b &
-
+####################################################################
 # enable local fonts
+####################################################################
+
 # list discovered fonts: fc-list
 # see font paths: xset q
 find /usr/share/fonts ~/.local/share/fonts -name fonts.dir | while read -r dir; do
-    xset +fp "$(dirname "${dir}")" &
+    xset +fp "$(dirname "${dir}")" >"${LOG}" 2>&1 &
 done
-xset fp rehash &
-fc-cache -fv &
+xset fp rehash >"${LOG}" 2>&1 &
+fc-cache -fv >"${LOG}" 2>&1 &
+
+####################################################################
+# appearance settings and tweaks
+####################################################################
+
+xsetroot -cursor_name left_ptr &
+xrdb -merge .Xresources &
+# compositing
+[ -f "${XDG_CONFIG_HOME}/picom.conf" ] && picom -b >"${LOG}" 2>&1 &
+# wallpaper
+[ -f "${XDG_CONFIG_HOME}/wall.jpg" ] && feh --no-fehbg --bg-fill ~/.config/wall.jpg >"${LOG}" 2>&1 &
 
 # screensaver
 xset s 300 &
-# slock had more problems working consistently on a variety of hardware.
-# mostly the hackish dimmer script needing per-system adjustment.
-#xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
 xss-lock -l -- xsecurelock &
 
 # disable energy star
@@ -42,25 +50,23 @@ xset c off &
 # disable capslock
 setxkbmap -option "ctrl:nocaps" &
 
-### start things
+####################################################################
+# start things
+####################################################################
+
+# less blue light
+pidof redshift || redshift -r -l 37.98:-84.47 >"${LOG}" 2>&1 &
 # notifications
-pidof dunst >/dev/null || dunst &
+pidof dunst || dunst >"${LOG}" 2>&1 &
 # remove mouse pointer when idle
-pidof unclutter >/dev/null || unclutter &
+pidof unclutter || uclutter >"${LOG}" 2>&1 &
 # status bar
-pidof polybar >/dev/null || polybar default &
-# virtual kvm
-# [ -f ${XDG_CONFIG_HOME}/Synergy/license ] && pidof synergys >/dev/null || \
-#     synergys -f --name $(uname -n) \
-#     -c ${XDG_CONFIG_HOME}/Synergy/config --address :24800 \
-#     --serial-key $(cat ${XDG_CONFIG_HOME}/Synergy/license) \
-#     2>&1 >${XDG_CONFIG_HOME}/Synergy/log &
-#[ -f ${XDG_CONFIG_HOME}/Synergy/license ] && pidof synergys >/dev/null || \
-#    synergys --address monolith:24800 \
-#    --config ${XDG_CONFIG_HOME}/Synergy/config \
-#    --no-tray \
-#    --serial-key $(cat ${XDG_CONFIG_HOME}/Synergy/license) \
-#    2>&1 >${XDG_CONFIG_HOME}/Synergy/log &
+pidof polybar || {
+  polybar default >"${LOG}" 2>&1 &
+  if xrandr -q | grep -q "${MON2} connected"; then
+    polybar extra >"${LOG}" 2>&1 &
+  fi
+}
 
 ####################################################################
 # bspwm config
@@ -69,39 +75,32 @@ pidof polybar >/dev/null || polybar default &
 # If refreshing bspwm, remove all previous rules to prevent doubling up.
 bspc rule -r "*"
 
-bspc config window_gap $WM_GAP
+bspc config window_gap "${WM_GAP}"
 bspc config top_padding $((PANEL_HEIGHT + 5))
 
-# Start workspaces on the main monitor.
-# Skipping the display name lets me copy this to different
-# single-display computers easily. If you have multiple monitors,
-# include the name and split desktops across displays.
-#
-# List displays with `xrandr --query`
-#bspc monitor DisplayPort-0 -d 1 2 3 4 5
-#bspc monitor DisplayPort-1 -d 6 7 8 9 10
-bspc monitor -d 1 2 3 4 5 6 7 8 9 10
-
-# force all new windows to open on specific desktop
-#bspc desktop -f 1
+# list displays with `xrandr --query`
+# single display:
+# bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+# multi display:
+bspc monitor DisplayPort-0 -d 1 2 3 4 5 6 7
+bspc monitor HDMI-A-0 -d 8 9 0
 
 bspc config borderless_monocle true
 bspc config single_monocle true
-bspc config paddingless_monocle false
+bspc config paddingless_monocle true
 bspc config automatic_scheme alternate
 bspc config initial_polarity second_child
 bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
-## Honor size hints: can cause alignment issues...
+# caused alignment issues...
 bspc config honor_size_hints false
 #bspc config ignore_ewmh_focus true
 
-##Color settings
+# color settings
 bspc config presel_feedback_color "#1ABB9B"
-# gruv
 bspc config focused_border_color "#7DAEA3"
 bspc config normal_border_color "#45707a"
-bspc config border_width $LINE_WIDTH
+bspc config border_width "${LINE_WIDTH}"
 
 bspc config focus_follows_pointer true
 #bspc config pointer_follows_focus true
@@ -112,7 +111,6 @@ bspc config split_ratio 0.50
 
 #bspc rule -a screenkey --unmanage
 #bspc rule -a lxterminal state=floating center=true sticky=true
-#bspc rule -a brave private=on
 #bspc rule -a firefox private=on
 #bspc rule -a chromium private=on
 bspc rule -a Gimp state=floating follow=on
@@ -121,8 +119,8 @@ bspc rule -a libreoffice state=tiled layer=normal
 bspc rule -a Peek state=floating follow=on
 #bspc desktop 10 --layout monocle
 
-###External rules
-bspc config external_rules_command ${HOME}/.bin/bspwm-ext
+# external rules
+bspc config external_rules_command "${HOME}/.bin/bspwm-ext"
 ##Pseudo automatic mode: always splits focused window when opening new window
 #bspc config external_rules_command /usr/bin/pseudo_automatic_mode
 ##Adjust new window: splits biggest windows to keep windows about the same size
