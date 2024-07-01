@@ -1,117 +1,44 @@
-# Show keybindings - keep this updated
+# show keybindings
 super + F1
-    $TERMINAL -e keybindings
-
-# Close window - to be consistent with "shift modfiers for window changes"
-super + shift + c
-    bspc node -c
-
-# Kill window
-super + shift + x
-    bspc node -k
-
-# Toggle tiling mode of window
-#super + t
-#	bspc node -t {pseudo_tiled,tiled}
-super + shift + t
-    {bspc node -t floating && window-placer $(bspc query -T -d | grep -o '"state":"floating"' | wc -l),bspc node -t tiled}
-# Force all windows of the desktop to tile
-#super + ctrl + t
-#	bspcp tile
-# Force all windows of the desktop to float and arrange them
-#super + shift + t
-#	bspcp float
-
-# Toggle fullscreen
-super + shift + f
-    bspc node -t {fullscreen,tiled}
-
-# Try to keep size and position of the selected window
-super + shift + o
-    bspc node -g private
-
-# Make window sticky
-super + shift + s
-    bspc node -g sticky
+  $TERMINAL -e keybindings
 
 # swap current node and biggest local node
-super + shift + g
-    bspc node -s biggest.local || bspc node -s next.local
+super + shift + b
+    bspc node -s biggest.window
 
-# Lock a window from closing
-#super + Escape
-#	bspc node -g locked
+# close window
+super + shift + c
+  bspc node -c
 
-# Hide windows (functional equivalent of "minimize")
-super + shift + m
-    whid hide
+# toggle window flags; "private" avoids splitting
+super + shift + f
+  bspc node -t {marked,locked,sticky,private}
 
-# Show list of hidden windows
-super + ctrl + m
-    whid dmenu
+# kill window/app
+super + shift + k
+  bspc node -k
 
-#super + ctrl + h
-#	whid last
+# toggle window state
+super + shift + s
+  bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# Autopresel (split window in its largest dimension)
-#ctrl + space
-#	auto-presel
-
-# Presel window for splitting in certain direction
-#alt + ctrl + {h,j,k,l}
-#	bspc node -p \~{west,south,north,east}
-
-# Presel the desktop for splitting in certain direction
-#alt + shift + {h,j,k,l}
-#	bspc node @/ -p \~{west,south,north,east}
-
-# Set splitting ratio of windows
-#alt + ctrl + {1-9}
-#	bspc node -o 0.{1-9}
-
-# Move current window to largest space or preselected area if there is one.
-#super + Return
-#	windowpromoter
-
-# Create a new "master area", splitting the whole desktop instead of just windows.
-#alt + Return
-#	bspc node -n @/
+# alternate between tiled and monocle layout (zoom)
+super + shift + z
+	bspc desktop -l next
 
 # go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
 super + {_,shift + }{1-9,0}
-    bspc {desktop -f,node -d} ^{1-9,10}
-
-# Select previous / next desktop
-#super + {n,m}
-#	bspc desktop -f {prev.occupied,next.occupied}
+  bspc {desktop -f,node -d} ^{1-9,10}
 
 # cycle windows
 alt + {_,shift + }Tab
-    bspc node -f {next,prev}
+  bspc node -f {next,prev}
 
-# Go to specific window
-#super + Tab
-#	WindowSelector
-
-#Focus windows by direction, works with multihead
+# Focus windows by direction, works with multihead
 super + {h,j,k,l}
-    focusmover {west,south,north,east}
+  focusmover {west,south,north,east}
 
-# Move tiled windows. Moving a tiled window to
-# preselected one moves into preselection instead.
-# Moving out of the screen should move the window to next monitor if possible
-super + shift + {h,j,k,l}
-    windowgrabber {west,south,north,east}
-# Different style of movement: transplant into window in chosen direction
-#super + shift + {Left,Down,Up,Right}
-#	euclid_mover {west,south,north,east}
-
-#resize windows
-#super + ctrl + {a,s,w,d}
-#	bspwm_resize.sh {west,south,north,east}
-#super + ctrl + {h,j,k,l}
-#	bspc node -z {right -20 0,bottom 0 20,bottom 0 -20,right 20 0}
-#super + ctrl + alt + {Left,Down,Up,Right}
+# resize window
 super + ctrl + {h,j,k,l}
   n=10; \
   { d1=left;   d2=right;  dx=-$n; dy=0;   \
@@ -121,155 +48,123 @@ super + ctrl + {h,j,k,l}
   } \
   bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
 
-# Layout manipulation/desktop level controls
-# Toggle monocle mode
-#super + f
-#	bspc desktop -l next
-# Balance tree
-super + shift + b
-    bspc node @/ -B
+# move floating window
+super + {Left,Down,Up,Right}
+  bspc node -v {-20 0,0 20,0 -20,20 0}
 
-# Balance brother node. If you do this on biggest window of the desktop, it usually means balancing all windows with except the biggest.
-super + alt + b
-    bspc node @brother -B
-
+# balance tree
+# super + shift + b
+#   bspc node @/ -B
+# balancing all windows with except the biggest
+# super + alt + b
+#   bspc node @brother -B
 # Undo balancing (equalize windows)
-super + ctrl + b
-    bspc node @/ -E
+# super + ctrl + b
+#   bspc node @/ -E
 
-# Toggle automatic balancing of windows
-alt + b
-    euclid_balancer
-
-# Mirror and flip leaves of tree
+# mirror and flip leaves of tree
 super + {comma,period}
-    bspc node @/ -F {horizontal,vertical}
+  bspc node @/ -F {horizontal,vertical}
 
-# Rotate leaves of tree
+# rotate leaves of tree
 super + shift + {comma,period}
-    bspc node @/ -R {90,270}
+  bspc node @/ -R {90,270}
 
-# Change window gap
-#super + g
-#    bspc config -d focused window_gap {$gap,$(($gap+$gap)),$(($gap+$gap+$gap))}
-
-# run applications
+# application launcher
 super + space
-    dmenu_run
+  dmenu_run
 
 super + Return
-    $TERMINAL
+  $TERMINAL
 
 super + b
-    $BROWSER
-
-super + c
-    chromium
-    #codium
+  $BROWSER
 
 super + p
-    $PRIVATE_BROWSER
-
-super + e
-    thunderbird
+  $PRIVATE_BROWSER
 
 super + f
-    $TERMINAL -e lf
+  $TERMINAL -e lf
 
 super + g
-    flameshot gui
-
-super + s
-    spotify
-    #$TERMINAL -e spt
+  flameshot gui
 
 super + m
-    $TERMINAL -e $MIXER
+  $TERMINAL -e $MIXER
 
-super + v
-    $TERMINAL -e vpn
+super + s
+  spotify
 
 super + x
-    slack
+  slack
 
 super + z
-    zoom
+  zoom
 
-# Media keys
+# media keys
 XF86AudioRaiseVolume
-    pulseaudio-ctl up
-
+  pulseaudio-ctl up
 XF86AudioLowerVolume
-    pulseaudio-ctl down
-
+  pulseaudio-ctl down
 XF86AudioMute
-    pulseaudio-ctl mute
-
+  pulseaudio-ctl mute
 XF86AudioNext
-    playerctl -p spotify -s next
-
+  playerctl -p spotify -s next
 XF86AudioPrev
-    playerctl -p spotify -s previous
-
+  playerctl -p spotify -s previous
 XF86AudioPause
-    playerctl -p spotify -s play-pause
-
+  playerctl -p spotify -s play-pause
 XF86AudioPlay
-    playerctl -p spotify -s play-pause
-
+  playerctl -p spotify -s play-pause
 XF86AudioStop
-    playerctl -p spotify -s stop
+  playerctl -p spotify -s stop
 
-#XF86MonBrightnessUp
-#   xbacklight -inc 10
-#XF86MonBrightnessDown
-#   xbacklight -dec 10
-
-# cycle dunst
-super + alt + d
-    {pkill dunst,\
-    dunst }
+# toggle compositing
+super + alt + c
+    { pkill picom, picom -b }
 
 # show dunst history
 super + d
-    dunstctl history-pop
+  dunstctl history-pop
+
+# cycle dunst
+super + alt + d
+  {pkill dunst, dunst }
 
 # close all dunst messages
-super + shift + d
-    dunstctl close-all
+super + ctrl + d
+  dunstctl close-all
 
-# reload bspwm config
-super + alt + r
-    ${XDG_CONFIG_HOME}/bspwm/bspwmrc
+# pause/unpause dunst messages
+super + ctrl + p
+  dunstctl set-paused toggle
 
 # restart polybar
 super + alt + p
-    polybar-msg cmd restart
+  polybar-msg cmd restart
 
 # reload sxhkd config
 super + alt + s
-    pkill -USR1 -x sxhkd
+  pkill -USR1 -x sxhkd
 
 # edit this file
-alt + ctrl + space
-    $TERMINAL -e $EDITOR ${XDG_CONFIG_HOME}/sxhkd/sxhkdrc
-
-# Toggle compositing
-super + alt + c
-    {pkill picom ,\
-    picom -b }
+ctrl + alt + space
+  $TERMINAL -e $EDITOR ${XDG_CONFIG_HOME}/sxhkd/sxhkdrc
 
 # screensaver - activates xsecurelock
 super + Escape
     xset s activate
 
-# Cleanly quit bspwm
-super + shift + Escape
-    bspc {quit 1 && pkill polybar && pkill polybar,wm -r}
+# reload bspwm config
+super + alt + r
+    bspc wm -r
+
+# quit bspwm
+super + alt + q
+    bspc quit
 
 super + shift + BackSpace
     prompt "Poweroff?" poweroff
 
 ctrl + alt + Delete
     prompt "Reboot?" reboot
-

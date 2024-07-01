@@ -2,67 +2,53 @@
 #
 # output sxhkd cheat sheet
 
-	less 	<<-EOF
-	List of some useful keybindings.
-	More can be found from the file ~/.config/sxhkd/sxhkdrc.
+  less 	<<EOF
+#!# Edit keybindings with CTRL-ALT-SPACE ####################################
 
-	### Window manipulation ######################################################
+### Window manipulation #####################################################
+ALT + TAB                     |- Cycle windows (all desktops)
+SUPER + <hjkl>                |- Move focus to direction
+SUPER + SHIFT + <hjkl>        |- Move focused window to direction
+SUPER + <Left,Down,Up,Right>  |- Move floating window
+SUPER + CTRL + <hjkl>         |- Resize focused window to direction
+SUPER + 1-0                   |- Focus desktop with that number
+SUPER + SHIFT + 1-0           |- Move window to desktop
+SUPER + <,.>                  |- Mirror and flip leaves
+SUPER + SHIFT + <,.>          |- Rotate leaves
 
-		Alt + Tab                     |- Cycle windows (all desktops)
-		Super + <hjkl>                |- Move focus to direction
-		Super + shift + <hjkl>        |- Move focused window to direction
-		Super + ctrl + <hjkl>         |- Resize focused window to direction
-		Super + 1-0                   |- Focus desktop with that number
-		Super + shift + 1-0           |- Move window to desktop
-		Super + <,.>                  |- Mirror and flip leaves
-		Super + shift + <,.>          |- Rotate leaves
+SUPER + SHIFT + b             |- Swap current/biggest window
+SUPER + SHIFT + c             |- Close window
+SUPER + SHIFT + f             |- Toggle flags (marked,locked,sticky,private)
+SUPER + SHIFT + k             |- Kill window/app
+SUPER + SHIFT + s             |- Toggle state (tiled,pseudo,float,full)
+SUPER + SHIFT + z             |- Zoom window (fullscreen)
 
-		Super + shift + b             |- Balance windows
-		Super + alt + b               |- Balance all except biggest window
-		Super + ctrl + b              |- Undo balance (equalize)
-		Super + shift + c             |- Close window
-		Super + shift + x             |- Kill window
-		Super + shift + f             |- Toggle fullscreen
-		Super + shift + g             |- Swap current/biggest window
-		Super + shift + o             |- Toggle private (Avoids splitting)
-		Super + shift + m             |- Minimize window
-		Super + ctrl + m              |- Minimized window list
-		Super + shift + s             |- Togle sticky
-		Super + shift + t             |- Toggle tiling
+### Applications ############################################################
+SUPER + ENTER                 |- Terminal
+SUPER + SPACE                 |- Dmenu (Run applications)
+SUPER + b                     |- Browser
+SUPER + p                     |- Browser (private)
+SUPER + f                     |- Explore files with lf
+SUPER + m                     |- Mixer
+SUPER + s                     |- Spotify
+SUPER + x                     |- Slack
+SUPER + z                     |- Zoom
 
-		Super + shift + q             |- Quit bspwm
+### Services ################################################################
+SUPER + d                     |- Dunst history
+SUPER + CTRL + d              |- Close all dunst windows
+SUPER + CTRL + p              |- Pause/unpause dunst
+SUPER + ALT + d               |- Cycle dunst
+SUPER + ALT + c               |- Toggle compositing
+SUPER + ALT + p               |- Restart polybar
+SUPER + ALT + q               |- Quit bspwm
+SUPER + ALT + r               |- Restart bwpwm
+SUPER + ALT + s               |- Restart sxhkd
+SUPER + SHIFT + BACKSPACE     |- Shutdown (poweroff)
+CTRL + ALT + DEL              |- Reboot
+SUPER + ESC                   |- Lock screen
 
-	### Applications #############################################################
-
-		Super + enter                 |- Terminal
-		Super + space                 |- Dmenu (Run applications)
-		Super + b                     |- Browser
-		Super + c                     |- VS Codium
-		Super + p                     |- Browser (private)
-		Super + f                     |- Explore files with lf
-		Super + m                     |- Mixer
-		Super + s                     |- Spotify
-		Super + v                     |- VPN
-		Super + x                     |- Slack
-		Super + z                     |- Zoom
-
-	### Services #################################################################
-
-		Super + d                     |- Dunst history
-		Super + shift + d             |- Close all dunst windows
-		Super + alt + d               |- Cycle dunst
-		Super + alt + c               |- Toggle compositing
-		Super + alt + p               |- Restart polybar
-		Super + alt + r               |- Re-run bspwmrc
-		Super + alt + s               |- Restart sxhkd
-		Super + shift + backspace     |- Shutdown (poweroff)
-		ctrl + alt + delete           |- Reboot
-		Super + shift + escape        |- Quit X
-		Super + escape                |- Lock screen
-
-	### Mouse ####################################################################
-
-		Super + drag                  |- Moves tiled window
-		Super + rightclick drag       |- Resizes window
-
-	EOF
+### Mouse ###################################################################
+Super + drag                  |- Moves tiled window
+Super + rightclick drag       |- Resizes window
+EOF
