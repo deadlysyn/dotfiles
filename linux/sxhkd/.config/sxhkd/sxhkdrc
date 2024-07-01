@@ -15,7 +15,7 @@ super + shift + f
   bspc node -t {marked,locked,sticky,private}
 
 # kill window/app
-super + shift + k
+super + shift + x
   bspc node -k
 
 # toggle window state
@@ -37,6 +37,12 @@ alt + {_,shift + }Tab
 # Focus windows by direction, works with multihead
 super + {h,j,k,l}
   focusmover {west,south,north,east}
+
+# Move tiled windows. Moving a tiled window to
+# preselected one moves into preselection instead.
+# Moving out of the screen should move the window to next monitor if possible
+super + shift + {h,j,k,l}
+  windowgrabber {west,south,north,east}
 
 # resize window
 super + ctrl + {h,j,k,l}
