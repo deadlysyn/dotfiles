@@ -14,8 +14,7 @@ config.font = wezterm.font(
     style = 'Normal',
   }
 )
-config.font_size = 12
-config.line_height = 1.1
+-- config.line_height = 1.1
 -- disable ligatures; line vs dot zero
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0', 'zero' }
 
@@ -51,6 +50,8 @@ config.window_decorations = 'RESIZE'
 local act = wezterm.action
 config.leader = { key = 'a', mods = 'ALT', timeout_milliseconds = 2000 }
 if wezterm.target_triple == 'aarch64-apple-darwin' then
+  config.font_size = 14
+
   config.keys = {
     { key = 'N',     mods = 'CTRL|SHIFT', action = act.SpawnWindow },
     { key = 'R',     mods = 'CTRL|SHIFT', action = act.ReloadConfiguration },
@@ -93,6 +94,8 @@ if wezterm.target_triple == 'aarch64-apple-darwin' then
 end
 
 if wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
+  config.font_size = 12
+
   config.keys = {
     { key = 'N', mods = 'CTRL|SHIFT', action = act.SpawnWindow },
     { key = 'R', mods = 'CTRL|SHIFT', action = act.ReloadConfiguration },
