@@ -45,10 +45,10 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 # default apps
 # when changing default browser be aware of
 # https://wiki.archlinux.org/title/Xdg-utils#xdg-settings
-#export BROWSER="/bin/chromium"
-#export PRIVATE_BROWSER="$BROWSER --incognito"
-export BROWSER="/bin/firefox"
-export PRIVATE_BROWSER="$BROWSER --private-window"
+export BROWSER="/bin/chromium"
+export PRIVATE_BROWSER="$BROWSER --incognito"
+# export BROWSER="/bin/firefox"
+# export PRIVATE_BROWSER="$BROWSER --private-window"
 export EDITOR="lvim"
 export MIXER="/bin/pulsemixer"
 # export TERMINAL="/usr/local/bin/st"
