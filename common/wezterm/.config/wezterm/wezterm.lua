@@ -4,6 +4,10 @@ local config = wezterm.config_builder()
 
 -- https://wezfurlong.org/wezterm/colorschemes/index.html
 config.color_scheme = 'Gruvbox Material (Gogh)'
+config.colors = {
+  selection_fg = '#282828',
+  selection_bg = '#ddc7a1',
+}
 -- https://wezfurlong.org/wezterm/config/lua/wezterm/font.html
 config.font = wezterm.font(
   'SauceCodePro Nerd Font',
