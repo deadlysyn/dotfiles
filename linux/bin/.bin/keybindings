@@ -36,16 +36,16 @@ SUPER + z                     |- Zoom
 
 ### Services ################################################################
 SUPER + d                     |- Dunst history
-SUPER + CTRL + d              |- Close all dunst windows
-SUPER + CTRL + p              |- Pause/unpause dunst
-SUPER + ALT + d               |- Cycle dunst
-SUPER + ALT + c               |- Toggle compositing
-SUPER + ALT + p               |- Restart polybar
-SUPER + ALT + q               |- Quit bspwm
-SUPER + ALT + r               |- Restart bwpwm
-SUPER + ALT + s               |- Restart sxhkd
+SUPER + CTRL  + d             |- Close all dunst windows
+SUPER + CTRL  + p             |- Pause/unpause dunst
+SUPER + ALT   + d             |- Stop/start dunst
+SUPER + ALT   + c             |- Stop/start compositing
+SUPER + ALT   + p             |- Restart polybar
+SUPER + ALT   + q             |- Quit bspwm
+SUPER + ALT   + r             |- Reload bspwm configuration
+SUPER + ALT   + s             |- Restart sxhkd
 SUPER + SHIFT + BACKSPACE     |- Shutdown (poweroff)
-CTRL + ALT + DEL              |- Reboot
+CTRL  + ALT   + DEL           |- Reboot
 SUPER + ESC                   |- Lock screen
 
 ### Mouse ###################################################################
