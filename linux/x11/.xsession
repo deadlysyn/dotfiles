@@ -1,4 +1,3 @@
 #!/bin/bash
 
-# /bin/zsh -l -i ~/.xinitrc
-/bin/bash -l -i ~/.xinitrc
+/bin/zsh -l -i ~/.xinitrc

@@ -1,43 +1,14 @@
-! *.color0: #111
-*.alpha: 0.95
-*.font: monospace:size=10
-
 ! https://wiki.manjaro.org/index.php?title=Improve_Font_Rendering
 ! https://linuxreviews.org/HOWTO_set_DPI_in_Xorg
 ! xrdb -query|grep dpi
-! default
-Xft.dpi: 96
-! actual see https://www.sven.de/dpi
-!Xft.dpi: 102.46
-! round up
-!Xft.dpi: 120
+! Dell 40" UW
+Xft.dpi: 140
 Xft.antialias: true
-Xft.hinting: true
-Xft.rgba: bgr
 Xft.autohint: false
+Xft.hinting: true
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
 
 ! no giant mouse
 Xcursor.size: 14
-
-# gruvbox
-! *.color0: #1d2021
-! *.color1: #ea6962
-! *.color2: #a9b665
-! *.color3: #d8a657
-! *.color4: #7daea3
-! *.color5: #d3869b
-! *.color6: #89b482
-! *.color7: #d4be98
-! *.color8: #928374
-! *.color9: #ef938e
-! *.color10: #bbc585
-! *.color11: #e1bb7e
-! *.color12: #9dc2ba
-! *.color13: #e1acbb
-! *.color14: #a7c7a2
-! *.color15: #e2d3ba ! or #ddc7a1
-! *.background: #1d2021
-! *.foreground: #ddc7a1
-! *.cursorColor: #ddc7a1

@@ -21,7 +21,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # things we want available everywhere...
-
 export LANG="en_US.UTF-8"
 export TZ="America/New_York"
 
@@ -33,14 +32,10 @@ export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 export XDG_CONFIG_DIRS="/usr/etc/xdg:/etc/xdg"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 
-# try to identify proper wifi interface used in
-# configs; might need to hard code.
-#export WIFI=$(/bin/ip link | /bin/awk '/wlan|wlp.*UP/ {print $2}' | /bin/cut -d: -f1 2>/dev/null)
-
 export BSPWM_SOCKET="/tmp/bspwm-socket"
-# export SXHKD_SHELL="/bin/dash"
 export GTK2_RC_FILES="${HOME}/.gtkrc-2.0"
 export QT_QPA_PLATFORMTHEME="qt5ct"
+export SXHKD_SHELL="/bin/bash"
 
 # default apps
 # when changing default browser be aware of
@@ -54,20 +49,18 @@ export MIXER="/bin/pulsemixer"
 # export TERMINAL="/usr/local/bin/st"
 export TERMINAL="/bin/wezterm"
 
-# scale various UI components for desktop vs laptop (not perfect)
-export FONT1="Source Code Pro Medium:pixelsize=10"
-export FONT2="SauceCodePro Nerd Font Mono:size=10;1"
-export FONT3="Noto Color Emoji:scale=8:antialais=false:style=Regular;2"
-export LINE_WIDTH=3
-export PANEL_HEIGHT=30
-export PANEL_TITLE_LABEL="%title:0:100:...%"
-export WM_GAP=10
+# export FONT1="Source Code Pro Medium:pixelsize=8"
+# export FONT2="SauceCodePro Nerd Font Mono:size=8"
+# export FONT3="Noto Color Emoji:scale=8:antialais=false:style=Regular"
+# export LINE_WIDTH=2
+# export PANEL_HEIGHT=30
+#export PANEL_TITLE_LABEL="%title:0:100:...%"
+# export WM_GAP=7
 
-# necessary?
-/bin/xhost +local:root > /dev/null 2>&1
+/bin/xhost +local:root >/dev/null 2>&1
 
-# KISS
 export SSH_KEY_PATH="${HOME}/.ssh/id_ed25519"
+pkill ssh-agent # avoid dupes and using old agents
 eval "$(/bin/ssh-agent -s)"
 
 /bin/pidof sxhkd >/dev/null || /bin/sxhkd -m -1 >/dev/null 2>&1 &
