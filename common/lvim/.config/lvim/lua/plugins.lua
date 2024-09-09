@@ -58,9 +58,12 @@ lvim.plugins = {
 }
 
 -- keep after plugins
+
 -- must enable after installing nvim-ts-rainbow
 lvim.builtin.treesitter.rainbow.enable = true
+
 -- needs to come before setting colorscheme
-vim.g.gruvbox_material_background = 'hard'
+-- vim.g.gruvbox_material_background = 'hard'
 vim.g.gruvbox_better_performance = 1
+
 lvim.colorscheme = 'gruvbox-material'

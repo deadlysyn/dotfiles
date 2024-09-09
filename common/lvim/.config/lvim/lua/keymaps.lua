@@ -4,6 +4,9 @@ lvim.builtin.which_key.mappings['e'] = {
   '', -- this is required!
 }
 
+-- toggle git blame - need to figure out a good keymap
+-- lvim.keys.normal_mode['<leader>?'] = ':Gitsigns toggle_current_line_blame<CR>'
+
 -- <tab> and <shift-tab> navigation
 lvim.keys.normal_mode['<tab>'] = ':bn<CR>'
 lvim.keys.normal_mode['<s-tab>'] = ':bp<CR>'
