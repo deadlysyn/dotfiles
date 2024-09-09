@@ -20,7 +20,8 @@ super + shift + x
 
 # toggle window state
 super + shift + s
-  bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+  bspc node -t {tiled,floating,fullscreen}
+  #bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # alternate between tiled and monocle layout (zoom)
 super + shift + z
@@ -86,8 +87,11 @@ super + Return
 super + b
   $BROWSER
 
+super + i
+  eval $PRIVATE_BROWSER
+
 super + p
-  $PRIVATE_BROWSER
+  eval $BROWSER --user-data-dir="${XDG_CONFIG_HOME}/chromium-proxy-profile" --proxy-server="socks5://localhost:9090"
 
 super + f
   $TERMINAL -e lf
