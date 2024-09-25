@@ -1,4 +1,5 @@
 #!/bin/bash
+
 file="/tmp/.minimized"
 touch $file
 # By https://github.com/tatou-tatou

@@ -59,16 +59,23 @@ spotify() {
 
 slack() {
     desktop=^8;
-    private=on;
+    # private=on;
+}
+
+zoom() {
+    # desktop=^8;
+    state=floating;
 }
 
 case $instance.$class in
 	(*.Spotify) spotify;;
 	(*.Slack) slack;;
+	(*.Zoom) zoom;;
 	(.)
 		case $(ps -p "$(xdo pid "$id")" -o comm= 2>/dev/null) in
 			(spotify) spotify;;
 			(slack) slack;;
+			(zoom) zoom;;
 		esac;;
 esac;
 

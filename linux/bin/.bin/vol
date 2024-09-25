@@ -1,17 +1,13 @@
 #!/bin/bash
 
-# wpctl status
-#ID=58
-# hack: make this better...changes so can't hard code.
-ID=$(wpctl status | grep -E 'WH-1000XM5.*vol:' | tr -d . | awk '{print $3}' 2>/dev/null)
-INC=5
+INC=1
 
 if [[ "$1" == "up" ]]; then
-  wpctl set-volume $ID ${INC}%+
+  wpctl set-volume @DEFAULT_AUDIO_SINK@ ${INC}%+
 elif [[ "$1" = "down" ]]; then
-  wpctl set-volume $ID ${INC}%-
+  wpctl set-volume @DEFAULT_AUDIO_SINK@ ${INC}%-
 elif [[ "$1" = "mute" ]]; then
-  wpctl set-mute $ID toggle
+  wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 else
   echo "usage: $(basename $0) [up|down|mute]"
   exit 1

@@ -1,6 +1,4 @@
-#!/bin/dash
-# Originally by https://github.com/windelicato/
-# edited beyound recognition
+#!/bin/bash
 
 follower() {
 if [ "$(pgrep -cx windowgrabber)" = 1 ] ; then
@@ -39,5 +37,5 @@ if is_floating; then
 
 # Otherwise, window is tiled: switch with window in given direction
 else
-        bspc node -n ${dir}.!automatic || bspc node -s ${dir} ||  bspc node -m ${dir} && bspc monitor -f
+  bspc node -n ${dir}.!automatic || bspc node -s ${dir} ||  bspc node -m ${dir} && bspc monitor -f
 fi

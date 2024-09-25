@@ -112,12 +112,18 @@ super + z
   zoom
 
 # media keys
+# XF86AudioRaiseVolume
+#   pulseaudio-ctl up
+# XF86AudioLowerVolume
+#   pulseaudio-ctl down
+# XF86AudioMute
+#   pulseaudio-ctl mute
 XF86AudioRaiseVolume
-  pulseaudio-ctl up
+  vol up
 XF86AudioLowerVolume
-  pulseaudio-ctl down
+  vol down
 XF86AudioMute
-  pulseaudio-ctl mute
+  vol mute
 XF86AudioNext
   playerctl -p spotify -s next
 XF86AudioPrev

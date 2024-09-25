@@ -10,11 +10,19 @@ stty stop undef             # Disable ctrl-s freezing terminal
 # history
 # export HISTFILE="${XDG_CONFIG_HOME}/zsh/history"
 export HISTFILE="${HOME}/.config/zsh/history"
-export HISTSIZE=10000
-export SAVEHIST=10000
+export HIST_STAMPS="yyyy-mm-dd"
+export HISTSIZE=100000
+export SAVEHIST=100000
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
+setopt HIST_VERIFY
+setopt APPEND_HISTORY
+setopt HIST_REDUCE_BLANKS
+
 
 # directory stack
 setopt AUTO_PUSHD           # Push the current directory visited on the stack.
@@ -114,7 +122,7 @@ _has() {
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 if _has fzf && _has ag; then
-  export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+  export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
   export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
   export FZF_ALT_C_COMMAND="${FZF_DEFAULT_COMMAND}"
  # export FZF_DEFAULT_OPTS='
@@ -162,13 +170,29 @@ else
     PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 fi
 
+function doppler_search() {
+  if [[ "$#" -ne 3 ]]
+  then
+    echo "USAGE: $0 <project> <environment> <search_term>"
+    return
+  fi
+  _proj="$1"
+  _env="$2"
+  _val="$3"
+  for app in $(doppler -p "${_proj}" --environment "${_env}" configs --json | jq -r '.[].name')
+  do
+    doppler run -p "${_proj}" -c "${app}" -- env | grep "${_val}"
+  done
+}
+alias ds="doppler_search"
+
+alias history="fc -l 1"
 alias ls="ls --color"
 alias ll="ls -al --color"
 alias vi="lvim"
 alias vim="lvim"
 #alias tc="tmux show-buffer | pbcopy"
-alias c="codium -n ."
-alias p="bluetoothctl power on; bluetoothctl connect CA:CD:EC:C0:B8:9D"
+# alias p="bluetoothctl power on; bluetoothctl connect CA:CD:EC:C0:B8:9D"
 alias docker-clean=' \
   docker container prune -f ; \
   docker image prune -f ; \
@@ -185,3 +209,13 @@ alias view="devour sxiv"
 alias thumb="devour sxiv -t ."
 alias mpv="devour mpv"
 alias player="devour mpv"
+# git
+alias gb="git checkout -b"
+alias gl="git pull"
+alias gp="git push"
+# aws-vault
+alias ae="aws-vault exec"
+alias al="aws-vault login"
+alias alp="aws-vault login prod"
+
+

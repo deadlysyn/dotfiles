@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/bash
 
 if [ "$(pgrep -cx euclid_balancer)" -gt 1 ] ; then 
     killall euclid_balancer && exit 0

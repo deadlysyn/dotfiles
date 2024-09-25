@@ -1,11 +1,3 @@
--- inspiration:
--- https://github.com/crispgm/dotfiles/blob/main/nvim
--- https://oroques.dev/notes/neovim-init
-
--- TODO: hot reload
--- https://neovim.discourse.group/t/reload-init-lua-and-all-require-d-scripts/971
--- https://github.com/ThePrimeagen/.dotfiles/blob/master/nvim/.config/nvim/lua/theprimeagen/init.lua
-
 local try_require = require('common').try_require
 
 try_require('commands')

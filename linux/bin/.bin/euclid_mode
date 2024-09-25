@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/bash
 
 fwid=$(bspc query -N -n focused.automatic)
 wid=$1

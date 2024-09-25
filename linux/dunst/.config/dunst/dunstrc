@@ -4,10 +4,9 @@
 
   frame_width = 1
   #frame_color = "#7DAEA3"  # blue
-  #frame_color = "#89b482"  # aqua
   #frame_color = "#a9b665"  # green
   frame_color = "#d8a657"  # yellow
-  font = Source Code Pro Medium 9
+  font = Source Code Pro Medium 8
 
   # Allow a small subset of html markup:
   #   <b>bold</b>
