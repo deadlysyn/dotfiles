@@ -12,7 +12,9 @@ xsetroot -cursor_name left_ptr &
 # don't background to avoid race bugs
 xrdb -merge .Xresources
 # wallpaper
-feh --no-fehbg --bg-scale ~/.config/wallpaper/black-wave.jpg &
+# feh --no-fehbg --bg-scale ~/.config/wallpaper/black-wave.jpg &
+#feh --no-fehbg --bg-scale ~/.config/wallpaper/mountain-fog.jpg &
+feh --no-fehbg --bg-fill ~/.config/wallpaper/triangles.jpg &
 
 # screensaver
 xset s 600 &
@@ -79,8 +81,10 @@ bspc rule -a Gimp desktop='^7' state=floating layer=normal
 bspc rule -a libreoffice desktop='^7' state=floating layer=normal
 bspc rule -a mpv state=floating layer=normal
 bspc rule -a Peek state=floating layer=normal follow=on
-bspc rule -a Slack desktop='^8' state=tiled layer=normal follow=off
+# bspc rule -a Slack desktop='^8' state=tiled layer=normal follow=off
+bspc rule -a Slack desktop='^8'
 bspc rule -a Spotify desktop='^9' state=tiled layer=normal follow=off
+bspc rule -a XCalc state=floating layer=normal follow=on
 bspc rule -a zoom state=floating layer=normal follow=on
 # bspc desktop 10 --layout monocle
 
