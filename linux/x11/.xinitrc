@@ -31,6 +31,8 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 export XDG_CONFIG_DIRS="/usr/etc/xdg:/etc/xdg"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+# defaults to 'tty', required for zoom sharing
+export XDG_SESSION_TYPE="X11"
 
 export BSPWM_SOCKET="/tmp/bspwm-socket"
 export GTK2_RC_FILES="${HOME}/.gtkrc-2.0"
