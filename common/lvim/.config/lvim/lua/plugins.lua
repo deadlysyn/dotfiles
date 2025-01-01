@@ -1,4 +1,5 @@
 lvim.plugins = {
+  { 's1n7ax/nvim-window-picker' },
   { 'crispgm/nvim-go' },
   { 'editorconfig/editorconfig-vim' },
   { 'farmergreg/vim-lastplace' },
@@ -46,15 +47,22 @@ lvim.plugins = {
     'nvim-telescope/telescope-fzy-native.nvim',
     event = 'BufRead',
   },
-  { 'sainnhe/gruvbox-material' },
-  { 'tpope/vim-repeat' },
+  -- { 'sainnhe/gruvbox-material' },
   {
-    'tpope/vim-surround',
-    -- change the value of `timeoutlen` if it's not triggering correctly, see https://github.com/tpope/vim-surround/issues/117
-    --   setup = function()
-    --     vim.o.timeoutlen = 500
-    --   end
+    'catppuccin/nvim',
+    lazy = false,
+    name = 'catppuccin',
+    priority = 1000,
+
+    config = function()
+      require('catppuccin').setup({
+        transparent_background = true,
+      })
+      vim.cmd.colorscheme 'catppuccin-mocha'
+    end
   },
+  { 'tpope/vim-repeat' },
+  -- { 'tpope/vim-surround', },
 }
 
 -- keep after plugins
@@ -63,7 +71,8 @@ lvim.plugins = {
 lvim.builtin.treesitter.rainbow.enable = true
 
 -- needs to come before setting colorscheme
-vim.g.gruvbox_material_background = 'hard'
-vim.g.gruvbox_better_performance = 1
+-- vim.g.gruvbox_material_background = 'hard'
+-- vim.g.gruvbox_better_performance = 1
+-- lvim.colorscheme = 'gruvbox-material'
 
-lvim.colorscheme = 'gruvbox-material'
+lvim.colorscheme = 'catppuccin'
