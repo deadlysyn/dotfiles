@@ -99,6 +99,9 @@ super + f
 super + g
   flameshot gui
 
+super + v
+  peek
+
 super + m
   $TERMINAL -e $MIXER
 
