@@ -23,7 +23,6 @@ setopt HIST_VERIFY
 setopt APPEND_HISTORY
 setopt HIST_REDUCE_BLANKS
 
-
 # directory stack
 setopt AUTO_PUSHD           # Push the current directory visited on the stack.
 setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
@@ -46,7 +45,7 @@ export LESS_TERMCAP_so=$'\E[01;47;34m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 
-PATH="${HOME}/.bin:${HOME}/bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin"
+PATH="${HOME}/.bin:${HOME}/bin:${HOME}/.local/bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin"
 export PATH
 
 export GOPATH="${HOME}/go"
@@ -170,6 +169,26 @@ else
     PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 fi
 
+function git_name() {
+  if [[ "$#" -ne 1 ]]
+  then
+    echo "USAGE: $0 <email>"
+    return
+  fi
+  git config user.name "Mike Hoskins"
+  git config user.email "$1"
+}
+
+function check_cert() {
+  if [[ "$#" -ne 1 ]]
+  then
+    echo "USAGE: $0 <fqdn>"
+    return
+  fi
+  openssl s_client -connect "${1}:443" -showcerts </dev/null | openssl x509 -outform pem | openssl x509 -noout -dates
+}
+alias cs="check_cert"
+
 function doppler_search() {
   if [[ "$#" -ne 3 ]]
   then
@@ -181,11 +200,13 @@ function doppler_search() {
   _val="$3"
   for app in $(doppler -p "${_proj}" --environment "${_env}" configs --json | jq -r '.[].name')
   do
+    echo;echo "==> ${_proj}:${app}";echo
     doppler run -p "${_proj}" -c "${app}" -- env | grep "${_val}"
   done
 }
 alias ds="doppler_search"
 
+alias h="hypr"
 alias history="fc -l 1"
 alias ls="ls --color"
 alias ll="ls -al --color"
@@ -205,8 +226,8 @@ alias pdf="devour zathura"
 alias reader="devour zathura"
 alias pulse="devour pavucontrol"
 alias mixer="pulsemixer"
-alias view="devour sxiv"
-alias thumb="devour sxiv -t ."
+alias view="devour nsxiv"
+alias thumb="devour nsxiv -t ."
 alias mpv="devour mpv"
 alias player="devour mpv"
 # git
@@ -214,8 +235,8 @@ alias gb="git checkout -b"
 alias gl="git pull"
 alias gp="git push"
 # aws-vault
-alias ae="aws-vault exec"
-alias al="aws-vault login"
-alias alp="aws-vault login prod"
+alias ave="aws-vault exec"
+alias avl="aws-vault login --duration=8h"
 
-
+# Created by `pipx` on 2024-10-30 14:32:21
+export PATH="$PATH:/home/mrh/.local/bin"
