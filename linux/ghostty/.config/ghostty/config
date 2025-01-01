@@ -1,0 +1,23 @@
+theme = catppuccin-mocha
+# theme = GruvboxDark
+
+# font-family = Meslo LGS Nerd Font Mono
+# font-family = CaskaydiaMono Nerd Font
+font-family = SauceCodePro Nerd Font Mono
+font-size = 12
+
+background-opacity = 1
+gtk-titlebar = false
+# custom-shader = /home/chris/bloom.glsl
+#custom-shader = /home/chris/crt.glsl
+
+scrollback-limit = 10000
+
+keybind = ctrl+shift+r=reload_config
+keybind = ctrl+shift+%=new_split:down
+keybind = ctrl+shift+|=new_split:right
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:bottom
+keybind = ctrl+shift+k=goto_split:top
+keybind = ctrl+shift+l=goto_split:right
+keybind = alt+t=new_tab
