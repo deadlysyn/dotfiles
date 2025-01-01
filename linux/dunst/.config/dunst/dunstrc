@@ -2,11 +2,17 @@
   # https://github.com/dunst-project/dunst/wiki/Guides
   mouse_middle_click = do_action,close_current #close_current is optional
 
-  frame_width = 1
+  font = SauceCodePro Nerd Font 10
+  frame_width = 2
+
+  # gruvbox
   #frame_color = "#7DAEA3"  # blue
   #frame_color = "#a9b665"  # green
-  frame_color = "#d8a657"  # yellow
-  font = Source Code Pro Medium 8
+  #frame_color = "#d8a657"  # yellow
+  # catppuccin
+  frame_color = "#89b4fa"
+  separator_color= frame
+  highlight = "#89b4fa"
 
   # Allow a small subset of html markup:
   #   <b>bold</b>
@@ -53,10 +59,9 @@
   # Ignore newlines '\n' in notifications.
   ignore_newline = no
 
-  #geometry = "0x0-10+40"
-  width = 320
-  height = 500
-  offset = 6x30
+  width = (0, 500)
+  height = (0, 500)
+  offset = (20, 20)
   origin = top-right
 
   # Shrink window if it's smaller than the width.  Will be ignored if
@@ -139,7 +144,11 @@
 
   # Paths to default icons.
   #icon_path = /usr/share/icons/Adwaita/24x24/status/:/usr/share/icons/Adwaita/24x24/devices/
-  icon_path = /usr/share/icons/Gruvbox-Material-Dark/24x24/status/:/usr/share/icons/Gruvbox-Material-Dark/24x24/devices/
+  #icon_path = /usr/share/icons/Gruvbox-Material-Dark/24x24/status/:/usr/share/icons/Gruvbox-Material-Dark/24x24/devices/
+  icon_path = /usr/share/icons/simple/24x24/status/:/usr/share/icons/simple/24x24/devices/
+
+  icon_theme = simple
+  enable_recursive_icon_lookup = true
 
   # Limit icons size.
   max_icon_size=24
@@ -150,21 +159,37 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#282828"
-    foreground = "#DDC7A1"
-    icon = /usr/share/icons/Gruvbox-Material-Dark/24x24/status/dialog-information.svg
+    # gruvbox
+    #background = "#282828"
+    #foreground = "#DDC7A1"
+    #icon = /usr/share/icons/Gruvbox-Material-Dark/24x24/status/dialog-information.svg
+    # catppuccin
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    icon = /usr/share/icons/simple/24x24/status/dialog-information.png
     timeout = 10
 
 [urgency_normal]
-    background = "#282828"
-    foreground = "#DDC7A1"
-    icon = /usr/share/icons/Gruvbox-Material-Dark/24x24/status/dialog-warning.svg
+    # gruvbox
+    #background = "#282828"
+    #foreground = "#DDC7A1"
+    #icon = /usr/share/icons/Gruvbox-Material-Dark/24x24/status/dialog-warning.svg
+    # catppuccin
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    icon = /usr/share/icons/simple/24x24/status/dialog-warning.png
     timeout = 10
 
 [urgency_critical]
-    background = "#282828"
-    foreground = "#EA6962"
-    icon = /usr/share/icons/Gruvbox-Material-Dark/24x24/status/dialog-error.svg
+    # gruvbox
+    #background = "#282828"
+    #foreground = "#EA6962"
+    #icon = /usr/share/icons/Gruvbox-Material-Dark/24x24/status/dialog-error.svg
+    # catppuccin
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#fab387"
+    icon = /usr/share/icons/simple/24x24/status/dialog-error.png
     timeout = 0
 
 # Every section that isn't one of the above is interpreted as a rules to
