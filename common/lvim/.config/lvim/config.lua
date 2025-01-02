@@ -6,7 +6,7 @@ lvim.builtin.theme.active = false
 lvim.builtin.nvimtree.active = false
 
 -- overrides
-lvim.format_on_save.enabled = true
+lvim.format_on_save = true
 
 lvim.builtin.gitsigns.opts.signs['untracked'] = {
   hl = 'GitSignsAdd',
@@ -20,32 +20,31 @@ lvim.builtin.gitsigns.opts.signs['untracked'] = {
 
 -- fix HCL comments
 -- https://github.com/numToStr/Comment.nvim/issues/382
-local ft = require('Comment.ft')
-ft.hcl = { '#%s', '/*%s*/' }
-require('Comment').setup()
+-- local ft = require('Comment.ft')
+-- ft.hcl = { '#%s', '/*%s*/' }
+-- require('Comment').setup()
 
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#graphql
-require('lspconfig').graphql.setup({})
-require('lspconfig').eslint.setup({})
+-- require('lspconfig').graphql.setup({})
+-- require('lspconfig').eslint.setup({})
 
-local formatters = require('lvim.lsp.null-ls.formatters')
-formatters.setup({
-  {
-    command = 'prettier',
-    filetypes = {
-      'javascript',
-      'javascriptreact',
-      'typescript',
-      'typescriptreact',
-    },
-  },
-})
+-- local formatters = require('lvim.lsp.null-ls.formatters')
+-- formatters.setup({
+--   {
+--     command = 'prettier',
+--     filetypes = {
+--       'javascript',
+--       'javascriptreact',
+--       'typescript',
+--       'typescriptreact',
+--     },
+--   },
+-- })
 
 -- local linters = require('lvim.lsp.null-ls.linters')
 -- linters.setup({
 --   {
 --     command = 'eslint',
---     -- args = { "--no-warn-ignored" },
 --     filetypes = {
 --       'javascript',
 --       'javascriptreact',
