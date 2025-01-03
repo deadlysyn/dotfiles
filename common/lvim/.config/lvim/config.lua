@@ -24,9 +24,10 @@ lvim.builtin.gitsigns.opts.signs['untracked'] = {
 -- ft.hcl = { '#%s', '/*%s*/' }
 -- require('Comment').setup()
 
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#graphql
--- require('lspconfig').graphql.setup({})
--- require('lspconfig').eslint.setup({})
+require('lspconfig').graphql.setup({})
+require('lspconfig').eslint.setup({})
+require('lspconfig').terraformls.setup({})
+require('lspconfig').tflint.setup({})
 
 -- local formatters = require('lvim.lsp.null-ls.formatters')
 -- formatters.setup({
@@ -54,20 +55,32 @@ lvim.builtin.gitsigns.opts.signs['untracked'] = {
 --   },
 -- })
 
--- local helpers = require("null-ls.helpers")
--- local FORMATTING = require("null-ls.methods").internal.FORMATTING
+-- local helpers = require("lvim.lsp.null-ls.helpers")
+-- local FORMATTING = require("lvim.lsp.null-ls.methods").internal.FORMATTING
 -- require("null-ls").register({
 --   helpers.make_builtin({
---     name = "hclfmt",
---     method = FORMATTING,
---     filetypes = { "hcl" },
---     generator_opts = {
---       command = "terragrunt",
---       args = { "hclfmt", "--terragrunt-hclfmt-file", ".", }, -- put any required arguments in this table
---       to_stdin = true,                                       -- instructs the command to ingest the file from STDIN (i.e. run the currently open buffer through the linter/formatter)
+--       name = "hclfmt",
+--       method = FORMATTING,
+--       filetypes = { "hcl" },
+--       generator_opts = {
+--         command = "terragrunt",
+--         args = { "hclfmt", "--terragrunt-hclfmt-file", ".", },
+--         to_stdin = true,
+--       },
+--       factory = helpers.formatter_factory,
 --     },
---     factory = helpers.formatter_factory,
---   })
+--     {
+--       name = "tffmt",
+--       method = FORMATTING,
+--       filetypes = { "terraform" },
+--       generator_opts = {
+--         command = "terraform",
+--         args = { "fmt" },
+--         to_stdin = true,
+--       },
+--       factory = helpers.formatter_factory,
+--     }
+--   )
 -- })
 
 -- import extra configs
