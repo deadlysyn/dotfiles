@@ -1,18 +1,17 @@
-theme = catppuccin-mocha
-# theme = GruvboxDark
-
-# font-family = Meslo LGS Nerd Font Mono
-# font-family = CaskaydiaMono Nerd Font
+#background-opacity = 0.95
 font-family = SauceCodePro Nerd Font Mono
 font-size = 12
-
-background-opacity = 1
 gtk-titlebar = false
-# custom-shader = /home/chris/bloom.glsl
-#custom-shader = /home/chris/crt.glsl
-
+mouse-hide-while-typing = true
 scrollback-limit = 10000
+theme = catppuccin-mocha
+unfocused-split-opacity = 0.8
 
+# https://github.com/ghostty-org/ghostty/security/advisories/GHSA-5hcq-3j4q-4v6p
+title = Ghostty
+#title_report = false
+
+keybind = alt+t=new_tab
 keybind = ctrl+shift+r=reload_config
 keybind = ctrl+shift+%=new_split:down
 keybind = ctrl+shift+|=new_split:right
@@ -20,4 +19,3 @@ keybind = ctrl+shift+h=goto_split:left
 keybind = ctrl+shift+j=goto_split:bottom
 keybind = ctrl+shift+k=goto_split:top
 keybind = ctrl+shift+l=goto_split:right
-keybind = alt+t=new_tab
