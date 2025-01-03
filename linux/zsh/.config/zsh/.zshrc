@@ -55,6 +55,9 @@ export PATH="${GOBIN}:${GOROOT}/bin:${PATH}"
 test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 
+# Created by `pipx` on 2024-10-30 14:32:21
+export PATH="$PATH:/home/mrh/.local/bin"
+
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
     tmp="$(mktemp)"
@@ -238,5 +241,6 @@ alias gp="git push"
 alias ave="aws-vault exec"
 alias avl="aws-vault login --duration=8h"
 
-# Created by `pipx` on 2024-10-30 14:32:21
-export PATH="$PATH:/home/mrh/.local/bin"
+# TEMPORARY HACK
+# https://github.com/tofuutils/tenv/issues/328
+export TENV_DETACHED_PROXY=false
