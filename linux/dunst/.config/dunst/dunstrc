@@ -2,17 +2,14 @@
   # https://github.com/dunst-project/dunst/wiki/Guides
   mouse_middle_click = do_action,close_current #close_current is optional
 
-  font = SauceCodePro Nerd Font 10
+  font = SauceCodePro Nerd Font Mono 10
   frame_width = 2
 
-  # gruvbox
-  #frame_color = "#7DAEA3"  # blue
-  #frame_color = "#a9b665"  # green
-  #frame_color = "#d8a657"  # yellow
-  # catppuccin
-  frame_color = "#89b4fa"
-  separator_color= frame
-  highlight = "#89b4fa"
+  frame_color = "#89dceb"
+  separator_color = frame
+  highlight = "#f9e2af"
+  corners = all
+  corner_radius = 8
 
   # Allow a small subset of html markup:
   #   <b>bold</b>
@@ -159,36 +156,21 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    # gruvbox
-    #background = "#282828"
-    #foreground = "#DDC7A1"
-    #icon = /usr/share/icons/Gruvbox-Material-Dark/24x24/status/dialog-information.svg
-    # catppuccin
     background = "#1e1e2e"
     foreground = "#cdd6f4"
     icon = /usr/share/icons/simple/24x24/status/dialog-information.png
     timeout = 10
 
 [urgency_normal]
-    # gruvbox
-    #background = "#282828"
-    #foreground = "#DDC7A1"
-    #icon = /usr/share/icons/Gruvbox-Material-Dark/24x24/status/dialog-warning.svg
-    # catppuccin
     background = "#1e1e2e"
     foreground = "#cdd6f4"
     icon = /usr/share/icons/simple/24x24/status/dialog-warning.png
     timeout = 10
 
 [urgency_critical]
-    # gruvbox
-    #background = "#282828"
-    #foreground = "#EA6962"
-    #icon = /usr/share/icons/Gruvbox-Material-Dark/24x24/status/dialog-error.svg
-    # catppuccin
     background = "#1e1e2e"
     foreground = "#cdd6f4"
-    frame_color = "#fab387"
+    frame_color = "#f2cdcd"
     icon = /usr/share/icons/simple/24x24/status/dialog-error.png
     timeout = 0
 
