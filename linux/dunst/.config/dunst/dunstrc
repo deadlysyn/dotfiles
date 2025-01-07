@@ -8,8 +8,9 @@
   frame_color = "#89dceb"
   separator_color = frame
   highlight = "#f9e2af"
-  corners = all
-  corner_radius = 8
+  # round corners
+  #corners = all
+  #corner_radius = 8
 
   # Allow a small subset of html markup:
   #   <b>bold</b>
