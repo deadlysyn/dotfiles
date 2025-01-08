@@ -4,13 +4,14 @@ font-family = SauceCodePro Nerd Font Mono
 font-size = 12
 gtk-titlebar = false
 mouse-hide-while-typing = true
-scrollback-limit = 10000
+# 10MB
+scrollback-limit = 10485760
 theme = catppuccin-mocha
 unfocused-split-opacity = 0.8
 
 # https://github.com/ghostty-org/ghostty/security/advisories/GHSA-5hcq-3j4q-4v6p
 title = Ghostty
-#title_report = false
+title-report = false
 
 keybind = alt+t=new_tab
 keybind = ctrl+shift+r=reload_config
@@ -20,3 +21,4 @@ keybind = ctrl+shift+h=goto_split:left
 keybind = ctrl+shift+j=goto_split:bottom
 keybind = ctrl+shift+k=goto_split:top
 keybind = ctrl+shift+l=goto_split:right
+keybind = ctrl+shift+z=toggle_split_zoom
