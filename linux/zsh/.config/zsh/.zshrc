@@ -235,7 +235,7 @@ alias mpv="devour mpv"
 alias player="devour mpv"
 # git
 alias gb="git checkout -b"
-alias gl="git pull"
+alias gl="git pull && git fetch --prune"
 alias gp="git push"
 # aws-vault
 alias ave="aws-vault exec"
