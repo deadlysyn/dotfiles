@@ -29,18 +29,18 @@ require('lspconfig').eslint.setup({})
 require('lspconfig').terraformls.setup({})
 require('lspconfig').tflint.setup({})
 
--- local formatters = require('lvim.lsp.null-ls.formatters')
--- formatters.setup({
---   {
---     command = 'prettier',
---     filetypes = {
---       'javascript',
---       'javascriptreact',
---       'typescript',
---       'typescriptreact',
---     },
---   },
--- })
+local formatters = require('lvim.lsp.null-ls.formatters')
+formatters.setup({
+  {
+    command = 'prettier',
+    filetypes = {
+      'javascript',
+      'javascriptreact',
+      'typescript',
+      'typescriptreact',
+    },
+  },
+})
 
 -- local linters = require('lvim.lsp.null-ls.linters')
 -- linters.setup({
