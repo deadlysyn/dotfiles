@@ -1,6 +1,8 @@
 [user]
 	name = Mike Hoskins
-	email = me@deadlysyn.com
+	; email = me@deadlysyn.com
+	email = 4724461-deadlysyn@users.noreply.gitlab.com
+	signingkey = 8F6C00C08A0B4199
 [core]
 	editor = lvim
 [color]
@@ -27,3 +29,5 @@
 ; https://golang.org/doc/faq#git_https
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
+[commit]
+	gpgsign = true
