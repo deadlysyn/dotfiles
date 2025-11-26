@@ -1,41 +1,101 @@
-vim.cmd([[
+local autocmd = vim.api.nvim_create_autocmd
 
-" let &t_8f = "\\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b = "\\<Esc>[48;2;%lu;%lu;%lum"
+-- highlight on yank
+autocmd({ 'TextYankPost' }, {
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
 
-colorscheme gruvbox-material
-filetype plugin indent on
-syntax on
+autocmd({ 'FileType' }, {
+    callback = function()
+        -- vim.opt.filetype.plugin.indent = 'on'
+        -- vim.opt.syntax = 'on'
+        -- disable automatic comment insertion
+        vim.opt_local.formatoptions:remove({ 'c' })
+        vim.opt_local.formatoptions:remove({ 'r' })
+        vim.opt_local.formatoptions:remove({ 'o' })
+        -- delete comment character when joining lines
+        vim.opt_local.formatoptions:append({ 'j' })
+    end,
+})
 
-set grepprg=rg
-set grepformat=%f:%l:%c:%m
+-- turn on spell check for select file types
+autocmd({ 'BufRead', 'BufNewFile' }, {
+    pattern = { '*.md', '*.rst', '*.html', '*.txt' },
+    callback = function()
+        vim.opt_local.spell = true
+    end,
+})
+autocmd({ 'FileType' }, {
+    pattern = { 'gitcommit' },
+    callback = function()
+        vim.opt_local.spell = true
+        vim.opt_local.textwidth = 70
+    end,
+})
 
-" disable automatic comment insertion
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+-- use four space tabs for python
+autocmd({ 'FileType' }, {
+    pattern = 'py',
+    callback = function()
+        vim.opt_local.expandtab = true
+        vim.opt_local.shiftwidth = 4
+        vim.opt_local.softtabstop = 4
+        vim.opt_local.tabstop = 4
+    end,
+})
 
-" delete comment character when joining lines
-autocmd FileType * setlocal formatoptions+=j
+-- auto format
+-- autocmd BufWritePost *.tf silent! execute "!terraform fmt >/dev/null 2>&1" | redraw!
+autocmd({ 'BufWritePre' }, {
+    pattern = {
+        '*.lua',
+        '*.html',
+        '*.css',
+        '*.js',
+        '*.jsx',
+        '*.json',
+        '*.sh',
+        '*.go',
+        '*.yml',
+        '*.yaml',
+    },
+    callback = function()
+        vim.lsp.buf.format()
+    end,
+})
+-- autocmd({ 'BufWritePre' }, {
+--   pattern = { '*.hcl', '*.tf' },
+--   callback = function()
+--     vim.lsp.buf.format()
+--   end
+-- })
 
-" turn on spell check for select file types
-autocmd BufRead,BufNewFile *.md setlocal spell
-autocmd BufRead,BufNewFile *.rst setlocal spell
-autocmd BufRead,BufNewFile *.html setlocal spell
-autocmd BufRead,BufNewFile *.txt setlocal spell
-autocmd FileType gitcommit setlocal spell
-autocmd Filetype gitcommit setlocal spell textwidth=70
+-- vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
+autocmd({ 'BufRead', 'BufNewFile' }, {
+    pattern = { '*.hcl', '.terraformrc', 'terraform.rc' },
+    callback = function()
+        vim.opt.filetype = 'hcl'
+    end,
+})
 
-" use four space tabs for python
-autocmd FileType py setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
+-- vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
+-- autocmd({ 'BufRead', 'BufNewFile' }, {
+--   pattern = { '*.tf', '.tfvars'},
+--   callback = function()
+--     vim.opt.filetype = 'terraform'
+--   end
+-- })
 
-" auto format
-autocmd BufWritePre *.html lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.css lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.json lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.sh lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePre *.yml lua vim.lsp.buf.formatting_sync(nil, 100)
-autocmd BufWritePost *.tf silent! execute "!terraform fmt >/dev/null 2>&1" | redraw!
+-- vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
+autocmd({ 'BufRead', 'BufNewFile' }, {
+    pattern = { '*.tfstate', '.tfstate.backup' },
+    callback = function()
+        vim.opt.filetype = 'json'
+    end,
+})
 
-]])
+-- vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
+-- vim.cmd([[let g:terraform_fmt_on_save=1]])
+-- vim.cmd([[let g:terraform_align=1]])

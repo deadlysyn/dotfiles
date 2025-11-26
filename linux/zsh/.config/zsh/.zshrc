@@ -152,7 +152,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#777777'
 [[ -z "$NVM_DIR" ]] && export NVM_DIR="$HOME/.nvm"
 if [[ -e '/usr/share/nvm' ]]; then
   source /usr/share/nvm/nvm.sh
-  source /usr/share/nvm/install-nvm-exec
+  # source /usr/share/nvm/install-nvm-exec
 fi
 
 # https://github.com/rupa/z
@@ -211,9 +211,12 @@ alias ds="doppler_search"
 
 alias h="hypr"
 alias history="fc -l 1"
+alias kc="killall chromium --wait && reboot"
 alias ls="ls --color"
 alias ll="ls -al --color"
-alias vi="lvim"
+alias lsdrv="lsblk -o NAME,FSTYPE,LABEL,MOUNTPOINT,SIZE,MODEL"
+# alias vi="lvim"
+alias vi="cat /dev/null > ${HOME}/.local/state/lvim/lsp.log && lvim"
 alias vim="lvim"
 #alias tc="tmux show-buffer | pbcopy"
 # alias p="bluetoothctl power on; bluetoothctl connect CA:CD:EC:C0:B8:9D"
@@ -237,10 +240,21 @@ alias player="devour mpv"
 alias gb="git checkout -b"
 alias gl="git pull && git fetch --prune"
 alias gp="git push"
+# alias gs git-worktree switch next...
 # aws-vault
 alias ave="aws-vault exec"
-alias avl="aws-vault login --duration=8h"
+alias avl="aws-vault login"
+#alias al="aws sso login --sso-session assured"
+alias k="kubectl"
+
+alias luamake=/home/mrh/src/lua-language-server/3rd/luamake/luamake
 
 # TEMPORARY HACK
 # https://github.com/tofuutils/tenv/issues/328
-export TENV_DETACHED_PROXY=false
+# export TENV_DETACHED_PROXY=false
+
+# https://terragrunt.gruntwork.io/docs/features/provider-cache-server
+export TG_PROVIDER_CACHE=1
+export TG_PROVIDER_CACHE_DIR="/backup/tgcache"
+export TG_PROVIDER_CACHE_REGISTRY_NAMES="registry.terraform.io,registry.opentofu.org,gitlab.com,github.com"
+export TG_NO_AUTO_APPROVE=true

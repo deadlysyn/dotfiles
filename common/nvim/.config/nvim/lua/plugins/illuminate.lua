@@ -1,4 +1,12 @@
-local vim = vim
-
-vim.g.Illuminate_delay = 300
-vim.g.Illuminate_highlightUnderCursor = 0
+return {
+    'RRethy/vim-illuminate',
+    -- event = 'User FileOpened',
+    event = 'VimEnter',
+    config = function()
+        require('illuminate').configure({
+            delay = 300,
+            under_cursor = false,
+        })
+    end,
+    opts = {},
+}

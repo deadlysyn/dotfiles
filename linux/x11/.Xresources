@@ -1,8 +1,12 @@
 ! https://wiki.manjaro.org/index.php?title=Improve_Font_Rendering
 ! https://linuxreviews.org/HOWTO_set_DPI_in_Xorg
 ! xrdb -query|grep dpi
-! Dell 40" UW
+! default
+! Xft.dpi: 96
+! Dell 40" UW actual
 Xft.dpi: 140
+! maybe better / factor of 96
+! Xft.dpi: 144
 Xft.antialias: true
 Xft.autohint: false
 Xft.hinting: true

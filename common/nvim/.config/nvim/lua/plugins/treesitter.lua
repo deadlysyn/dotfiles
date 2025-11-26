@@ -1,61 +1,39 @@
-require('nvim-treesitter.configs').setup({
-    highlight = {
-        enable = true,
-    },
-    ensure_installed = {
-        'bash',
-        'c',
-        'cmake',
-        'css',
-        'dockerfile',
-        'go',
-        'gomod',
-        'graphql',
-        'hcl',
-        'html',
-        'javascript',
-        'json',
-        'lua',
-        'markdown',
-        'python',
-        'regex',
-        'rego',
-        'toml',
-        'tsx',
-        'typescript',
-        'yaml',
-        'terraform'
-    },
-    indent = {
-        enable = true,
-    },
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = 'gnn',
-            node_incremental = 'grn',
-            scope_incremental = 'grc',
-            node_decremental = 'grm',
+return {
+    'nvim-treesitter/nvim-treesitter',
+    lazy = false, -- can not be lazy loaded
+    build = ':TSUpdate',
+    opts = {
+        auto_install = true,
+        ensure_installed = {
+            'bash',
+            'c',
+            'cmake',
+            'diff',
+            'go',
+            'html',
+            'lua',
+            'query',
+            'javascript',
+            'json',
+            'python',
+            'yaml',
+            'markdown',
+            'typescript',
         },
-    },
-    playground = {
-        enable = true,
-        disable = {},
-        updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-        persist_queries = false, -- Whether the query persists across vim sessions
-    },
-    textobjects = {
-        select = {
+        highlight = {
+            enable = true,
+        },
+        indent = {
+            enable = true,
+        },
+        incremental_selection = {
             enable = true,
             keymaps = {
-                -- You can use the capture groups defined in textobjects.scm
-                ['af'] = '@function.outer',
-                ['if'] = '@function.inner',
-                ['ac'] = '@class.outer',
-                ['ic'] = '@class.inner',
-                ['aP'] = '@parameter.outer',
-                ['iP'] = '@parameter.inner',
+                init_selection = 'gnn',
+                node_incremental = 'grn',
+                node_decremental = 'grc',
+                scope_incremental = 'grm',
             },
         },
     },
-})
+}

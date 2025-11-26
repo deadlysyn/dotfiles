@@ -13,11 +13,11 @@ SYSMODMAP="/etc/X11/xinit/.Xmodmap"
 [ -f "${USERMODMAP}" ] && /bin/xmodmap "${USERMODMAP}"
 
 # start some nice programs
-if [ -d /etc/X11/xinit/xinitrc.d ] ; then
-    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-        [ -x "$f" ] && . "$f" >/dev/null 2>&1
-    done
-    unset f
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+  for f in /etc/X11/xinit/xinitrc.d/?*.sh; do
+    [ -x "$f" ] && . "$f" >/dev/null 2>&1
+  done
+  unset f
 fi
 
 # things we want available everywhere...
@@ -35,21 +35,27 @@ export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 export XDG_SESSION_TYPE="X11"
 
 export BSPWM_SOCKET="/tmp/bspwm-socket"
-export GTK2_RC_FILES="${HOME}/.gtkrc-2.0"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME}/gtk-2.0"
+export GTK3_RC_FILES="${XDG_CONFIG_HOME}/gtk-3.0"
+export GDK_SCALE=1
+# export GDK_DPI_SCALE=0.5
 export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_SCALE_FACTOR=1
+# export QT_FONT_DPI=96
 export SXHKD_SHELL="/bin/bash"
 
 # default apps
 # when changing default browser be aware of
 # https://wiki.archlinux.org/title/Xdg-utils#xdg-settings
-export BROWSER="/bin/chromium"
+export BROWSER="/bin/chromium --high-dpi-support=1 --force-device-scale-factor=1"
 export PRIVATE_BROWSER="$BROWSER --incognito"
 # export BROWSER="/bin/firefox"
 # export PRIVATE_BROWSER="$BROWSER --private-window"
 export EDITOR="lvim"
 export MIXER="/bin/pulsemixer"
 # export TERMINAL="/usr/local/bin/st"
-export TERMINAL="/bin/wezterm"
+# export TERMINAL="/bin/wezterm"
+export TERMINAL="/bin/ghostty"
 
 # export FONT1="Source Code Pro Medium:pixelsize=8"
 # export FONT2="SauceCodePro Nerd Font Mono:size=8"

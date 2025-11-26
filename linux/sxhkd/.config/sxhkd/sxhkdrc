@@ -79,7 +79,7 @@ super + shift + {comma,period}
 
 # application launcher
 super + space
-  dmenu_run
+  rofi -show run
 
 super + Return
   $TERMINAL
@@ -93,11 +93,14 @@ super + i
 super + p
   eval $BROWSER --user-data-dir="${XDG_CONFIG_HOME}/chromium-proxy-profile" --proxy-server="socks5://localhost:9090"
 
+super + e
+  gnome-characters
+
 super + f
-  $TERMINAL -e lf
+  nautilus
 
 super + g
-  flameshot gui
+  QT_ENABLE_HIGHDPI_SCALING=0 flameshot gui
 
 super + v
   peek
@@ -108,19 +111,16 @@ super + m
 super + s
   spotify
 
+super + w
+  rofi -show window
+
 super + x
-  slack
+  slack --force-device-scale-factor=1
 
 super + z
   zoom
 
 # media keys
-# XF86AudioRaiseVolume
-#   pulseaudio-ctl up
-# XF86AudioLowerVolume
-#   pulseaudio-ctl down
-# XF86AudioMute
-#   pulseaudio-ctl mute
 XF86AudioRaiseVolume
   vol up
 XF86AudioLowerVolume
@@ -139,16 +139,20 @@ XF86AudioStop
   playerctl -p spotify -s stop
 
 # toggle compositing
-super + alt + c
-    { pkill picom, picom -b }
+# super + alt + c
+#     { pkill picom, picom -b }
 
 # show dunst history
 super + d
   dunstctl history-pop
 
+# clear dunst history
+super + shift + d
+  dunstctl close-all
+
 # cycle dunst
 super + alt + d
-  {pkill dunst, dunst }
+  dunstctl reload
 
 # close all dunst messages
 super + ctrl + d

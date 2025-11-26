@@ -3,7 +3,7 @@ lvim.plugins = {
   { "crispgm/nvim-go" },
   { "editorconfig/editorconfig-vim" },
   { "farmergreg/vim-lastplace" },
-  { "hiphish/rainbow-delimiters.nvim" },
+  -- { "hiphish/rainbow-delimiters.nvim" },
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",

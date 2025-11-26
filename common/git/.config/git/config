@@ -1,7 +1,8 @@
 [user]
 	name = Mike Hoskins
+	email = mike@assured.claims
 	; email = me@deadlysyn.com
-	email = 4724461-deadlysyn@users.noreply.gitlab.com
+	; email = 4724461-deadlysyn@users.noreply.gitlab.com
 	signingkey = 8F6C00C08A0B4199
 [core]
 	editor = lvim

@@ -1,20 +1,753 @@
 local try_require = require('common').try_require
 
-try_require('commands')
-try_require('options')
+try_require('options') -- load early before packages
 try_require('packages')
 try_require('mappings')
-try_require('plugins.cmp')
-try_require('plugins.emmet')
-try_require('plugins.gitsigns')
-try_require('plugins.illuminate')
-try_require('plugins.lspconfig')
-try_require('plugins.lualine')
-try_require('plugins.markdown')
-try_require('plugins.nvim-go')
-try_require('plugins.prettier')
-try_require('plugins.rust')
--- try_require('plugins.tabnine')
-try_require('plugins.telescope')
-try_require('plugins.treesitter')
-try_require('plugins.vsnip')
+try_require('commands')
+
+-- local util = require('lspconfig.util')
+-- local lsp = vim.lsp
+
+-- vim.lsp.config('bashls', {
+--     cmd = { 'bash-language-server', 'start' },
+--     settings = {
+--         bashIde = {
+--             -- Glob pattern for finding and parsing shell script files in the workspace.
+--             -- Used by the background analysis features across files.
+--
+--             -- Prevent recursive scanning which will cause issues when opening a file
+--             -- directly in the home directory (e.g. ~/foo.sh).
+--             --
+--             -- Default upstream pattern is "**/*@(.sh|.inc|.bash|.command)".
+--             globPattern = vim.env.GLOB_PATTERN or '*@(.sh|.inc|.bash|.command)',
+--         },
+--     },
+--     filetypes = { 'bash', 'sh' },
+--     root_markers = { '.git' },
+-- })
+-- vim.lsp.enable('bashls')
+
+-- vim.lsp.config('cssls', {
+--     cmd = { 'vscode-css-language-server', '--stdio' },
+--     filetypes = { 'css', 'scss', 'less' },
+--     init_options = { provideFormatter = true }, -- needed to enable formatting capabilities
+--     root_markers = { 'package.json', '.git' },
+--     settings = {
+--         css = { validate = true },
+--         scss = { validate = true },
+--         less = { validate = true },
+--     },
+-- })
+-- vim.lsp.enable('cssls')
+
+-- vim.lsp.config('dianosticls', {
+--     -- Configuration from https://github.com/iamcco/diagnostic-languageserver#config--document
+--     cmd = { 'diagnostic-languageserver', '--stdio' },
+--     root_markers = { '.git' },
+--     -- Empty by default, override to add filetypes.
+--     filetypes = {},
+-- })
+-- vim.lsp.enable('dianosticls')
+
+-- vim.lsp.config('docker_language_server', {
+--     cmd = { 'docker-language-server', 'start', '--stdio' },
+--     filetypes = { 'dockerfile', 'yaml.docker-compose' },
+--     get_language_id = function(_, ftype)
+--         if ftype == 'yaml.docker-compose' or ftype:lower():find('ya?ml') then
+--             return 'dockercompose'
+--         else
+--             return ftype
+--         end
+--     end,
+--     root_markers = {
+--         'Dockerfile',
+--         'docker-compose.yaml',
+--         'docker-compose.yml',
+--         'compose.yaml',
+--         'compose.yml',
+--         'docker-bake.json',
+--         'docker-bake.hcl',
+--         'docker-bake.override.json',
+--         'docker-bake.override.hcl',
+--     },
+-- })
+-- vim.lsp.enable('docker_language_server')
+
+-- local eslint_config_files = {
+--     '.eslintrc',
+--     '.eslintrc.js',
+--     '.eslintrc.cjs',
+--     '.eslintrc.yaml',
+--     '.eslintrc.yml',
+--     '.eslintrc.json',
+--     'eslint.config.js',
+--     'eslint.config.mjs',
+--     'eslint.config.cjs',
+--     'eslint.config.ts',
+--     'eslint.config.mts',
+--     'eslint.config.cts',
+-- }
+-- vim.lsp.config('eslint', {
+--     cmd = { 'vscode-eslint-language-server', '--stdio' },
+--     filetypes = {
+--         'javascript',
+--         'javascriptreact',
+--         'javascript.jsx',
+--         'typescript',
+--         'typescriptreact',
+--         'typescript.tsx',
+--         'vue',
+--         'svelte',
+--         'astro',
+--         'htmlangular',
+--     },
+--     workspace_required = true,
+--     on_attach = function(client, bufnr)
+--         vim.api.nvim_buf_create_user_command(0, 'LspEslintFixAll', function()
+--             client:request_sync('workspace/executeCommand', {
+--                 command = 'eslint.applyAllFixes',
+--                 arguments = {
+--                     {
+--                         uri = vim.uri_from_bufnr(bufnr),
+--                         version = lsp.util.buf_versions[bufnr],
+--                     },
+--                 },
+--             }, nil, bufnr)
+--         end, {})
+--     end,
+--     root_dir = function(bufnr, on_dir)
+--         -- The project root is where the LSP can be started from
+--         -- As stated in the documentation above, this LSP supports monorepos and simple projects.
+--         -- We select then from the project root, which is identified by the presence of a package
+--         -- manager lock file.
+--         local root_markers = {
+--             'package-lock.json',
+--             'yarn.lock',
+--             'pnpm-lock.yaml',
+--             'bun.lockb',
+--             'bun.lock',
+--         }
+--         -- Give the root markers equal priority by wrapping them in a table
+--         root_markers = vim.fn.has('nvim-0.11.3') == 1
+--                 and { root_markers, { '.git' } }
+--             or vim.list_extend(root_markers, { '.git' })
+--
+--         -- exclude deno
+--         if vim.fs.root(bufnr, { 'deno.json', 'deno.jsonc', 'deno.lock' }) then
+--             return
+--         end
+--
+--         -- We fallback to the current working directory if no project root is found
+--         local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
+--
+--         -- We know that the buffer is using ESLint if it has a config file
+--         -- in its directory tree.
+--         --
+--         -- Eslint used to support package.json files as config files, but it doesn't anymore.
+--         -- We keep this for backward compatibility.
+--         local filename = vim.api.nvim_buf_get_name(bufnr)
+--         local eslint_config_files_with_package_json = util.insert_package_json(
+--             eslint_config_files,
+--             'eslintConfig',
+--             filename
+--         )
+--         local is_buffer_using_eslint =
+--             vim.fs.find(eslint_config_files_with_package_json, {
+--                 path = filename,
+--                 type = 'file',
+--                 limit = 1,
+--                 upward = true,
+--                 stop = vim.fs.dirname(project_root),
+--             })[1]
+--         if not is_buffer_using_eslint then
+--             return
+--         end
+--
+--         on_dir(project_root)
+--     end,
+--     -- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
+--     settings = {
+--         validate = 'on',
+--         ---@diagnostic disable-next-line: assign-type-mismatch
+--         packageManager = nil,
+--         useESLintClass = false,
+--         experimental = {
+--             useFlatConfig = false,
+--         },
+--         codeActionOnSave = {
+--             enable = false,
+--             mode = 'all',
+--         },
+--         format = true,
+--         quiet = false,
+--         onIgnoredFiles = 'off',
+--         rulesCustomizations = {},
+--         run = 'onType',
+--         problems = {
+--             shortenToSingleLine = false,
+--         },
+--         -- nodePath configures the directory in which the eslint server should start its node_modules resolution.
+--         -- This path is relative to the workspace folder (root dir) of the server instance.
+--         nodePath = '',
+--         -- use the workspace folder location or the file location (if no workspace folder is open) as the working directory
+--         workingDirectory = { mode = 'auto' },
+--         codeAction = {
+--             disableRuleComment = {
+--                 enable = true,
+--                 location = 'separateLine',
+--             },
+--             showDocumentation = {
+--                 enable = true,
+--             },
+--         },
+--     },
+--     before_init = function(_, config)
+--         -- The "workspaceFolder" is a VSCode concept. It limits how far the
+--         -- server will traverse the file system when locating the ESLint config
+--         -- file (e.g., .eslintrc).
+--         local root_dir = config.root_dir
+--
+--         if root_dir then
+--             config.settings = config.settings or {}
+--             config.settings.workspaceFolder = {
+--                 uri = root_dir,
+--                 name = vim.fn.fnamemodify(root_dir, ':t'),
+--             }
+--
+--             -- Support flat config files
+--             -- They contain 'config' in the file name
+--             local flat_config_files = vim.tbl_filter(function(file)
+--                 return file:match('config')
+--             end, eslint_config_files)
+--
+--             for _, file in ipairs(flat_config_files) do
+--                 local found_files = vim.fn.globpath(root_dir, file, true, true)
+--
+--                 -- Filter out files inside node_modules
+--                 local filtered_files = {}
+--                 for _, found_file in ipairs(found_files) do
+--                     if
+--                         string.find(found_file, '[/\\]node_modules[/\\]') == nil
+--                     then
+--                         table.insert(filtered_files, found_file)
+--                     end
+--                 end
+--
+--                 if #filtered_files > 0 then
+--                     config.settings.experimental = config.settings.experimental
+--                         or {}
+--                     config.settings.experimental.useFlatConfig = true
+--                     break
+--                 end
+--             end
+--
+--             -- Support Yarn2 (PnP) projects
+--             local pnp_cjs = root_dir .. '/.pnp.cjs'
+--             local pnp_js = root_dir .. '/.pnp.js'
+--             if
+--                 type(config.cmd) == 'table'
+--                 and (vim.uv.fs_stat(pnp_cjs) or vim.uv.fs_stat(pnp_js))
+--             then
+--                 config.cmd = vim.list_extend(
+--                     { 'yarn', 'exec' },
+--                     config.cmd --[[@as table]]
+--                 )
+--             end
+--         end
+--     end,
+--     handlers = {
+--         ['eslint/openDoc'] = function(_, result)
+--             if result then
+--                 vim.ui.open(result.url)
+--             end
+--             return {}
+--         end,
+--         ['eslint/confirmESLintExecution'] = function(_, result)
+--             if not result then
+--                 return
+--             end
+--             return 4 -- approved
+--         end,
+--         ['eslint/probeFailed'] = function()
+--             vim.notify('[lspconfig] ESLint probe failed.', vim.log.levels.WARN)
+--             return {}
+--         end,
+--         ['eslint/noLibrary'] = function()
+--             vim.notify(
+--                 '[lspconfig] Unable to find ESLint library.',
+--                 vim.log.levels.WARN
+--             )
+--             return {}
+--         end,
+--     },
+-- })
+-- vim.lsp.enable('eslint')
+
+-- local mod_cache = nil
+-- local std_lib = nil
+-- local function identify_go_dir(custom_args, on_complete)
+--     local cmd = { 'go', 'env', custom_args.envvar_id }
+--     vim.system(cmd, { text = true }, function(output)
+--         local res = vim.trim(output.stdout or '')
+--         if output.code == 0 and res ~= '' then
+--             if
+--                 custom_args.custom_subdir
+--                 and custom_args.custom_subdir ~= ''
+--             then
+--                 res = res .. custom_args.custom_subdir
+--             end
+--             on_complete(res)
+--         else
+--             vim.schedule(function()
+--                 vim.notify(
+--                     (
+--                         '[gopls] identify '
+--                         .. custom_args.envvar_id
+--                         .. ' dir cmd failed with code %d: %s\n%s'
+--                     ):format(
+--                         output.code,
+--                         vim.inspect(cmd),
+--                         output.stderr
+--                     )
+--                 )
+--             end)
+--             on_complete(nil)
+--         end
+--     end)
+-- end
+-- local function get_std_lib_dir()
+--     if std_lib and std_lib ~= '' then
+--         return std_lib
+--     end
+--
+--     identify_go_dir(
+--         { envvar_id = 'GOROOT', custom_subdir = '/src' },
+--         function(dir)
+--             if dir then
+--                 std_lib = dir
+--             end
+--         end
+--     )
+--     return std_lib
+-- end
+-- local function get_mod_cache_dir()
+--     if mod_cache and mod_cache ~= '' then
+--         return mod_cache
+--     end
+--
+--     identify_go_dir({ envvar_id = 'GOMODCACHE' }, function(dir)
+--         if dir then
+--             mod_cache = dir
+--         end
+--     end)
+--     return mod_cache
+-- end
+-- local function get_root_dir(fname)
+--     if mod_cache and fname:sub(1, #mod_cache) == mod_cache then
+--         local clients = vim.lsp.get_clients({ name = 'gopls' })
+--         if #clients > 0 then
+--             return clients[#clients].config.root_dir
+--         end
+--     end
+--     if std_lib and fname:sub(1, #std_lib) == std_lib then
+--         local clients = vim.lsp.get_clients({ name = 'gopls' })
+--         if #clients > 0 then
+--             return clients[#clients].config.root_dir
+--         end
+--     end
+--     return vim.fs.root(fname, 'go.work')
+--         or vim.fs.root(fname, 'go.mod')
+--         or vim.fs.root(fname, '.git')
+-- end
+-- vim.lsp.config('gopls', {
+--     cmd = { 'gopls' },
+--     filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+--     root_dir = function(bufnr, on_dir)
+--         local fname = vim.api.nvim_buf_get_name(bufnr)
+--         get_mod_cache_dir()
+--         get_std_lib_dir()
+--         -- see: https://github.com/neovim/nvim-lspconfig/issues/804
+--         on_dir(get_root_dir(fname))
+--     end,
+-- })
+-- vim.lsp.enable('gopls')
+
+-- vim.lsp.config('helm_ls', {
+--     cmd = { 'helm_ls', 'serve' },
+--     filetypes = { 'helm', 'yaml.helm-values' },
+--     root_markers = { 'Chart.yaml' },
+--     capabilities = {
+--         workspace = {
+--             didChangeWatchedFiles = {
+--                 dynamicRegistration = true,
+--             },
+--         },
+--     },
+-- })
+-- vim.lsp.enable('helm_ls')
+
+-- vim.lsp.config('html', {
+--     cmd = { 'vscode-html-language-server', '--stdio' },
+--     filetypes = { 'html', 'templ' },
+--     root_markers = { 'package.json', '.git' },
+--     settings = {},
+--     init_options = {
+--         provideFormatter = true,
+--         embeddedLanguages = { css = true, javascript = true },
+--         configurationSection = { 'html', 'css', 'javascript' },
+--     },
+-- })
+-- vim.lsp.enable('html')
+
+-- vim.lsp.config('jsonls', {
+--     cmd = { 'vscode-json-language-server', '--stdio' },
+--     filetypes = { 'json', 'jsonc' },
+--     init_options = {
+--         provideFormatter = true,
+--     },
+--     root_markers = { '.git' },
+-- })
+-- vim.lsp.enable('jsonls')
+
+-- vim.lsp.config('lua_ls', {
+--     cmd = { 'lua-language-server' },
+--     filetypes = { 'lua' },
+--     root_markers = {
+--         '.emmyrc.json',
+--         '.luarc.json',
+--         '.luarc.jsonc',
+--         '.luacheckrc',
+--         '.stylua.toml',
+--         'stylua.toml',
+--         'selene.toml',
+--         'selene.yml',
+--         '.git',
+--     },
+--     settings = {
+--         Lua = {
+--             codeLens = { enable = true },
+--             hint = { enable = true, semicolon = 'Disable' },
+--         },
+--     },
+--
+--     on_init = function(client)
+--         if client.workspace_folders then
+--             local path = client.workspace_folders[1].name
+--             if
+--                 path ~= vim.fn.stdpath('config')
+--                 and (
+--                     vim.uv.fs_stat(path .. '/.luarc.json')
+--                     or vim.uv.fs_stat(path .. '/.luarc.jsonc')
+--                 )
+--             then
+--                 return
+--             end
+--         end
+--
+--         client.config.settings.Lua =
+--             vim.tbl_deep_extend('force', client.config.settings.Lua, {
+--                 runtime = {
+--                     -- Tell the language server which version of Lua you're using (most
+--                     -- likely LuaJIT in the case of Neovim)
+--                     version = 'LuaJIT',
+--                     -- Tell the language server how to find Lua modules same way as Neovim
+--                     -- (see `:h lua-module-load`)
+--                     path = {
+--                         'lua/?.lua',
+--                         'lua/?/init.lua',
+--                     },
+--                 },
+--                 -- Make the server aware of Neovim runtime files
+--                 workspace = {
+--                     checkThirdParty = false,
+--                     library = {
+--                         vim.env.VIMRUNTIME,
+--                         -- Depending on the usage, you might want to add additional paths
+--                         -- here.
+--                         -- '${3rd}/luv/library'
+--                         -- '${3rd}/busted/library'
+--                     },
+--                     -- Or pull in all of 'runtimepath'.
+--                     -- NOTE: this is a lot slower and will cause issues when working on
+--                     -- your own configuration.
+--                     -- See https://github.com/neovim/nvim-lspconfig/issues/3189
+--                     -- library = {
+--                     --   vim.api.nvim_get_runtime_file('', true),
+--                     -- }
+--                 },
+--             })
+--     end,
+--     -- settings = {
+--     --   Lua = {},
+--     -- },
+-- })
+-- vim.lsp.enable('lua_ls')
+
+-- local function set_python_path(command)
+--     local path = command.args
+--     local clients = vim.lsp.get_clients({
+--         bufnr = vim.api.nvim_get_current_buf(),
+--         name = 'pyright',
+--     })
+--     for _, client in ipairs(clients) do
+--         if client.settings then
+--             client.settings.python = vim.tbl_deep_extend(
+--                 'force',
+--                 client.settings.python --[[@as table]],
+--                 { pythonPath = path }
+--             )
+--         else
+--             client.config.settings = vim.tbl_deep_extend(
+--                 'force',
+--                 client.config.settings,
+--                 { python = { pythonPath = path } }
+--             )
+--         end
+--         client:notify('workspace/didChangeConfiguration', { settings = nil })
+--     end
+-- end
+-- vim.lsp.config('pyright', {
+--     cmd = { 'pyright-langserver', '--stdio' },
+--     filetypes = { 'python' },
+--     root_markers = {
+--         'pyrightconfig.json',
+--         'pyproject.toml',
+--         'setup.py',
+--         'setup.cfg',
+--         'requirements.txt',
+--         'Pipfile',
+--         '.git',
+--     },
+--     settings = {
+--         python = {
+--             analysis = {
+--                 autoSearchPaths = true,
+--                 useLibraryCodeForTypes = true,
+--                 diagnosticMode = 'openFilesOnly',
+--             },
+--         },
+--     },
+--     on_attach = function(client, bufnr)
+--         vim.api.nvim_buf_create_user_command(
+--             bufnr,
+--             'LspPyrightOrganizeImports',
+--             function()
+--                 local params = {
+--                     command = 'pyright.organizeimports',
+--                     arguments = { vim.uri_from_bufnr(bufnr) },
+--                 }
+--
+--                 -- Using client.request() directly because "pyright.organizeimports" is private
+--                 -- (not advertised via capabilities), which client:exec_cmd() refuses to call.
+--                 -- https://github.com/neovim/neovim/blob/c333d64663d3b6e0dd9aa440e433d346af4a3d81/runtime/lua/vim/lsp/client.lua#L1024-L1030
+--                 ---@diagnostic disable-next-line: param-type-mismatch
+--                 client.request('workspace/executeCommand', params, nil, bufnr)
+--             end,
+--             {
+--                 desc = 'Organize Imports',
+--             }
+--         )
+--         vim.api.nvim_buf_create_user_command(
+--             bufnr,
+--             'LspPyrightSetPythonPath',
+--             set_python_path,
+--             {
+--                 desc = 'Reconfigure pyright with the provided python path',
+--                 nargs = 1,
+--                 complete = 'file',
+--             }
+--         )
+--     end,
+-- })
+-- vim.lsp.enable('pyright')
+
+-- vim.lsp.config('stylua', {
+--     cmd = { 'stylua', '--lsp' },
+--     filetypes = { 'lua' },
+--     root_markers = { '.stylua.toml', 'stylua.toml', '.editorconfig' },
+-- })
+-- vim.lsp.enable('stylua')
+
+-- vim.lsp.config('tailwindcss', {
+--     cmd = { 'tailwindcss-language-server', '--stdio' },
+--     -- filetypes copied and adjusted from tailwindcss-intellisense
+--     filetypes = {
+--         -- html
+--         'aspnetcorerazor',
+--         'astro',
+--         'astro-markdown',
+--         'blade',
+--         'clojure',
+--         'django-html',
+--         'htmldjango',
+--         'edge',
+--         'eelixir', -- vim ft
+--         'elixir',
+--         'ejs',
+--         'erb',
+--         'eruby', -- vim ft
+--         'gohtml',
+--         'gohtmltmpl',
+--         'haml',
+--         'handlebars',
+--         'hbs',
+--         'html',
+--         'htmlangular',
+--         'html-eex',
+--         'heex',
+--         'jade',
+--         'leaf',
+--         'liquid',
+--         'markdown',
+--         'mdx',
+--         'mustache',
+--         'njk',
+--         'nunjucks',
+--         'php',
+--         'razor',
+--         'slim',
+--         'twig',
+--         -- css
+--         'css',
+--         'less',
+--         'postcss',
+--         'sass',
+--         'scss',
+--         'stylus',
+--         'sugarss',
+--         -- js
+--         'javascript',
+--         'javascriptreact',
+--         'reason',
+--         'rescript',
+--         'typescript',
+--         'typescriptreact',
+--         -- mixed
+--         'vue',
+--         'svelte',
+--         'templ',
+--     },
+--     capabilities = {
+--         workspace = {
+--             didChangeWatchedFiles = {
+--                 dynamicRegistration = true,
+--             },
+--         },
+--     },
+--     settings = {
+--         tailwindCSS = {
+--             validate = true,
+--             lint = {
+--                 cssConflict = 'warning',
+--                 invalidApply = 'error',
+--                 invalidScreen = 'error',
+--                 invalidVariant = 'error',
+--                 invalidConfigPath = 'error',
+--                 invalidTailwindDirective = 'error',
+--                 recommendedVariantOrder = 'warning',
+--             },
+--             classAttributes = {
+--                 'class',
+--                 'className',
+--                 'class:list',
+--                 'classList',
+--                 'ngClass',
+--             },
+--             includeLanguages = {
+--                 eelixir = 'html-eex',
+--                 elixir = 'phoenix-heex',
+--                 eruby = 'erb',
+--                 heex = 'phoenix-heex',
+--                 htmlangular = 'html',
+--                 templ = 'html',
+--             },
+--         },
+--     },
+--     before_init = function(_, config)
+--         if not config.settings then
+--             config.settings = {}
+--         end
+--         if not config.settings.editor then
+--             config.settings.editor = {}
+--         end
+--         if not config.settings.editor.tabSize then
+--             config.settings.editor.tabSize =
+--                 vim.lsp.util.get_effective_tabstop()
+--         end
+--     end,
+--     workspace_required = true,
+--     root_dir = function(bufnr, on_dir)
+--         local root_files = {
+--             -- Generic
+--             'tailwind.config.js',
+--             'tailwind.config.cjs',
+--             'tailwind.config.mjs',
+--             'tailwind.config.ts',
+--             'postcss.config.js',
+--             'postcss.config.cjs',
+--             'postcss.config.mjs',
+--             'postcss.config.ts',
+--             -- Django
+--             'theme/static_src/tailwind.config.js',
+--             'theme/static_src/tailwind.config.cjs',
+--             'theme/static_src/tailwind.config.mjs',
+--             'theme/static_src/tailwind.config.ts',
+--             'theme/static_src/postcss.config.js',
+--             -- Fallback for tailwind v4, where tailwind.config.* is not required anymore
+--             '.git',
+--         }
+--         local fname = vim.api.nvim_buf_get_name(bufnr)
+--         root_files = util.insert_package_json(root_files, 'tailwindcss', fname)
+--         root_files = util.root_markers_with_field(
+--             root_files,
+--             { 'mix.lock', 'Gemfile.lock' },
+--             'tailwind',
+--             fname
+--         )
+--         on_dir(
+--             vim.fs.dirname(
+--                 vim.fs.find(root_files, { path = fname, upward = true })[1]
+--             )
+--         )
+--     end,
+-- })
+-- vim.lsp.enable('tailwindcss')
+
+-- vim.lsp.config('terraformls', {
+--     cmd = { 'terraform-ls', 'serve' },
+--     filetypes = { 'terraform', 'terraform-vars' },
+--     root_markers = { '.terraform', '.git' },
+-- })
+-- vim.lsp.enable('terraformls')
+
+-- vim.lsp.config('tflint', {
+--     cmd = { 'tflint', '--langserver' },
+--     filetypes = { 'terraform' },
+--     root_markers = { '.terraform', '.git', '.tflint.hcl' },
+-- })
+-- vim.lsp.enable('terraformls')
+
+-- vim.lsp.config('yamlls', {
+--     cmd = { 'yaml-language-server', '--stdio' },
+--     filetypes = {
+--         'yaml',
+--         'yaml.docker-compose',
+--         'yaml.gitlab',
+--         'yaml.helm-values',
+--     },
+--     root_markers = { '.git' },
+--     settings = {
+--         -- https://github.com/redhat-developer/vscode-redhat-telemetry#how-to-disable-telemetry-reporting
+--         redhat = { telemetry = { enabled = false } },
+--         -- formatting disabled by default in yaml-language-server; enable it
+--         yaml = { format = { enable = true } },
+--     },
+--     on_init = function(client)
+--         --- https://github.com/neovim/nvim-lspconfig/pull/4016
+--         --- Since formatting is disabled by default if you check `client:supports_method('textDocument/formatting')`
+--         --- during `LspAttach` it will return `false`. This hack sets the capability to `true` to facilitate
+--         --- autocmd's which check this capability
+--         client.server_capabilities.documentFormattingProvider = true
+--     end,
+-- })
+-- vim.lsp.enable('yamlls')

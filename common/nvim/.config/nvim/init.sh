@@ -1,14 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
 # plugin manager
-git clone https://github.com/wbthomason/packer.nvim \
-  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+# git clone https://github.com/wbthomason/packer.nvim \
+#   ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 go get golang.org/x/tools/gopls@latest
 
 # npm i -g ansible-language-server
 npm i -g bash-language-server
-npm i -g coffeelint
+# npm i -g coffeelint
 npm i -g diagnostic-languageserver
 npm i -g dockerfile-language-server-nodejs
 # npm i -g pyright

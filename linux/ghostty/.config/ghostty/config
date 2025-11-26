@@ -1,14 +1,14 @@
-#background-opacity = 0.95
-copy-on-select = clipboard
-desktop-notifications = true
+background-opacity = 1.0
 font-family = SauceCodePro Nerd Font Mono
-font-size = 12
+font-size = 8
+gtk-custom-css = ~/.config/ghostty/custom.css
 gtk-titlebar = false
-# mouse-hide-while-typing = true
+mouse-hide-while-typing = true
 # 10MB
 scrollback-limit = 10485760
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 unfocused-split-opacity = 0.8
+window-decoration = false
 
 # https://github.com/ghostty-org/ghostty/security/advisories/GHSA-5hcq-3j4q-4v6p
 # title = Ghostty

@@ -1,95 +1,78 @@
--- https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua
+-- https://github.com/nvim-lua/kickstart.nvim
+-- https://neovim.io/doc/user/lua-guide.html
 
--- example capability check
--- local has = vim.fn.has
--- if not has('gui_running') then
---     opt.t_Co = 256
--- end
+vim.g.loaded_perl_provider = 0 -- disable perl provider
+vim.g.loaded_ruby_provider = 0 -- disable ruby provider
 
--- call a function
--- vim.call('fzf#vim#files', '~/projects', false)
+-- set before loading plugins
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
--- vim.env gets or sets env vars
--- vim.env.FZF_DEFAULT_OPTS = '--layout=reverse'
+-- vim.g.filetype = 'plugin,indent'
+-- vim.cmd('filetype plugin indent on')
 
--- some vimscript var names are not valid in lua.
--- set this:
---  let g:zoom#statustext = 'Z'
--- like this:
---  g['zoom#statustext'] = 'Z'
-local g = vim.g -- global variables
-g.t_Co = 256 -- color term support
-g.mapleader = ' ' -- must be set early
-g.elite_mode = 1 -- unbind arrows (reused to size splits)
-g.gruvbox_material_background = 'medium'
+-- vim.g.grepprg = 'rg'
+-- vim.g.grepformat = '%f:%l:%c:%m'
 
--- use these to read values of specific type...
--- local o = vim.opt -- global options
--- local wo = vim.wo -- window options
--- local bo = vim.bo -- buffer options
--- use this to set values of any type...
-local set = vim.opt
--- global options
-set.background = 'dark'
-set.termguicolors = true
-set.encoding = 'utf-8' -- set internal encoding
-set.fileencodings = 'utf-8' -- available encodings
-set.hidden = true -- hide abandoned buffers
-set.backup = false -- no .bak
-set.updatetime = 300 -- time (in ms) to write to swap file
-set.ttimeout = true -- adjust key sequence timeout
-set.ttimeoutlen = 100 -- ...
-set.clipboard = 'unnamed,unnamedplus' -- one clipboard to rule them all
-set.scrolloff = 5 -- vertical scroll viewport
-set.sidescrolloff = 5 -- horizontal scroll viewport
-set.ignorecase = true -- case insensitive search
-set.joinspaces = false -- no double spaces on join
-set.smartcase = true -- try to be smart about case
-set.hlsearch = true -- highlight search
-set.incsearch = true -- no incremental search
-set.inccommand = 'nosplit' -- live substitute preview
-set.whichwrap = 'b,h,l,s,<,>,[,]' -- cursor scrolls past/over line end
-set.backspace = 'indent,eol,start' -- what backspace can traverse
-set.showmatch = true -- show bracket match
-set.errorbells = false -- no annoying sounds on errors
-set.visualbell = false -- no annoying flash on errors
-set.warn = true -- warn on unsved changes
-set.cmdheight = 2 -- height of :command line
-set.ruler = true -- show line/column numbers
-set.switchbuf = 'useopen,usetab,newtab' -- what to consider when switching bufs
-set.showtabline = 2 -- always show tabline
-set.completeopt = 'menuone,noselect'
-set.wildmenu = true -- wildmenu, auto complete for commands
-set.wildmode = 'longest,full'
-set.wildignore = '**/cache/*,**/tmp/*,**/.git/*,**/node_modules/*'
-set.wildignorecase = true
-set.splitright = true -- split to right
-set.splitbelow = true -- split to below
-set.shiftround = true -- round indent spacing to shiftwidth
-set.shortmess = 'atI'
--- o.shortmess:append('c') -- status line e.g. CTRL+G
--- o.shortmess:prepend('c') -- status line e.g. CTRL+G
-
--- buffer options
-set.fileencoding = 'utf-8' -- buffer encoding
-set.swapfile = false -- no .swap
-set.undofile = true -- use undo file
-set.expandtab = true -- expand tabs to spaces
-set.tabstop = 2 -- tab stop
-set.softtabstop = 2 -- soft tab stop
-set.shiftwidth = 2 -- auto indent shift width
-set.autoindent = true -- auto indent for new line
-set.smartindent = true -- "smart" autoindenting
-set.modeline = false -- check for modelines; security risk!
-
--- window options
-set.wrap = false -- disable line wrap
-set.colorcolumn = '80' -- demarc long lines
-set.foldenable = false
-set.number = true
-set.relativenumber = true
-set.cursorline = true -- highlight current line
-set.cursorcolumn = true -- highlight current column
-set.list = true -- show tabs with listchars
-set.listchars = 'tab:>-,trail:.,extends:#,nbsp:.'
-set.signcolumn = 'yes' -- show sign column
+-- options
+vim.o.background = 'dark'
+vim.o.breakindent = true -- enable break indent
+vim.o.termguicolors = true
+vim.o.encoding = 'utf-8' -- set internal encoding
+vim.o.fileencodings = 'utf-8' -- available encodings
+vim.o.hidden = true -- hide abandoned buffers
+vim.o.backup = false -- no .bak
+vim.o.updatetime = 250 -- time (in ms) to write to swap file
+vim.o.timeoutlen = 300 -- sequence wait time
+vim.o.ttimeout = true
+vim.o.ttimeoutlen = 300
+vim.o.clipboard = 'unnamedplus' -- use system clipboard
+vim.o.scrolloff = 10 -- vertical scroll viewport
+-- vim.o.sidescrolloff = 10 -- horizontal scroll viewport
+vim.o.ignorecase = true -- case insensitive search
+vim.o.smartcase = true -- try to be smart about case
+vim.o.joinspaces = false -- no double spaces on join
+vim.o.hlsearch = true -- highlight search
+vim.o.incsearch = true -- ncseincremental search
+vim.o.inccommand = 'split' -- live substitute preview
+vim.o.mouse = 'a' -- useful to resize splits
+vim.o.backspace = 'indent,eol,start' -- what backspace can traverse
+vim.o.showmatch = true -- show bracket match
+vim.o.showmode = false -- already in status line
+vim.o.errorbells = false -- no annoying sounds on errors
+vim.o.visualbell = false -- no annoying flash on errors
+vim.o.warn = true -- warn on unsved changes
+vim.o.ruler = true -- show line/column numbers
+vim.o.switchbuf = 'useopen,usetab,newtab' -- what to consider when switching bufs
+vim.o.showtabline = 2 -- always show tabline
+vim.o.completeopt = 'menuone,noselect'
+vim.o.whichwrap = 'b,h,l,s,<,>,[,]' -- cursor scrolls past/over line end
+vim.o.wildmenu = true -- wildmenu, auto complete for commands
+vim.o.wildmode = 'longest,full'
+vim.o.wildignore = '**/cache/*,**/tmp/*,**/.git/*,**/node_modules/*'
+vim.o.wildignorecase = true
+vim.o.splitright = true -- split to right
+vim.o.splitbelow = true -- split to below
+vim.o.shiftround = true -- round indent spacing to shiftwidth
+vim.o.shortmess = 'atI'
+vim.o.fileencoding = 'utf-8' -- buffer encoding
+vim.o.swapfile = false -- no .swap
+vim.o.undofile = true -- use undo file
+vim.o.expandtab = true -- expand tabs to spaces
+vim.o.tabstop = 2 -- tab stop
+vim.o.softtabstop = 2 -- soft tab stop
+vim.o.shiftwidth = 2 -- auto indent shift width
+vim.o.autoindent = true -- auto indent for new line
+vim.o.smartindent = true -- "smart" autoindenting
+vim.o.modeline = false -- check for modelines; security risk!
+vim.o.wrap = false -- disable line wrap
+vim.o.colorcolumn = '80' -- demarc long lines
+vim.o.foldenable = false
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.cursorline = true -- highlight current line
+vim.o.cursorcolumn = true -- highlight current column
+vim.o.list = true -- show tabs with listchars
+vim.opt.listchars = { tab = '» ', nbsp = '_', trail = '·' }
+vim.o.signcolumn = 'yes' -- show sign column
+vim.o.confirm = true

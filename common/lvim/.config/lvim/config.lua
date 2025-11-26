@@ -4,6 +4,7 @@ lvim.builtin.project.active = false
 lvim.builtin.terminal.active = false
 lvim.builtin.theme.active = false
 lvim.builtin.nvimtree.active = false
+-- lvim.builtin.illuminate.active = false
 
 -- overrides
 lvim.format_on_save = true
