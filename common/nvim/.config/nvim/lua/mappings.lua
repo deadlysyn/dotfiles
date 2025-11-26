@@ -12,11 +12,6 @@ keymap('n', ']d', vim.diagnostic.goto_next)
 -- keymap('n', '<leader>f', vim.diagnostic.open_float)
 keymap('n', '<leader>q', vim.diagnostic.setloclist)
 
--- common
--- keymap('n', '<leader>q', '<cmd>q!<cr>')
--- keymap('n', '<leader>Q', '<cmd>qa!<cr>')
--- keymap('n', '<leader>w', '<cmd>wq!<cr>')
--- keymap('n', '<leader>W', '<cmd>wqa!<cr>')
 -- keymap('n', '<leader>n', '<cmd>set nonumber norelativenumber<cr>')
 -- keymap('n', '<leader>N', '<cmd>set number<cr>')
 -- keymap('n', '<leader>R', '<cmd>set relativenumber<cr>')
@@ -54,20 +49,11 @@ keymap('n', '<leader>y', '"+y')
 keymap('n', '<leader>Y', '"+Y')
 keymap('v', '<leader>y', '"+y')
 
--- quickfix
-keymap('n', '<leader>;', '<cmd>cprev<cr>')
-keymap('n', "<leader>'", '<cmd>cnext<cr>')
-
 -- splits
 keymap('n', '<up>', ':resize +2<cr>')
 keymap('n', '<down>', ':resize -2<cr>')
 keymap('n', '<left>', ':vertical resize +2<cr>')
 keymap('n', '<right>', ':vertical resize -2<cr>')
-keymap('n', '<leader>s', '<c-w>w')
-keymap('n', '<leader>h', '<c-w>h')
-keymap('n', '<leader>j', '<c-w>j')
-keymap('n', '<leader>k', '<c-w>k')
-keymap('n', '<leader>l', '<c-w>l')
 
 -- tabs
 keymap('n', '<s-tab>', 'gT')
