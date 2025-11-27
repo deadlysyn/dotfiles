@@ -8,12 +8,6 @@ vim.g.loaded_ruby_provider = 0 -- disable ruby provider
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- vim.g.filetype = 'plugin,indent'
--- vim.cmd('filetype plugin indent on')
-
--- vim.g.grepprg = 'rg'
--- vim.g.grepformat = '%f:%l:%c:%m'
-
 -- options
 vim.o.background = 'dark'
 vim.o.breakindent = true -- enable break indent
@@ -76,4 +70,6 @@ vim.o.list = true -- show tabs with listchars
 vim.opt.listchars = { tab = '» ', nbsp = '_', trail = '·' }
 vim.o.signcolumn = 'yes' -- show sign column
 vim.o.confirm = true -- ask to save on quit
+
+-- keep this last; if spalsh screen appears there are parse issues
 vim.opt.shortmess:append('sI') -- disable splash screen

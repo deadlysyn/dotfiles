@@ -12,6 +12,23 @@ keymap('n', ']d', vim.diagnostic.goto_next)
 -- keymap('n', '<leader>f', vim.diagnostic.open_float)
 keymap('n', '<leader>q', vim.diagnostic.setloclist)
 
+-- keymap('n', 'gD', vim.lsp.buf.declaration)
+-- keymap('n', 'gd', vim.lsp.buf.definition)
+-- keymap('n', 'gt', vim.lsp.buf.type_definition)
+-- keymap('n', 'K', vim.lsp.buf.hover)
+-- keymap('n', '<c-k>', vim.lsp.buf.signature_help)
+-- keymap('n', 'gi', vim.lsp.buf.implementation)
+-- keymap('n', 'gr', '<cmd>Telescope lsp_references<cr>')
+-- keymap('n', 'gs', '<cmd>Telescope lsp_document_symbols<cr>')
+-- keymap('n', '<leader>rn', vim.lsp.buf.rename)
+-- keymap('n', '<c-n>', 'vim.diagnostic.goto_next()<cr>')
+-- keymap('n', '<c-p>', 'vim.diagnostic.goto_prev()<cr>')
+-- keymap('n', '<leader>ca', 'vim.lsp.buf.code_action()<cr>')
+
+-- git
+keymap('n', 'gb', '<cmd>Gitsigns blame<cr>')
+keymap('n', 'gd', '<cmd>Gitsigns diffthis<cr>')
+
 -- toggle relative line numbers
 keymap('n', '<leader>n', function()
     vim.o.number = true
@@ -75,19 +92,3 @@ keymap('n', '<leader>0', '<cmd>tablast<cr>')
 -- buffers
 keymap('n', '<tab>', '<cmd>bn<cr>')
 keymap('n', '<s-tab>', '<cmd>bp<cr>')
-
--- keys = {
---     { 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>' },
---     { 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>' },
---     { 'gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>' },
---     { 'K', '<cmd>lua vim.lsp.buf.hover()<cr>' },
---     { '<c-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>' },
---     { 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>' },
---     { 'gr', '<cmd>Telescope lsp_references<cr>' },
---     { 'gs', '<cmd>Telescope lsp_document_symbols<cr>' },
---     { '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>' },
---     { '<leader>F', '<cmd>lua vim.lsp.buf.format()<cr>' },
---     { '<c-n>', '<cmd>lua vim.diagnostic.goto_next()<cr>' },
---     { '<c-p>', '<cmd>lua vim.diagnostic.goto_prev()<cr>' },
---     { '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>' },
--- },

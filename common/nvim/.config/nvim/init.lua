@@ -1,3 +1,13 @@
+--[[
+
+    this is my vim config. there are many like it,
+    but this one is mine.
+
+    vim is my best friend. it is my life. i must
+    master it as i must mater my life.
+
+--]]
+
 local try_require = require('common').try_require
 
 try_require('options') -- load early before plugins

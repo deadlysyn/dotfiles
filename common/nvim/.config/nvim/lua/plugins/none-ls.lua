@@ -1,9 +1,8 @@
 return {
     'nvimtools/none-ls.nvim',
     enabled = true,
-    lazy = false,
+    event = 'VimEnter',
     dependencies = { 'nvim-lua/plenary.nvim' },
-
     config = function()
         local null_ls = require('null-ls')
         null_ls.setup({
@@ -14,7 +13,7 @@ return {
                 null_ls.builtins.completion.spell,
                 null_ls.builtins.diagnostics.editorconfig_checker,
                 null_ls.builtins.diagnostics.hadolint,
-                null_ls.builtins.diagnostics.markdownlint,
+                -- null_ls.builtins.diagnostics.markdownlint,
                 null_ls.builtins.diagnostics.revive,
                 null_ls.builtins.diagnostics.stylelint,
                 null_ls.builtins.diagnostics.terraform_validate,
@@ -35,6 +34,5 @@ return {
             },
         })
     end,
-
     opts = {},
 }

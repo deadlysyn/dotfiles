@@ -46,56 +46,47 @@ autocmd({ 'FileType' }, {
     end,
 })
 
--- auto format
+-- auto format -- handled by conform
 -- autocmd BufWritePost *.tf silent! execute "!terraform fmt >/dev/null 2>&1" | redraw!
-autocmd({ 'BufWritePre' }, {
-    pattern = {
-        '*.lua',
-        '*.html',
-        '*.css',
-        '*.js',
-        '*.jsx',
-        '*.json',
-        '*.sh',
-        '*.go',
-        '*.yml',
-        '*.yaml',
-    },
-    callback = function()
-        vim.lsp.buf.format()
-    end,
-})
 -- autocmd({ 'BufWritePre' }, {
---   pattern = { '*.hcl', '*.tf' },
---   callback = function()
---     vim.lsp.buf.format()
---   end
+--     pattern = {
+--         '*.lua',
+--         '*.hcl',
+--         '*.html',
+--         '*.css',
+--         '*.js',
+--         '*.ts',
+--         '*.jsx',
+--         '*.tsx',
+--         '*.json',
+--         '*.sh',
+--         '*.tf',
+--         '*.go',
+--         '*.yml',
+--         '*.yaml',
+--     },
+--     callback = function()
+--         vim.lsp.buf.format()
+--     end,
 -- })
 
--- vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
 autocmd({ 'BufRead', 'BufNewFile' }, {
     pattern = { '*.hcl', '.terraformrc', 'terraform.rc' },
     callback = function()
-        vim.opt.filetype = 'hcl'
+        vim.opt_local.filetype = 'hcl'
     end,
 })
 
--- vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
--- autocmd({ 'BufRead', 'BufNewFile' }, {
---   pattern = { '*.tf', '.tfvars'},
---   callback = function()
---     vim.opt.filetype = 'terraform'
---   end
--- })
+autocmd({ 'BufRead', 'BufNewFile' }, {
+    pattern = { '*.tf', '.tfvars' },
+    callback = function()
+        vim.opt_local.filetype = 'terraform'
+    end,
+})
 
--- vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
 autocmd({ 'BufRead', 'BufNewFile' }, {
     pattern = { '*.tfstate', '.tfstate.backup' },
     callback = function()
-        vim.opt.filetype = 'json'
+        vim.opt_local.filetype = 'json'
     end,
 })
-
--- vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
--- vim.cmd([[let g:terraform_fmt_on_save=1]])
--- vim.cmd([[let g:terraform_align=1]])

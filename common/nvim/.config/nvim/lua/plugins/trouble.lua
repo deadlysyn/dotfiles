@@ -1,7 +1,6 @@
 return {
     'folke/trouble.nvim',
-    -- is this useful?
-    enabled = false,
+    enabled = false, -- useful?
     cmd = 'Trouble',
     keys = {
         {

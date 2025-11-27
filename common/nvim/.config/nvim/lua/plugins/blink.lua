@@ -2,7 +2,6 @@ return {
     'saghen/blink.cmp',
     enabled = true,
     event = 'VimEnter',
-
     dependencies = {
         -- Snippet Engine
         {
@@ -20,7 +19,6 @@ return {
         },
         'folke/lazydev.nvim',
     },
-
     opts = {
         keymap = {
             -- 'default' (recommended) for mappings similar to built-in completions

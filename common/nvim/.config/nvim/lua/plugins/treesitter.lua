@@ -3,7 +3,6 @@ return {
     enabled = true,
     build = ':TSUpdate',
     lazy = false, -- can not be lazy loaded
-
     opts = {
         auto_install = true,
         ensure_installed = {
@@ -12,6 +11,7 @@ return {
             'cmake',
             'diff',
             'go',
+            'hcl',
             'html',
             'lua',
             'query',
@@ -21,6 +21,7 @@ return {
             'yaml',
             'markdown',
             'typescript',
+            'terraform',
         },
         highlight = {
             enable = true,
