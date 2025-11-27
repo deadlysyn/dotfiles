@@ -8,7 +8,21 @@
 
 --]]
 
-local try_require = require('common').try_require
+--- try requiring a submodule and do not crash all the configs
+local function try_require(name)
+    local ok, _ = pcall(require, name)
+    if not ok then
+        local msg = string.format(
+            'The configuration is not fully loaded. Requiring `%s` failed. Check the path and syntax.',
+            name
+        )
+        vim.api.nvim_echo(
+            { { 'init.lua', 'ErrorMsg' }, { ' ' .. msg } },
+            true,
+            {}
+        )
+    end
+end
 
 try_require('options') -- load early before plugins
 
@@ -35,7 +49,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     end
 end
 vim.opt.rtp:prepend(lazypath)
-
 -- Setup lazy.nvim
 require('lazy').setup({
     defaults = {
