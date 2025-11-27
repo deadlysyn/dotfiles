@@ -1,12 +1,13 @@
 return {
     'nvim-lualine/lualine.nvim',
+    enabled = true,
     event = 'VimEnter',
     dependencies = {
         'nvim-tree/nvim-web-devicons',
     },
     opts = {
         options = {
-            theme = 'catppuccin',
+            theme = 'catppuccin-mocha',
             section_separators = '',
             component_separators = '',
         },

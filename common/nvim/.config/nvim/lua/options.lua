@@ -75,4 +75,5 @@ vim.o.cursorcolumn = true -- highlight current column
 vim.o.list = true -- show tabs with listchars
 vim.opt.listchars = { tab = '» ', nbsp = '_', trail = '·' }
 vim.o.signcolumn = 'yes' -- show sign column
-vim.o.confirm = true
+vim.o.confirm = true -- ask to save on quit
+vim.opt.shortmess:append('sI') -- disable splash screen

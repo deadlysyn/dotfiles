@@ -1,7 +1,9 @@
 return {
     'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
+    enabled = true,
+    event = 'BufWritePre',
     cmd = { 'ConformInfo' },
+
     keys = {
         {
             -- Customize or remove this keymap to your liking
@@ -16,6 +18,7 @@ return {
             desc = '[F]ormat buffer',
         },
     },
+
     opts = {
         -- Define your formatters
         formatters_by_ft = {
@@ -36,6 +39,7 @@ return {
             },
         },
     },
+
     init = function()
         -- If you want the formatexpr, here is the place to set it
         vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"

@@ -1,9 +1,7 @@
 return {
     'akinsho/bufferline.nvim',
-    -- load after color scheme
-    priority = 1100,
-    event = 'VimEnter',
-    version = '*',
+    enabled = true,
+    lazy = false,
     dependencies = 'nvim-tree/nvim-web-devicons',
     opts = {},
 }

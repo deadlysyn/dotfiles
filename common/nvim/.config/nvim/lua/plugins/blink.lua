@@ -1,12 +1,12 @@
 return {
     'saghen/blink.cmp',
+    enabled = true,
     event = 'VimEnter',
-    version = '1.*',
+
     dependencies = {
         -- Snippet Engine
         {
             'L3MON4D3/LuaSnip',
-            version = '2.*',
             build = 'make install_jsregexp',
             dependencies = {
                 {
@@ -20,6 +20,7 @@ return {
         },
         'folke/lazydev.nvim',
     },
+
     opts = {
         keymap = {
             -- 'default' (recommended) for mappings similar to built-in completions
@@ -30,21 +31,13 @@ return {
             -- 'enter' for enter to accept
             -- 'none' for no mappings
             --
-            -- For an understanding of why the 'default' preset is recommended,
-            -- you will need to read `:help ins-completion`
-            --
-            -- No, but seriously. Please read `:help ins-completion`, it is really good!
-            --
             -- All presets have the following mappings:
             -- <tab>/<s-tab>: move to right/left of your snippet expansion
             -- <c-space>: Open menu or open docs if already open
             -- <c-n>/<c-p> or <up>/<down>: Select next/previous item
             -- <c-e>: Hide menu
             -- <c-k>: Toggle signature help
-            --
-            -- See :h blink-cmp-config-keymap for defining your own keymap
             preset = 'default',
-
             -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
             --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },

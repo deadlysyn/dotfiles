@@ -1,5 +1,8 @@
 return {
     'neovim/nvim-lspconfig',
+    enabled = true,
+    lazy = false,
+
     dependencies = {
         -- Mason must be loaded before its dependents so we need to set it up here.
         { 'mason-org/mason.nvim', opts = {} },
@@ -8,6 +11,7 @@ return {
         { 'j-hui/fidget.nvim', opts = {} },
         'saghen/blink.cmp',
     },
+
     config = function()
         --  This function gets run when an LSP attaches to a particular buffer.
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -25,6 +29,22 @@ return {
                         { buffer = event.buf, desc = 'LSP: ' .. desc }
                     )
                 end
+
+                -- keys = {
+                --     { 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>' },
+                --     { 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>' },
+                --     { 'gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>' },
+                --     { 'K', '<cmd>lua vim.lsp.buf.hover()<cr>' },
+                --     { '<c-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>' },
+                --     { 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>' },
+                --     { 'gr', '<cmd>Telescope lsp_references<cr>' },
+                --     { 'gs', '<cmd>Telescope lsp_document_symbols<cr>' },
+                --     { '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>' },
+                --     { '<leader>F', '<cmd>lua vim.lsp.buf.format()<cr>' },
+                --     { '<c-n>', '<cmd>lua vim.diagnostic.goto_next()<cr>' },
+                --     { '<c-p>', '<cmd>lua vim.diagnostic.goto_prev()<cr>' },
+                --     { '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>' },
+                -- },
 
                 -- Rename the variable under your cursor.
                 --  Most Language Servers support renaming across files, etc.
@@ -236,101 +256,4 @@ return {
             },
         })
     end,
-
-    -- 'mason-org/mason-lspconfig.nvim',
-    -- cmd = { 'LspInstall', 'LspUninstall' },
-    -- lazy = true,
-    -- dependencies = {
-    --     {
-    --         'mason-org/mason.nvim',
-    --         cmd = {
-    --             'Mason',
-    --             'MasonInstall',
-    --             'MasonUninstall',
-    --             'MasonUninstallAll',
-    --             'MasonLog',
-    --         },
-    --         opts = {},
-    --     },
-    --     {
-    --         'neovim/nvim-lspconfig',
-    --         config = function()
-    --             local diagnostic_config = {
-    --                 float = {
-    --                     focusable = true,
-    --                     style = 'minimal',
-    --                     border = 'rounded',
-    --                     source = 'always',
-    --                     header = '',
-    --                     prefix = '',
-    --                 },
-    --                 signs = {
-    --                     active = true,
-    --                     text = {
-    --                         [vim.diagnostic.severity.ERROR] = '',
-    --                         [vim.diagnostic.severity.WARN] = '',
-    --                         [vim.diagnostic.severity.HINT] = '󰌶',
-    --                         [vim.diagnostic.severity.INFO] = '',
-    --                     },
-    --                 },
-    --                 underline = false,
-    --                 update_in_insert = false,
-    --                 virtual_text = true,
-    --             }
-    --             vim.diagnostic.config(diagnostic_config)
-    --
-    --             -- vim.lsp.protocol.CompletionItemKind = {
-    --             --   ' (text)',
-    --             --   ' (method)',
-    --             --   ' (function)',
-    --             --   ' (constructor)',
-    --             --   'ﰠ (field)',
-    --             --   ' (variable)',
-    --             --   ' (class)',
-    --             --   ' (interface)',
-    --             --   ' (module)',
-    --             --   ' (property)',
-    --             --   ' (unit)',
-    --             --   ' (value)',
-    --             --   ' (enum)',
-    --             --   ' (key)',
-    --             --   '﬌ (snippet)',
-    --             --   ' (color)',
-    --             --   ' (file)',
-    --             --   ' (reference)',
-    --             --   ' (folder)',
-    --             --   ' (enum member)',
-    --             --   ' (constant)',
-    --             --   ' (struct)',
-    --             --   ' (event)',
-    --             --   ' (operator)',
-    --             --   ' (type)',
-    --             -- }
-    --         end,
-    --     },
-    -- },
-    -- keys = {
-    --     { 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>' },
-    --     { 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>' },
-    --     { 'gt', '<cmd>lua vim.lsp.buf.type_definition()<cr>' },
-    --     { 'K', '<cmd>lua vim.lsp.buf.hover()<cr>' },
-    --     { '<c-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>' },
-    --     { 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>' },
-    --     { 'gr', '<cmd>Telescope lsp_references<cr>' },
-    --     { 'gs', '<cmd>Telescope lsp_document_symbols<cr>' },
-    --     { '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>' },
-    --     { '<leader>F', '<cmd>lua vim.lsp.buf.format()<cr>' },
-    --     { '<c-n>', '<cmd>lua vim.diagnostic.goto_next()<cr>' },
-    --     { '<c-p>', '<cmd>lua vim.diagnostic.goto_prev()<cr>' },
-    --     { '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>' },
-    -- },
-    -- opts = {
-    --     automatic_installation = true,
-    --     ensure_installed = {
-    --         'gopls',
-    --         'lua_ls',
-    --         'pyright',
-    --         'ts_ls',
-    --     },
-    -- },
 }

@@ -1,5 +1,6 @@
 return {
     'crispgm/nvim-go',
-    laszy = true,
+    enabled = true,
+    ft = 'go',
     opts = {},
 }

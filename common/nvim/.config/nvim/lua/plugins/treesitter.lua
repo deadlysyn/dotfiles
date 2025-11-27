@@ -1,7 +1,9 @@
 return {
     'nvim-treesitter/nvim-treesitter',
-    lazy = false, -- can not be lazy loaded
+    enabled = true,
     build = ':TSUpdate',
+    lazy = false, -- can not be lazy loaded
+
     opts = {
         auto_install = true,
         ensure_installed = {

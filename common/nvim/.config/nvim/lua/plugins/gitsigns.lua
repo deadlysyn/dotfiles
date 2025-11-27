@@ -1,7 +1,8 @@
 return {
     'lewis6991/gitsigns.nvim',
-    cmd = 'Gitsigns',
+    enabled = true,
     event = 'User FileOpened',
+    cmd = 'Gitsigns',
     opts = {
         current_line_blame = true,
         current_line_blame_opts = {

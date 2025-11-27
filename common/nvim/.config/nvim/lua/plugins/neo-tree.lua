@@ -1,13 +1,13 @@
 return {
     'nvim-neo-tree/neo-tree.nvim',
-    -- cmd = { 'Neotree toggle', 'Neotree focus' },
-    -- event = 'User DirOpened',
-    branch = 'v3.x',
+    enabled = true,
+    lazy = false,
+    -- branch = 'v3.x',
     dependencies = {
         'nvim-lua/plenary.nvim',
-        'nvim-tree/nvim-web-devicons',
         'MunifTanjim/nui.nvim',
-        'folke/snacks.nvim',
+        'nvim-tree/nvim-web-devicons',
+        { 'folke/snacks.nvim', lazy = false, priority = 1000, opts = {} },
         'antosha417/nvim-lsp-file-operations',
         's1n7ax/nvim-window-picker',
     },
@@ -21,12 +21,6 @@ return {
             use_libuv_file_watcher = true,
             follow_current_file = {
                 enabled = true,
-            },
-            filtered_items = {
-                visible = true,
-                -- hide_dotfiles = false,
-                -- hide_gitignored = false,
-                -- hide_ignored = false,
             },
         },
     },

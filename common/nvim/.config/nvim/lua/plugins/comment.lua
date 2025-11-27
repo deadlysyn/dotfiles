@@ -1,6 +1,7 @@
 return {
     'numToStr/Comment.nvim',
-    keys = { { 'gc', mode = { 'n', 'v' } }, { 'gb', mode = { 'n', 'v' } } },
+    enabled = true,
     event = 'User FileOpened',
+    keys = { { 'gc', mode = { 'n', 'v' } }, { 'gb', mode = { 'n', 'v' } } },
     opts = {},
 }

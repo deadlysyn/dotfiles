@@ -1,5 +1,7 @@
 return {
     'folke/trouble.nvim',
+    -- is this useful?
+    enabled = false,
     cmd = 'Trouble',
     keys = {
         {

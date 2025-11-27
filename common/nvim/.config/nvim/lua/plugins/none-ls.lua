@@ -1,7 +1,9 @@
 return {
     'nvimtools/none-ls.nvim',
-    lazy = true,
+    enabled = true,
+    lazy = false,
     dependencies = { 'nvim-lua/plenary.nvim' },
+
     config = function()
         local null_ls = require('null-ls')
         null_ls.setup({
@@ -33,4 +35,6 @@ return {
             },
         })
     end,
+
+    opts = {},
 }

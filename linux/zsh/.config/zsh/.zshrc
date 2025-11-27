@@ -215,9 +215,13 @@ alias kc="killall chromium --wait && reboot"
 alias ls="ls --color"
 alias ll="ls -al --color"
 alias lsdrv="lsblk -o NAME,FSTYPE,LABEL,MOUNTPOINT,SIZE,MODEL"
+
 # alias vi="lvim"
-alias vi="cat /dev/null > ${HOME}/.local/state/lvim/lsp.log && lvim"
-alias vim="lvim"
+# alias vi="cat /dev/null > ${HOME}/.local/state/lvim/lsp.log && lvim"
+# alias vim="lvim"
+alias vi="cat /dev/null > ${HOME}/.local/state/lvim/lsp.log && nvim"
+alias vim="nvim"
+
 #alias tc="tmux show-buffer | pbcopy"
 # alias p="bluetoothctl power on; bluetoothctl connect CA:CD:EC:C0:B8:9D"
 alias docker-clean=' \

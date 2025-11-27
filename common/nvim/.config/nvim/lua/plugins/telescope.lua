@@ -1,6 +1,8 @@
 return {
     'nvim-telescope/telescope.nvim',
+    enabled = true,
     event = 'VimEnter',
+
     dependencies = {
         'nvim-lua/plenary.nvim',
         {
@@ -13,6 +15,7 @@ return {
         { 'nvim-telescope/telescope-ui-select.nvim' },
         { 'nvim-tree/nvim-web-devicons' },
     },
+
     config = function()
         require('telescope').setup({
             -- You can put your default mappings / updates / etc. in here
@@ -30,6 +33,7 @@ return {
                 },
             },
         })
+
         -- See `:help telescope.builtin`
         local builtin = require('telescope.builtin')
         vim.keymap.set(
