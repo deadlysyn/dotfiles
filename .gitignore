@@ -10,5 +10,4 @@ plugged
 .zcompdump
 plug.vim
 packer_compiled.lua
-lazy-lock.json
 .zsh_sessions
