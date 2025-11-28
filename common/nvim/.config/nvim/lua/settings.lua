@@ -57,13 +57,12 @@ vim.o.switchbuf = 'useopen,usetab,newtab' -- what to consider when switching buf
 vim.o.tabstop = 2 -- tab stop
 vim.o.termguicolors = true
 vim.o.timeoutlen = 500 -- sequence wait time
-vim.o.ttimeoutlen = 500
-vim.o.ttimeout = true
+-- vim.o.ttimeoutlen = 300
+-- vim.o.ttimeout = true
 vim.o.undofile = true -- use undo file
-vim.o.updatetime = 100 -- faster completion
+vim.o.updatetime = 500 -- faster completion
 vim.o.visualbell = false -- no annoying flash on errors
 vim.o.warn = true -- warn on unsved changes
-vim.o.wildignore = '**/cache/*,**/tmp/*,**/.git/*,**/node_modules/*'
 vim.o.wildignorecase = true
 vim.o.wildmenu = true -- wildmenu, auto complete for commands
 vim.o.wildmode = 'longest,full'
@@ -73,7 +72,8 @@ vim.o.list = true -- show tabs with listchars
 vim.opt.listchars = { tab = '» ', nbsp = '_', trail = '·' }
 
 vim.opt.completeopt = { 'menuone', 'noselect' }
-vim.opt.shortmess:append('c') -- avoid redundant messages from completion menu
-vim.opt.whichwrap:append('b,h,l,s,<,>,[,]') -- cursor scrolls past/over line end
+vim.opt.whichwrap:append 'b,h,l,s,<,>,[,]' -- cursor scrolls past/over line end
+vim.opt.wildignore:append '**/cache/*,**/tmp/*,**/.git/*,**/node_modules/*'
 -- keep this last; if spalsh screen appears there are parse issues
-vim.opt.shortmess:append('I') -- disable splash screen
+vim.opt.shortmess:append 'I' -- disable splash screen
+vim.opt.shortmess:append 'c' -- avoid redundant messages from completion menu

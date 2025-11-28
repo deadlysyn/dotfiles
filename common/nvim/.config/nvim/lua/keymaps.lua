@@ -5,10 +5,10 @@ keymap('n', '<leader>ps', '<cmd>Lazy sync<cr>', { desc = '[P]lugin [S]ync' })
 
 -- disable search highlight
 keymap(
-    'n',
-    '<esc>',
-    '<cmd>nohlsearch<cr>',
-    { desc = 'Disable search highlight' }
+  'n',
+  '<esc>',
+  '<cmd>nohlsearch<cr>',
+  { desc = 'Disable search highlight' }
 )
 
 -- diagnostics
@@ -21,13 +21,13 @@ keymap('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
 --     { desc = 'Display current diagnostic' }
 -- )
 local toggle_loclist = function()
-    for _, info in ipairs(vim.fn.getwininfo()) do
-        if info.loclist == 1 then
-            vim.cmd('lclose')
-            return
-        end
+  for _, info in ipairs(vim.fn.getwininfo()) do
+    if info.loclist == 1 then
+      vim.cmd 'lclose'
+      return
     end
-    vim.diagnostic.setloclist()
+  end
+  vim.diagnostic.setloclist()
 end
 keymap('n', '<leader>d', toggle_loclist, { desc = 'Toggle diagnostic list' })
 
@@ -35,24 +35,24 @@ keymap('n', '<leader>d', toggle_loclist, { desc = 'Toggle diagnostic list' })
 keymap('n', 'gb', '<cmd>Gitsigns blame<cr>', { desc = '[G]it [B]lame' })
 keymap('n', 'gd', '<cmd>Gitsigns diffthis<cr>', { desc = '[G]it [D]iff' })
 keymap(
-    'n',
-    'gl',
-    '<cmd>Gitsigns toggle_current_line_blame<cr>',
-    { desc = '[G]it toggle blame [L]ine' }
+  'n',
+  'gl',
+  '<cmd>Gitsigns toggle_current_line_blame<cr>',
+  { desc = '[G]it toggle blame [L]ine' }
 )
 
 -- toggle relative line numbers
 keymap('n', '<leader>n', function()
-    vim.o.number = true
-    vim.o.relativenumber = true
+  vim.o.number = true
+  vim.o.relativenumber = true
 end)
 keymap('n', '<leader>nn', function()
-    vim.o.number = true
-    vim.o.relativenumber = false
+  vim.o.number = true
+  vim.o.relativenumber = false
 end)
 keymap('n', '<leader>N', function()
-    vim.o.number = false
-    vim.o.relativenumber = false
+  vim.o.number = false
+  vim.o.relativenumber = false
 end)
 
 -- navigation

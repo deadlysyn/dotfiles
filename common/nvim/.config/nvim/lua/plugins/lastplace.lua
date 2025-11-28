@@ -1,4 +1,4 @@
 return {
-    'farmergreg/vim-lastplace',
-    enabled = true,
+  'farmergreg/vim-lastplace',
+  enabled = true,
 }
