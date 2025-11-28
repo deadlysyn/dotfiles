@@ -114,7 +114,14 @@ return {
         -- See :help vim.diagnostic.Opts
         vim.diagnostic.config({
             severity_sort = true,
-            float = { border = 'rounded', source = 'if_many' },
+            float = {
+                focusable = true,
+                style = 'minimal',
+                border = 'rounded',
+                source = 'always',
+                header = '',
+                prefix = '',
+            },
             underline = { severity = vim.diagnostic.severity.ERROR },
             signs = {
                 text = {
@@ -125,7 +132,7 @@ return {
                 },
             } or {},
             virtual_text = {
-                source = 'if_many',
+                source = 'always',
                 spacing = 2,
                 format = function(diagnostic)
                     local diagnostic_message = {
