@@ -9,8 +9,6 @@ autocmd({ 'TextYankPost' }, {
 
 autocmd({ 'FileType' }, {
     callback = function()
-        -- vim.opt.filetype.plugin.indent = 'on'
-        -- vim.opt.syntax = 'on'
         -- disable automatic comment insertion
         vim.opt_local.formatoptions:remove({ 'c' })
         vim.opt_local.formatoptions:remove({ 'r' })

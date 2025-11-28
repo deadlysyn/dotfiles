@@ -1,33 +1,45 @@
 local keymap = vim.keymap.set
 
 -- plugin manager
-keymap('n', '<leader>ps', '<cmd>Lazy sync<cr>')
+keymap('n', '<leader>ps', '<cmd>Lazy sync<cr>', { desc = '[P]lugin [S]ync' })
 
 -- disable search highlight
-keymap('n', '<esc>', '<cmd>nohlsearch<cr>')
+keymap(
+    'n',
+    '<esc>',
+    '<cmd>nohlsearch<cr>',
+    { desc = 'Disable search highlight' }
+)
 
 -- diagnostics
-keymap('n', '[d', vim.diagnostic.goto_prev)
-keymap('n', ']d', vim.diagnostic.goto_next)
--- keymap('n', '<leader>f', vim.diagnostic.open_float)
-keymap('n', '<leader>q', vim.diagnostic.setloclist)
-
--- keymap('n', 'gD', vim.lsp.buf.declaration)
--- keymap('n', 'gd', vim.lsp.buf.definition)
--- keymap('n', 'gt', vim.lsp.buf.type_definition)
--- keymap('n', 'K', vim.lsp.buf.hover)
--- keymap('n', '<c-k>', vim.lsp.buf.signature_help)
--- keymap('n', 'gi', vim.lsp.buf.implementation)
--- keymap('n', 'gr', '<cmd>Telescope lsp_references<cr>')
--- keymap('n', 'gs', '<cmd>Telescope lsp_document_symbols<cr>')
--- keymap('n', '<leader>rn', vim.lsp.buf.rename)
--- keymap('n', '<c-n>', 'vim.diagnostic.goto_next()<cr>')
--- keymap('n', '<c-p>', 'vim.diagnostic.goto_prev()<cr>')
--- keymap('n', '<leader>ca', 'vim.lsp.buf.code_action()<cr>')
+keymap('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
+keymap('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+-- keymap(
+--     'n',
+--     '<leader>d',
+--     vim.diagnostic.open_float,
+--     { desc = 'Display current diagnostic' }
+-- )
+local toggle_loclist = function()
+    for _, info in ipairs(vim.fn.getwininfo()) do
+        if info.loclist == 1 then
+            vim.cmd('lclose')
+            return
+        end
+    end
+    vim.diagnostic.setloclist()
+end
+keymap('n', '<leader>d', toggle_loclist, { desc = 'Toggle diagnostic list' })
 
 -- git
-keymap('n', 'gb', '<cmd>Gitsigns blame<cr>')
-keymap('n', 'gd', '<cmd>Gitsigns diffthis<cr>')
+keymap('n', 'gb', '<cmd>Gitsigns blame<cr>', { desc = '[G]it [B]lame' })
+keymap('n', 'gd', '<cmd>Gitsigns diffthis<cr>', { desc = '[G]it [D]iff' })
+keymap(
+    'n',
+    'gl',
+    '<cmd>Gitsigns toggle_current_line_blame<cr>',
+    { desc = '[G]it toggle blame [L]ine' }
+)
 
 -- toggle relative line numbers
 keymap('n', '<leader>n', function()

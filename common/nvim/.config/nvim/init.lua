@@ -8,25 +8,12 @@
 
 --]]
 
---- try requiring a submodule and do not crash all the configs
-local function try_require(name)
-    local ok, _ = pcall(require, name)
-    if not ok then
-        local msg = string.format(
-            'The configuration is not fully loaded. Requiring `%s` failed. Check the path and syntax.',
-            name
-        )
-        vim.api.nvim_echo(
-            { { 'init.lua', 'ErrorMsg' }, { ' ' .. msg } },
-            true,
-            {}
-        )
-    end
-end
+local try_require = require('util').try_require
 
-try_require('options') -- load early before plugins
+-- load early before plugins
+try_require('settings')
 
--- Bootstrap lazy.nvim
+-- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -49,7 +36,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     end
 end
 vim.opt.rtp:prepend(lazypath)
--- Setup lazy.nvim
+
+-- setup lazy.nvim
 require('lazy').setup({
     defaults = {
         -- try installing latest stable version if plugin supports semver
@@ -65,5 +53,11 @@ require('lazy').setup({
     checker = { enabled = false },
 })
 
-try_require('mappings')
-try_require('commands')
+try_require('keymaps')
+try_require('autocommands')
+try_require('closer')
+
+-- do we need this?
+vim.cmd('filetype plugin on')
+vim.cmd('filetype indent on')
+vim.cmd('syntax on')

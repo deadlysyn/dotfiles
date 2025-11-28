@@ -39,48 +39,44 @@ return {
                 --     { 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>' },
                 --     { 'gr', '<cmd>Telescope lsp_references<cr>' },
                 --     { 'gs', '<cmd>Telescope lsp_document_symbols<cr>' },
-                --     { '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>' },
-                --     { '<leader>F', '<cmd>lua vim.lsp.buf.format()<cr>' },
-                --     { '<c-n>', '<cmd>lua vim.diagnostic.goto_next()<cr>' },
-                --     { '<c-p>', '<cmd>lua vim.diagnostic.goto_prev()<cr>' },
                 --     { '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>' },
                 -- },
 
                 -- Rename the variable under your cursor.
                 --  Most Language Servers support renaming across files, etc.
-                map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
+                map('lr', vim.lsp.buf.rename, '[L]sp [R]ename')
 
                 -- Execute a code action, usually your cursor needs to be on top of an error
                 -- or a suggestion from your LSP for this to activate.
                 map(
-                    'gra',
+                    'lc',
                     vim.lsp.buf.code_action,
-                    '[G]oto Code [A]ction',
+                    '[L]sp [C]ode Action',
                     { 'n', 'x' }
                 )
 
                 -- Find references for the word under your cursor.
                 map(
-                    'grr',
+                    'lgr',
                     require('telescope.builtin').lsp_references,
-                    '[G]oto [R]eferences'
+                    '[L]sp [G]oto [R]eferences'
                 )
 
                 -- Jump to the implementation of the word under your cursor.
                 --  Useful when your language has ways of declaring types without an actual implementation.
                 map(
-                    'gri',
+                    'lgi',
                     require('telescope.builtin').lsp_implementations,
-                    '[G]oto [I]mplementation'
+                    '[L]sp [G]oto [I]mplementation'
                 )
 
                 -- Jump to the definition of the word under your cursor.
                 --  This is where a variable was first declared, or where a function is defined, etc.
                 --  To jump back, press <C-t>.
                 map(
-                    'grd',
+                    'lgd',
                     require('telescope.builtin').lsp_definitions,
-                    '[G]oto [D]efinition'
+                    '[L]sp [G]oto [D]efinition'
                 )
 
                 -- WARN: This is not Goto Definition, this is Goto Declaration.
@@ -89,27 +85,27 @@ return {
 
                 -- Fuzzy find all the symbols in your current document.
                 --  Symbols are things like variables, functions, types, etc.
-                map(
-                    'gO',
-                    require('telescope.builtin').lsp_document_symbols,
-                    'Open Document Symbols'
-                )
+                -- map(
+                --     'gO',
+                --     require('telescope.builtin').lsp_document_symbols,
+                --     'Open Document Symbols'
+                -- )
 
                 -- Fuzzy find all the symbols in your current workspace.
                 --  Similar to document symbols, except searches over your entire project.
-                map(
-                    'gW',
-                    require('telescope.builtin').lsp_dynamic_workspace_symbols,
-                    'Open Workspace Symbols'
-                )
+                -- map(
+                --     'gW',
+                --     require('telescope.builtin').lsp_dynamic_workspace_symbols,
+                --     'Open Workspace Symbols'
+                -- )
 
                 -- Jump to the type of the word under your cursor.
                 --  Useful when you're not sure what type a variable is and you want to see
                 --  the definition of its *type*, not where it was *defined*.
                 map(
-                    'grt',
+                    'lgt',
                     require('telescope.builtin').lsp_type_definitions,
-                    '[G]oto [T]ype Definition'
+                    '[L]sp [G]oto [T]ype Definition'
                 )
             end,
         })
