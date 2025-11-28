@@ -8,6 +8,9 @@
 
 --]]
 
+-- comment when debugging; avoids noise for known deprectaions
+vim.deprecate = function() end
+
 local try_require = require('util').try_require
 
 -- load early before plugins

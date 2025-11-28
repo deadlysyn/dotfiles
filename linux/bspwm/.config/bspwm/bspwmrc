@@ -3,7 +3,7 @@
 # list discovered fonts: fc-list
 # see font paths: xset q
 find /usr/share/fonts ~/.local/share/fonts -name fonts.dir | while read -r dir; do
-  xset +fp "$(dirname "${dir}")"
+	xset +fp "$(dirname "${dir}")"
 done
 xset fp rehash &
 fc-cache -fv &
@@ -32,7 +32,7 @@ setxkbmap -option "ctrl:nocaps" &
 # compositing
 # pidof picom || picom -b &
 # less blue light
-# pidof redshift || redshift -r -l 37.98:-84.47 &
+pidof redshift || redshift -r -l 37.98:-84.47 &
 # notifications
 pidof dunst || dunst &
 # remove mouse pointer when idle

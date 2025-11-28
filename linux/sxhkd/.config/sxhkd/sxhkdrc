@@ -2,6 +2,10 @@
 super + F1
   $TERMINAL -e keybindings
 
+# fix caps override
+super + F2
+  setxkbmap -option "ctrl:nocaps"
+
 # swap current node and biggest local node
 super + shift + b
     bspc node -s biggest.window
