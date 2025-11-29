@@ -63,7 +63,6 @@ try_require 'keymaps'
 try_require 'autocommands'
 try_require 'closer'
 
--- do we need this?
-vim.cmd 'filetype plugin on'
-vim.cmd 'filetype indent on'
-vim.cmd 'syntax on'
+-- vim.cmd 'filetype plugin on'
+-- vim.cmd 'filetype indent on'
+-- vim.cmd 'syntax on'
