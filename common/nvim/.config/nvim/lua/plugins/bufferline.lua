@@ -34,7 +34,7 @@ return {
           padding = 1,
         },
         {
-          filetype = 'NvimTree',
+          filetype = 'NeoTree',
           text = 'Explorer',
           highlight = 'PanelHeading',
           padding = 1,
@@ -44,11 +44,6 @@ return {
           text = 'Diff View',
           highlight = 'PanelHeading',
           padding = 1,
-        },
-        {
-          filetype = 'flutterToolsOutline',
-          text = 'Flutter Outline',
-          highlight = 'PanelHeading',
         },
         {
           filetype = 'lazy',

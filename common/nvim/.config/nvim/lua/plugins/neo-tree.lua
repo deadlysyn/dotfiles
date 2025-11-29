@@ -13,7 +13,7 @@ return {
     's1n7ax/nvim-window-picker',
   },
   keys = {
-    { '<leader>e', '<cmd>Neotree toggle<cr>' },
+    { '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'Toggle Neotree' } },
   },
   opts = {
     close_if_last_window = true,

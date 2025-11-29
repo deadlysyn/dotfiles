@@ -20,9 +20,13 @@ return {
   opts = {
     -- Define your formatters
     formatters_by_ft = {
+      bash = { 'shfmt' },
+      go = { 'gofmt' },
+      hcl = { 'terragrunt_fmt' },
+      javascript = { 'prettierd', 'prettier', stop_after_first = true },
       lua = { 'stylua' },
       python = { 'isort', 'black' },
-      javascript = { 'prettierd', 'prettier', stop_after_first = true },
+      terraform = { 'terraform_fmt' },
     },
     -- Set default options
     default_format_opts = {

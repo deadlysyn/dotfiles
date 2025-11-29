@@ -7,6 +7,8 @@ vim.g.loaded_ruby_provider = 0 -- disable ruby provider
 -- set before loading plugins
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+-- https://github.com/neovim/neovim/commit/ab9a2c49253413dbbb31756a3eeddb354a663035
+vim.g.editorconfig_enable = true
 
 -- options
 vim.o.autoindent = true -- auto indent for new line

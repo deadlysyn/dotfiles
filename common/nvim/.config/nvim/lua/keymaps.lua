@@ -1,7 +1,7 @@
 local keymap = vim.keymap.set
 
 -- plugin manager
-keymap('n', '<leader>ps', '<cmd>Lazy sync<cr>', { desc = '[P]lugin [S]ync' })
+keymap('n', '<leader>ps', '<cmd>Lazy sync<cr>', { desc = 'Plugin Sync' })
 
 -- disable search highlight
 keymap(
@@ -32,58 +32,52 @@ end
 keymap('n', '<leader>d', toggle_loclist, { desc = 'Toggle diagnostic list' })
 
 -- git
-keymap('n', 'gb', '<cmd>Gitsigns blame<cr>', { desc = '[G]it [B]lame' })
-keymap('n', 'gd', '<cmd>Gitsigns diffthis<cr>', { desc = '[G]it [D]iff' })
+keymap('n', '<leader>gb', '<cmd>Gitsigns blame<cr>', { desc = 'Git Blame' })
+keymap('n', '<leader>gd', '<cmd>Gitsigns diffthis<cr>', { desc = 'Git Diff' })
 keymap(
   'n',
   'gl',
   '<cmd>Gitsigns toggle_current_line_blame<cr>',
-  { desc = '[G]it toggle blame [L]ine' }
+  { desc = 'Git toggle blame current line' }
 )
 
 -- toggle relative line numbers
 keymap('n', '<leader>n', function()
-  vim.o.number = true
-  vim.o.relativenumber = true
-end)
-keymap('n', '<leader>nn', function()
-  vim.o.number = true
-  vim.o.relativenumber = false
-end)
-keymap('n', '<leader>N', function()
-  vim.o.number = false
-  vim.o.relativenumber = false
-end)
+  if vim.o.number == false then
+    vim.o.number = true
+    vim.o.relativenumber = true
+  elseif vim.o.relativenumber == true then
+    vim.o.number = true
+    vim.o.relativenumber = false
+  else
+    vim.o.number = false
+    vim.o.relativenumber = false
+  end
+end, { desc = 'Toggle line numbers' })
 
 -- navigation
-keymap('i', '<c-a>', '<esc>I') -- jump to beginning of word
-keymap('i', '<c-e>', '<end>') -- jump to end of word
-keymap('n', 'k', 'gk') -- behave the same for wrapped lines...
-keymap('n', 'j', 'gj') -- ...
--- keep cursor in middle of screen when jumping
-keymap('n', '<c-d>', '<c-d>zz')
-keymap('n', '<c-u>', '<c-u>zz')
--- keep search terms in middle of screen
-keymap('n', 'n', 'nzzzv')
-keymap('n', 'N', 'Nzzzv')
--- navigate splits easier
-keymap('n', '<C-h>', '<C-w><C-h>')
-keymap('n', '<C-l>', '<C-w><C-l>')
-keymap('n', '<C-j>', '<C-w><C-j>')
-keymap('n', '<C-k>', '<C-w><C-k>')
--- splits
-keymap('n', '<up>', ':resize +2<cr>')
-keymap('n', '<down>', ':resize -2<cr>')
-keymap('n', '<left>', ':vertical resize +2<cr>')
-keymap('n', '<right>', ':vertical resize -2<cr>')
+keymap('i', '<c-a>', '<esc>I', { desc = 'Jump to beginning of word' })
+keymap('i', '<c-e>', '<end>', { desc = 'Jump to end of word' })
+keymap('n', 'k', 'gk', { desc = 'Wrapped lines behave the same' })
+keymap('n', 'j', 'gj', { desc = 'Wrapped lines behave the same' })
+keymap('n', '<c-d>', '<c-d>zz', { desc = 'Center cursor when jumping' })
+keymap('n', '<c-u>', '<c-u>zz', { desc = 'Center cursor when jumping' })
+keymap('n', 'n', 'nzzzv', { desc = 'Center search terms' })
+keymap('n', 'N', 'Nzzzv', { desc = 'Center search terms' })
+keymap('n', '<C-h>', '<C-w><C-h>', { desc = 'Easier split navigation' })
+keymap('n', '<C-l>', '<C-w><C-l>', { desc = 'Easier split navigation' })
+keymap('n', '<C-j>', '<C-w><C-j>', { desc = 'Easier split navigation' })
+keymap('n', '<C-k>', '<C-w><C-k>', { desc = 'Easier split navigation' })
+keymap('n', '<up>', ':resize +2<cr>', { desc = 'Resize splits' })
+keymap('n', '<down>', ':resize -2<cr>', { desc = 'Resize splits' })
+keymap('n', '<left>', ':vertical resize +2<cr>', { desc = 'Resize splits' })
+keymap('n', '<right>', ':vertical resize -2<cr>', { desc = 'Resize splits' })
 
 -- editing
-keymap('n', 'Y', 'y$')
--- move selection
-keymap('v', 'J', ":m '>+1<cr>gv=gv")
-keymap('v', 'K', ":m '<-2<cr>gv=gv")
--- keep cursor at same place when joining
-keymap('n', 'J', 'mzJ`z')
+keymap('n', 'Y', 'y$', { desc = 'Yank to end of line' })
+keymap('v', 'J', ":m '>+1<cr>gv=gv", { desc = 'Move selection - down' })
+keymap('v', 'K', ":m '<-2<cr>gv=gv", { desc = 'Move selection - up' })
+keymap('n', 'J', 'mzJ`z', { desc = 'Keep cursor position when joining' })
 
 -- tabs
 keymap('n', '<s-tab>', 'gT')
@@ -102,5 +96,5 @@ keymap('n', '<leader>9', '9gt')
 keymap('n', '<leader>0', '<cmd>tablast<cr>')
 
 -- buffers
-keymap('n', '<tab>', '<cmd>bn<cr>')
-keymap('n', '<s-tab>', '<cmd>bp<cr>')
+keymap('n', '<tab>', '<cmd>bn<cr>', { desc = 'Navigate buffers - next' })
+keymap('n', '<s-tab>', '<cmd>bp<cr>', { desc = 'Navigate buffers - previous' })
