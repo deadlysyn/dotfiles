@@ -74,8 +74,8 @@ vim.o.list = true -- show tabs with listchars
 vim.opt.listchars = { tab = '» ', nbsp = '_', trail = '·' }
 
 vim.opt.completeopt = { 'menuone', 'noselect' }
-vim.opt.whichwrap:append 'b,h,l,s,<,>,[,]' -- cursor scrolls past/over line end
-vim.opt.wildignore:append '**/cache/*,**/tmp/*,**/.git/*,**/node_modules/*'
+vim.opt.whichwrap:append('b,h,l,s,<,>,[,]') -- cursor scrolls past/over line end
+vim.opt.wildignore:append('**/cache/*,**/tmp/*,**/.git/*,**/node_modules/*')
 -- keep this last; if spalsh screen appears there are parse issues
-vim.opt.shortmess:append 'I' -- disable splash screen
-vim.opt.shortmess:append 'c' -- avoid redundant messages from completion menu
+vim.opt.shortmess:append('I') -- disable splash screen
+vim.opt.shortmess:append('c') -- avoid redundant messages from completion menu

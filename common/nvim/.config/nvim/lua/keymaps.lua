@@ -5,10 +5,10 @@ keymap('n', '<leader>ps', '<cmd>Lazy sync<cr>', { desc = 'Plugin Sync' })
 
 -- disable search highlight
 keymap(
-  'n',
-  '<esc>',
-  '<cmd>nohlsearch<cr>',
-  { desc = 'Disable search highlight' }
+    'n',
+    '<esc>',
+    '<cmd>nohlsearch<cr>',
+    { desc = 'Disable search highlight' }
 )
 
 -- diagnostics
@@ -21,13 +21,13 @@ keymap('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
 --     { desc = 'Display current diagnostic' }
 -- )
 local toggle_loclist = function()
-  for _, info in ipairs(vim.fn.getwininfo()) do
-    if info.loclist == 1 then
-      vim.cmd 'lclose'
-      return
+    for _, info in ipairs(vim.fn.getwininfo()) do
+        if info.loclist == 1 then
+            vim.cmd('lclose')
+            return
+        end
     end
-  end
-  vim.diagnostic.setloclist()
+    vim.diagnostic.setloclist()
 end
 keymap('n', '<leader>d', toggle_loclist, { desc = 'Toggle diagnostic list' })
 
@@ -35,24 +35,24 @@ keymap('n', '<leader>d', toggle_loclist, { desc = 'Toggle diagnostic list' })
 keymap('n', '<leader>gb', '<cmd>Gitsigns blame<cr>', { desc = 'Git Blame' })
 keymap('n', '<leader>gd', '<cmd>Gitsigns diffthis<cr>', { desc = 'Git Diff' })
 keymap(
-  'n',
-  'gl',
-  '<cmd>Gitsigns toggle_current_line_blame<cr>',
-  { desc = 'Git toggle blame current line' }
+    'n',
+    'gl',
+    '<cmd>Gitsigns toggle_current_line_blame<cr>',
+    { desc = 'Git toggle blame current line' }
 )
 
 -- toggle relative line numbers
 keymap('n', '<leader>n', function()
-  if vim.o.number == false then
-    vim.o.number = true
-    vim.o.relativenumber = true
-  elseif vim.o.relativenumber == true then
-    vim.o.number = true
-    vim.o.relativenumber = false
-  else
-    vim.o.number = false
-    vim.o.relativenumber = false
-  end
+    if vim.o.number == false then
+        vim.o.number = true
+        vim.o.relativenumber = true
+    elseif vim.o.relativenumber == true then
+        vim.o.number = true
+        vim.o.relativenumber = false
+    else
+        vim.o.number = false
+        vim.o.relativenumber = false
+    end
 end, { desc = 'Toggle line numbers' })
 
 -- navigation
