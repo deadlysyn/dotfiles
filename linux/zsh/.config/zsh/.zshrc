@@ -8,11 +8,6 @@ setopt AUTO_CD              # Don't need cd to change dirs
 stty stop undef             # Disable ctrl-s freezing terminal
 
 # history
-# export HISTFILE="${XDG_CONFIG_HOME}/zsh/history"
-export HISTFILE="${HOME}/.config/zsh/history"
-export HIST_STAMPS="yyyy-mm-dd"
-export HISTSIZE=100000
-export SAVEHIST=100000
 setopt EXTENDED_HISTORY
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
@@ -36,27 +31,10 @@ autoload -U colors && colors
 # enable substitution for prompt
 setopt prompt_subst
 
-# color man pages
-export LESS_TERMCAP_mb=$'\E[01;32m'
-export LESS_TERMCAP_md=$'\E[01;32m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;47;34m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;36m'
+umask 022
 
-PATH="${HOME}/.bin:${HOME}/bin:${HOME}/.local/bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin"
-export PATH
-
-export GOPATH="${HOME}/go"
-export GOBIN="${GOPATH}/bin"
-export GOROOT="/usr/lib/go"
-export PATH="${GOBIN}:${GOROOT}/bin:${PATH}"
 test -d "${GOPATH}" || mkdir "${GOPATH}"
 test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
-
-# Created by `pipx` on 2024-10-30 14:32:21
-export PATH="$PATH:/home/mrh/.local/bin"
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
@@ -68,7 +46,6 @@ lfcd () {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
-
 bindkey -s '^o' 'lfcd\n'
 bindkey -s '^a' 'bc -l\n'
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
@@ -88,8 +65,6 @@ _comp_options+=(globdots) # tab complete dot files
 
 # vi mode
 bindkey -v
-# kill vi mode lag - don't need set to 1 anymore (default 20)
-export KEYTIMEOUT=5
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -107,31 +82,11 @@ bindkey '^e' edit-command-line
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
 
-# Base16 Shell
-#BASE16_SHELL="${HOME}/.config/base16-shell/"
-#[ -n "${PS1}" ] && \
-#  [ -s "${BASE16_SHELL}/profile_helper.sh" ] && \
-#  eval "$("${BASE16_SHELL}/profile_helper.sh")"
-
 # setup direnv
 eval "$(direnv hook zsh)"
 
-# fzf + ag configuration
-_has() {
-  return $( whence $1 >/dev/null )
-}
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-
-if _has fzf && _has ag; then
-  export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
-  export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
-  export FZF_ALT_C_COMMAND="${FZF_DEFAULT_COMMAND}"
- # export FZF_DEFAULT_OPTS='
- # --color fg:242,bg:236,hl:65,fg+:15,bg+:239,hl+:108
- # --color info:108,prompt:109,spinner:108,pointer:168,marker:168
- # '
-fi
 
 #autoload -U +X bashcompinit && bashcompinit
 #complete -o nospace -C /usr/bin/terraform terraform
@@ -158,107 +113,11 @@ fi
 # https://github.com/rupa/z
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
-# look pretty
-function set_win_title(){
-  echo -ne "\033]0; ${USER}@${HOST}:${PWD} \007"
-}
-precmd_functions+=(set_win_title)
-#starship_precmd_user_func="set_win_title"
-#test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
-#neofetch
 if command -v starship >/dev/null; then
-    eval "$(starship init zsh)"
+  eval "$(starship init zsh)"
 else
-    PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+  PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 fi
 
-function git_name() {
-  if [[ "$#" -ne 1 ]]
-  then
-    echo "USAGE: $0 <email>"
-    return
-  fi
-  git config user.name "Mike Hoskins"
-  git config user.email "$1"
-}
+source "${XDG_CONFIG_HOME}/zsh/aliases"
 
-function check_cert() {
-  if [[ "$#" -ne 1 ]]
-  then
-    echo "USAGE: $0 <fqdn>"
-    return
-  fi
-  openssl s_client -connect "${1}:443" -showcerts </dev/null | openssl x509 -outform pem | openssl x509 -noout -dates
-}
-alias cs="check_cert"
-
-function doppler_search() {
-  if [[ "$#" -ne 3 ]]
-  then
-    echo "USAGE: $0 <project> <environment> <search_term>"
-    return
-  fi
-  _proj="$1"
-  _env="$2"
-  _val="$3"
-  for app in $(doppler -p "${_proj}" --environment "${_env}" configs --json | jq -r '.[].name')
-  do
-    echo;echo "==> ${_proj}:${app}";echo
-    doppler run -p "${_proj}" -c "${app}" -- env | grep "${_val}"
-  done
-}
-alias ds="doppler_search"
-
-alias h="hypr"
-alias history="fc -l 1"
-alias kc="killall chromium --wait && reboot"
-alias ls="ls --color"
-alias ll="ls -al --color"
-alias lsdrv="lsblk -o NAME,FSTYPE,LABEL,MOUNTPOINT,SIZE,MODEL"
-
-# alias vi="lvim"
-# alias vi="cat /dev/null > ${HOME}/.local/state/lvim/lsp.log && lvim"
-# alias vim="lvim"
-alias vi="cat /dev/null > ${HOME}/.local/state/lvim/lsp.log && nvim"
-alias vim="nvim"
-
-#alias tc="tmux show-buffer | pbcopy"
-# alias p="bluetoothctl power on; bluetoothctl connect CA:CD:EC:C0:B8:9D"
-alias docker-clean=' \
-  docker container prune -f ; \
-  docker image prune -f ; \
-  docker network prune -f ; \
-  docker volume prune -f '
-#alias av="aws-vault exec --ecs-server"
-#alias al="aws-vault login"
-alias charmap="devour gucharmap"
-alias pdf="devour zathura"
-alias reader="devour zathura"
-alias pulse="devour pavucontrol"
-alias mixer="pulsemixer"
-alias view="devour nsxiv"
-alias thumb="devour nsxiv -t ."
-alias mpv="devour mpv"
-alias player="devour mpv"
-# git
-alias gb="git checkout -b"
-alias gl="git pull && git fetch --prune"
-alias gp="git push"
-# alias gs git-worktree switch next...
-# aws-vault
-alias ave="aws-vault exec"
-alias avl="aws-vault login"
-#alias al="aws sso login --sso-session assured"
-alias k="kubectl"
-
-alias luamake=/home/mrh/src/lua-language-server/3rd/luamake/luamake
-
-# TEMPORARY HACK
-# https://github.com/tofuutils/tenv/issues/328
-# export TENV_DETACHED_PROXY=false
-
-# https://terragrunt.gruntwork.io/docs/features/provider-cache-server
-export TG_PROVIDER_CACHE=1
-export TG_PROVIDER_CACHE_DIR="/backup/tgcache"
-export TG_PROVIDER_CACHE_REGISTRY_NAMES="registry.terraform.io,registry.opentofu.org,gitlab.com,github.com"
-export TG_NO_AUTO_APPROVE=true
