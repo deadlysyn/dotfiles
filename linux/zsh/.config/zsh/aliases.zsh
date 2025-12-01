@@ -48,7 +48,7 @@ alias h='hypr'
 alias history='fc -l 1'
 alias hugostart='hugo server -DEF --ignoreCache'
 alias k='kubectl'
-alias lsdrv="lsblk -o NAME,FSTYPE,LABEL,MOUNTPOINT,SIZE,MODEL"
+alias lsdrv='lsblk -o NAME,FSTYPE,LABEL,MOUNTPOINT,SIZE,MODEL'
 alias luamake='/home/mrh/src/lua-language-server/3rd/luamake/luamake'
 alias reader='devour zathura'
 alias reboot='killall chromium --wait && reboot'
@@ -57,9 +57,9 @@ alias thumb='devour nsxiv -t .'
 alias tg='terragrunt'
 alias xclass='xprop | grep WM_CLASS' # display xprop class
 
-alias ls="ls --color"
+alias ls='ls --color'
 alias la='ls -alh'
-alias ll="ls -al --color"
+alias ll='ls -al --color'
 alias ls='ls --color=auto'
 alias l='ls -l'
 alias ll='ls -lahF'
@@ -74,8 +74,8 @@ alias rm='rm -iv'
 
 # vim
 alias vi="cat /dev/null > ${HOME}/.local/state/nvim/lsp.log && nvim"
-alias vim="nvim"
-alias svim="sudoedit"
+alias vim='nvim'
+alias svim='sudoedit'
 # log the keystrokes 
 alias nviml='nvim -w ${HOME}/vim.log "$@"'
 # launch nvim without any plugin or config (debug)

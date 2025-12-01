@@ -2,8 +2,8 @@
 
 # https://specifications.freedesktop.org/basedir/latest
 export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_DATA_HOME="${XDG_CONFIG_HOME}/local/share"
-export XDG_CACHE_HOME="${XDG_CONFIG_HOME}/cache"
+# export XDG_DATA_HOME="${XDG_CONFIG_HOME}/local/share"
+# export XDG_CACHE_HOME="${XDG_CONFIG_HOME}/cache"
 
 PATH="${HOME}/.bin:${HOME}/bin:${HOME}/.local/bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin"
 export PATH
@@ -79,4 +79,3 @@ export FZF_DEFAULT_OPTS="--height 60% \
 --marker ⇒"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -n 10'"
 export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir tree ls"
-
