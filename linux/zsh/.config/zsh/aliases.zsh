@@ -121,6 +121,8 @@ alias gclean="git branch --merged | grep  -v '\\*\\|master\\|main\\|develop' | x
 alias gblog="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:red)%(refname:short)%(color:reset) - %(color:yellow)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:blue)%(committerdate:relative)%(color:reset))'"
 alias gsub='git submodule update --remote'
 alias dif='git diff --no-index'
+alias diff='git diff | diff-so-fancy'
+alias gbrowse='tig'
 
 # golang
 alias gob='go build'
