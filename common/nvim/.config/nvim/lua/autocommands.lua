@@ -48,7 +48,6 @@ autocmd({ 'FileType' }, {
 })
 
 -- auto format -- handled by conform
--- autocmd BufWritePost *.tf silent! execute "!terraform fmt >/dev/null 2>&1" | redraw!
 -- autocmd({ 'BufWritePre' }, {
 --     pattern = {
 --         '*.lua',

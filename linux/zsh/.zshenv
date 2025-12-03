@@ -22,7 +22,7 @@ export VISUAL="nvim"
 
 # zsh
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
-export HISTFILE="${ZROOTDIR}/history"
+export HISTFILE="${ZDOTDIR}/history"
 export HIST_STAMPS="yyyy-mm-dd"
 export HISTSIZE=10000
 export SAVEHIST=10000

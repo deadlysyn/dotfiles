@@ -13,16 +13,20 @@ setopt CDABLE_VARS          # Change directory to a path stored in a variable.
 setopt EXTENDED_GLOB        # Use extended globbing syntax.
 
 # history
-setopt EXTENDED_HISTORY
-# setopt INC_APPEND_HISTORY
+# use this...
 setopt SHARE_HISTORY
+# or one of these... not both.
+unsetopt APPEND_HISTORY
+unsetopt INC_APPEND_HISTORY
+unsetopt INC_APPEND_HISTORY_TIME
+
+setopt EXTENDED_HISTORY
+setopt HIST_SAVE_NO_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_SPACE
-setopt HIST_SAVE_NO_DUPS
-# setopt APPEND_HISTORY
 setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 

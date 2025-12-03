@@ -48,13 +48,14 @@ alias h='hypr'
 alias history='fc -l 1'
 alias hugostart='hugo server -DEF --ignoreCache'
 alias k='kubectl'
+alias k9s='k9s --readonly'
 alias lsdrv='lsblk -o NAME,FSTYPE,LABEL,MOUNTPOINT,SIZE,MODEL'
 alias luamake='/home/mrh/src/lua-language-server/3rd/luamake/luamake'
 alias reader='devour zathura'
 alias reboot='killall chromium --wait && reboot'
 alias tf='terraform'
 alias thumb='devour nsxiv -t .'
-alias tg='terragrunt'
+# alias tg='terragrunt'
 alias xclass='xprop | grep WM_CLASS' # display xprop class
 
 alias ls='ls --color'
@@ -117,7 +118,7 @@ alias gl="git pull && git fetch --prune"
 alias gr='git remote'
 alias grs='git remote show'
 alias glol='git log --graph --abbrev-commit --oneline --decorate'
-alias gclean="git branch --merged | grep  -v '\\*\\|master\\|main\\|develop' | xargs -n 1 git branch -d"
+alias gclean="git branch --merged | grep  -v '\\*' | xargs -n 1 git branch -d"
 alias gblog="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:red)%(refname:short)%(color:reset) - %(color:yellow)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:blue)%(committerdate:relative)%(color:reset))'"
 alias gsub='git submodule update --remote'
 alias dif='git diff --no-index'
