@@ -1,6 +1,7 @@
 background-opacity = 1.0
 font-family = SauceCodePro Nerd Font Mono
 font-size = 8
+#font-size = 14
 gtk-custom-css = ~/.config/ghostty/custom.css
 gtk-titlebar = false
 mouse-hide-while-typing = true

@@ -3,7 +3,7 @@
 # list discovered fonts: fc-list
 # see font paths: xset q
 find /usr/share/fonts ~/.local/share/fonts -name fonts.dir | while read -r dir; do
-	xset +fp "$(dirname "${dir}")"
+  xset +fp "$(dirname "${dir}")"
 done
 xset fp rehash &
 fc-cache -fv &
@@ -28,11 +28,21 @@ xset b off &
 xset c off &
 # disable capslock
 setxkbmap -option "ctrl:nocaps" &
+# configure mouse
+xset mouse 4 5 &
+# Natural Scrolling Enabled (307):       0
+xinput --set-prop 13 307 1
+# Scrolling Pixel Distance (333):        15
+xinput --set-prop 13 333 10
+# Accel Speed (318):     0.500000
+xinput --set-prop 13 318 0.99
+# Accel Profile Enabled (321):   1, 0, 0
+#xinput --set-prop 13 321 1 0 0
 
 # compositing
 # pidof picom || picom -b &
 # less blue light
-pidof redshift || redshift -r -l 37.98:-84.47 &
+#pidof redshift || redshift -r -l 37.98:-84.47 &
 # notifications
 pidof dunst || dunst &
 # remove mouse pointer when idle

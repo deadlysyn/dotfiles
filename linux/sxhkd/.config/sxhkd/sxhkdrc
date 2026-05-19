@@ -88,6 +88,9 @@ super + space
 super + Return
   $TERMINAL
 
+super + a
+  audio-switch
+
 super + b
   $BROWSER
 
@@ -95,7 +98,7 @@ super + i
   eval $PRIVATE_BROWSER
 
 super + p
-  eval $BROWSER --user-data-dir="${XDG_CONFIG_HOME}/chromium-proxy-profile" --proxy-server="socks5://localhost:9090"
+  ap
 
 super + e
   gnome-characters

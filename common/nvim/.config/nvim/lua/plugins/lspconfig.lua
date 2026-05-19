@@ -211,7 +211,11 @@ return {
                     },
                 },
             },
-            pyright = {},
+            -- ruff = {
+            --     filetypes = {
+            --         'pyton',
+            --     },
+            -- },
             stylua = {},
             tailwindcss = {},
             terraformls = {},

@@ -1,8 +1,8 @@
 return {
     'stevearc/conform.nvim',
     enabled = true,
-    event = 'BufWritePre',
-    cmd = { 'ConformInfo' },
+    lazy = true,
+    cmd = 'ConformInfo',
     keys = {
         {
             -- Customize or remove this keymap to your liking
@@ -11,38 +11,54 @@ return {
                 require('conform').format({
                     async = true,
                     lsp_format = 'fallback',
+                    timeout_ms = 3000,
                 })
             end,
-            mode = '',
-            desc = '[F]ormat buffer',
+            mode = { 'n', 'x' },
+            desc = 'Format buffer',
         },
     },
     opts = {
         -- Define your formatters
         formatters_by_ft = {
             bash = { 'shfmt' },
+            sh = { 'shfmt' },
             go = { 'gofmt' },
             hcl = { 'terragrunt_fmt' },
             javascript = { 'prettierd', 'prettier', stop_after_first = true },
+            javascriptreact = {
+                'prettierd',
+                'prettier',
+                stop_after_first = true,
+            },
+            typescript = { 'prettierd', 'prettier', stop_after_first = true },
+            typescriptreact = {
+                'prettierd',
+                'prettier',
+                stop_after_first = true,
+            },
+            css = { 'prettierd', 'prettier', stop_after_first = true },
+            html = { 'prettierd', 'prettier', stop_after_first = true },
+            json = { 'prettierd', 'prettier', stop_after_first = true },
+            yaml = { 'prettierd', 'prettier', stop_after_first = true },
             lua = { 'stylua' },
-            python = { 'isort', 'black' },
+            python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
             terraform = { 'terraform_fmt' },
         },
-        -- Set default options
         default_format_opts = {
+            async = false,
+            quiet = false,
             lsp_format = 'fallback',
+            timeout_ms = 3000,
         },
-        -- Set up format-on-save
-        format_on_save = { timeout_ms = 500 },
-        -- Customize formatters
+        format_on_save = {
+            lsp_format = 'fallback',
+            timeout_ms = 500,
+        },
         formatters = {
             shfmt = {
                 append_args = { '-i', '2' },
             },
         },
     },
-    init = function()
-        -- If you want the formatexpr, here is the place to set it
-        vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    end,
 }

@@ -1,6 +1,7 @@
 [global]
   # https://github.com/dunst-project/dunst/wiki/Guides
   mouse_middle_click = do_action,close_current #close_current is optional
+  #mouse_middle_click = do_action
 
   font = SauceCodePro Nerd Font Mono 7
   frame_width = 1
@@ -151,6 +152,7 @@
   # Limit icons size.
   max_icon_size=24
 
+# https://dunst-project.org/documentation/guides
 #[all_notifications] # A rule that matches all notifications
 #    action_name = "no" # Optional, to activate the action "no" automatically
 

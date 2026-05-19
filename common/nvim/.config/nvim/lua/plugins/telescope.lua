@@ -7,9 +7,6 @@ return {
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make',
-            cond = function()
-                return vim.fn.executable('make') == 1
-            end,
         },
         { 'nvim-telescope/telescope-ui-select.nvim' },
         { 'nvim-tree/nvim-web-devicons' },
@@ -80,13 +77,13 @@ return {
             'n',
             '<leader>s.',
             builtin.oldfiles,
-            { desc = '[S]earch Recent Files ("." for repeat)' }
+            { desc = 'Search Recent Files' }
         )
         vim.keymap.set(
             'n',
             '<leader><leader>',
             builtin.buffers,
-            { desc = '[ ] Find existing buffers' }
+            { desc = 'Search buffers' }
         )
 
         -- Slightly advanced example of overriding default behavior and theme

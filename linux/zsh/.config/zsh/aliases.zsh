@@ -44,7 +44,7 @@ alias charmap='devour gucharmap'
 alias dust='du -sh * | sort -hr'
 alias fonts='fc-cache -f -v'
 alias grep='grep -P -i --color=auto'
-alias h='hypr'
+alias h='start-hyprland'
 alias history='fc -l 1'
 alias hugostart='hugo server -DEF --ignoreCache'
 alias k='kubectl'
@@ -52,7 +52,7 @@ alias k9s='k9s --readonly'
 alias lsdrv='lsblk -o NAME,FSTYPE,LABEL,MOUNTPOINT,SIZE,MODEL'
 alias luamake='/home/mrh/src/lua-language-server/3rd/luamake/luamake'
 alias reader='devour zathura'
-alias reboot='killall chromium --wait && reboot'
+#alias reboot='killall chromium --wait && reboot'
 alias tf='terraform'
 alias thumb='devour nsxiv -t .'
 # alias tg='terragrunt'
@@ -91,7 +91,7 @@ alias dkrm='docker rm $(docker ps -a -q) && docker rmi $(docker images -q)'
 alias dkclean='docker system prune -a'
 
 # git
-alias gwt='_(){ _t=$(wt $1) && cd $_t && echo "==> $_t"; }; _'
+alias gwt='_(){ _t=$(wt $1); if [ $? -ne 0 ]; then echo $_t; else cd $_t && echo "==> $_t"; fi; }; _'
 alias gwtls="git worktree list"
 alias gwtp="git worktree prune"
 alias gwtrm="git worktree remove"
@@ -124,6 +124,7 @@ alias gsub='git submodule update --remote'
 alias dif='git diff --no-index'
 alias diff='git diff | diff-so-fancy'
 alias gbrowse='tig'
+alias gmerge='b=$(git rev-parse --abbrev-ref HEAD); git checkout main; gl; git checkout $b; git merge main'
 
 # golang
 alias gob='go build'

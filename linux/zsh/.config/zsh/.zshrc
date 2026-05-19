@@ -97,6 +97,7 @@ lfcd () {
 bindkey -s '^o' 'lfcd\n'
 bindkey -s '^a' 'bc -l\n'
 bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
+bindkey -s '^k' 'kubectx\n'
 
 if command -v starship >/dev/null; then
   eval "$(starship init zsh)"
@@ -141,3 +142,5 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#777777'
+
+eval "$(/home/mrh/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
