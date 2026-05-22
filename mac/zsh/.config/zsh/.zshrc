@@ -124,8 +124,8 @@ alias tf="terraform"
 alias tfa="terraform apply"
 alias tfp="terraform plan"
 alias tfv="terraform validate"
-alias vi="lvim"
-alias vim="lvim"
+alias vi="nvim"
+alias vim="nvim"
 alias docker-clean=' \
   docker container prune -f ; \
   docker image prune -f ; \

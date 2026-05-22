@@ -5,7 +5,7 @@
 	; email = 4724461-deadlysyn@users.noreply.gitlab.com
 	signingkey = 8F6C00C08A0B4199
 [core]
-	editor = lvim
+	editor = nvim
 [color]
 	status = auto
 	branch = auto
