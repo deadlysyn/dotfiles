@@ -11,3 +11,4 @@ plugged
 plug.vim
 packer_compiled.lua
 .zsh_sessions
+.zsh_history
