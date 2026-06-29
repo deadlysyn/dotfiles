@@ -28,7 +28,7 @@
 [init]
 	defaultBranch = main
 ; https://golang.org/doc/faq#git_https
-;[url "ssh://git@github.com/"]
-;	insteadOf = https://github.com/
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
 [commit]
 	gpgsign = true
