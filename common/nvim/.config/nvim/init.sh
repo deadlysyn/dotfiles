@@ -6,13 +6,13 @@
 
 go get golang.org/x/tools/gopls@latest
 
-# npm i -g ansible-language-server
 npm i -g bash-language-server
-# npm i -g coffeelint
-npm i -g diagnostic-languageserver
-npm i -g dockerfile-language-server-nodejs
+# unmaintained!
+#npm i -g diagnostic-languageserver
+#npm i -g dockerfile-language-server-nodejs
+# move to ruff
 # npm i -g pyright
-npm i -g sql-language-server
+#npm i -g sql-language-server
 npm i -g typescript typescript-language-server
 npm i -g vscode-langservers-extracted
 

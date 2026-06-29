@@ -1,14 +1,16 @@
 [global]
   # https://github.com/dunst-project/dunst/wiki/Guides
-  mouse_middle_click = do_action,close_current #close_current is optional
-  #mouse_middle_click = do_action
+  # https://dunst-project.org/documentation/faq/
+  mouse_left_click = close_current
+  mouse_middle_click = do_action
+  #mouse_middle_click = context
 
   font = SauceCodePro Nerd Font Mono 7
   frame_width = 1
 
-  frame_color = "#6c7086"
+  frame_color = "#54546d"
   separator_color = frame
-  highlight = "#f9e2af"
+  highlight = "#dcd7ba"
   # round corners
   #corners = all
   #corner_radius = 8
@@ -60,7 +62,7 @@
 
   width = (0, 500)
   height = (0, 500)
-  offset = (10, 30)
+  offset = (15, 35)
   origin = top-right
 
   # Shrink window if it's smaller than the width.  Will be ignored if
@@ -133,7 +135,8 @@
   separator_color = auto
 
   # dmenu path.
-  dmenu = /bin/dmenu -p dunst:
+  #dmenu = /bin/dmenu -p dunst:
+  dmenu = /bin/rofi -show run
 
   # Browser for opening urls in context menu.
   browser = /bin/chromium
@@ -152,28 +155,24 @@
   # Limit icons size.
   max_icon_size=24
 
-# https://dunst-project.org/documentation/guides
-#[all_notifications] # A rule that matches all notifications
-#    action_name = "no" # Optional, to activate the action "no" automatically
-
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#1e1e2e"
-    foreground = "#cdd6f4"
+    background = "#16161d"
+    foreground = "#dcd7ba"
     icon = /usr/share/icons/simple/24x24/status/dialog-information.png
     timeout = 10
 
 [urgency_normal]
-    background = "#1e1e2e"
-    foreground = "#cdd6f4"
+    background = "#16161d"
+    foreground = "#dcd7ba"
     icon = /usr/share/icons/simple/24x24/status/dialog-warning.png
     timeout = 10
 
 [urgency_critical]
-    background = "#1e1e2e"
-    foreground = "#cdd6f4"
-    frame_color = "#f38ba8"
+    background = "#16161d"
+    foreground = "#dcd7ba"
+    frame_color = "#c34043"
     icon = /usr/share/icons/simple/24x24/status/dialog-error.png
     timeout = 0
 

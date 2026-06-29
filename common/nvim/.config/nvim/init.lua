@@ -4,7 +4,7 @@
     but this one is mine.
 
     vim is my best friend. it is my life. i must
-    master it as i must mater my life.
+    master it as i must master my life.
 
 --]]
 
@@ -54,7 +54,7 @@ require('lazy').setup({
         border = 'rounded',
     },
     -- colorscheme that will be used when installing plugins.
-    install = { colorscheme = { 'catppuccin-mocha' } },
+    install = { colorscheme = { 'kanagawa-dragon' } },
     -- automatically check for plugin updates
     checker = { enabled = false },
 })
@@ -62,3 +62,56 @@ require('lazy').setup({
 try_require('keymaps')
 try_require('autocommands')
 try_require('closer')
+try_require('lsp')
+
+-- hack: https://github.com/rebelot/kanagawa.nvim/issues/260
+local dragon_theme =
+    require('kanagawa.colors').setup({ theme = 'dragon' }).theme
+dragon_theme.ui.bg_gutter = 'none'
+require('kanagawa').setup({
+    colors = {
+        theme = {
+            wave = {
+                ui = dragon_theme.ui,
+            },
+            all = {
+                ui = { bg_gutter = 'none' },
+            },
+        },
+    },
+    overrides = function(colors)
+        local current_theme = colors.theme
+        return {
+            -- more uniform colors for popups
+            Pmenu = {
+                fg = current_theme.ui.shade0,
+                bg = current_theme.ui.bg_p1,
+            },
+            PmenuSel = { fg = 'NONE', bg = current_theme.ui.bg_p2 },
+            PmenuSbar = { bg = current_theme.ui.bg_m1 },
+            PmenuThumb = { bg = current_theme.ui.bg_p2 },
+
+            -- borderless telescope
+            TelescopeTitle = { fg = current_theme.ui.special, bold = true },
+            TelescopePromptNormal = { bg = current_theme.ui.bg_p1 },
+            TelescopePromptBorder = {
+                fg = current_theme.ui.bg_p1,
+                bg = current_theme.ui.bg_p1,
+            },
+            TelescopeResultsNormal = {
+                fg = current_theme.ui.fg_dim,
+                bg = current_theme.ui.bg_m1,
+            },
+            TelescopeResultsBorder = {
+                fg = current_theme.ui.bg_m1,
+                bg = current_theme.ui.bg_m1,
+            },
+            TelescopePreviewNormal = { bg = current_theme.ui.bg_dim },
+            TelescopePreviewBorder = {
+                bg = current_theme.ui.bg_dim,
+                fg = current_theme.ui.bg_dim,
+            },
+        }
+    end,
+})
+vim.cmd.colorscheme('kanagawa')

@@ -107,7 +107,7 @@ super + f
   nautilus
 
 super + g
-  QT_ENABLE_HIGHDPI_SCALING=0 flameshot gui
+  flameshot gui
 
 super + v
   peek

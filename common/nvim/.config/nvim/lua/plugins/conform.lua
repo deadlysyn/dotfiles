@@ -2,7 +2,8 @@ return {
     'stevearc/conform.nvim',
     enabled = true,
     lazy = true,
-    cmd = 'ConformInfo',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
     keys = {
         {
             -- Customize or remove this keymap to your liking
@@ -20,10 +21,12 @@ return {
     },
     opts = {
         -- Define your formatters
+        -- https://github.com/stevearc/conform.nvim/tree/master/lua/conform/formatters
         formatters_by_ft = {
             bash = { 'shfmt' },
             sh = { 'shfmt' },
-            go = { 'gofmt' },
+            go = { 'goimports', 'gofmt' },
+            rust = { 'rustfmt' },
             hcl = { 'terragrunt_fmt' },
             javascript = { 'prettierd', 'prettier', stop_after_first = true },
             javascriptreact = {
@@ -58,6 +61,15 @@ return {
         formatters = {
             shfmt = {
                 append_args = { '-i', '2' },
+            },
+            terragrunt_fmt = {
+                inherit = false,
+                command = 'terragrunt',
+                args = { 'hcl', 'fmt', '--file', '$FILENAME' },
+                stdin = false,
+                condition = function(self, ctx)
+                    return string.find(vim.fs.basename(ctx.filename), '.hcl')
+                end,
             },
         },
     },

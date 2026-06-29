@@ -58,17 +58,16 @@ export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 export FZF_ALT_C_COMMAND="${FZF_DEFAULT_COMMAND}"
 
 FZF_COLORS="bg+:-1,\
-fg:gray,\
-fg+:white,\
-border:black,\
-spinner:0,\
-hl:yellow,\
-header:blue,\
-info:green,\
-pointer:red,\
-marker:blue,\
-prompt:gray,\
-hl+:red"
+fg:#dcd7ba,\
+border:#54546d,\
+spinner:#ffa066,\
+hl:#c0a36e,\
+header:#c34043,\
+info:#727169,\
+pointer:#7e9cd8,\
+marker:#76946a,\
+prompt:#957fb8,\
+hl+:#e6c384"
 
 export FZF_DEFAULT_OPTS="--height 60% \
 --border sharp \

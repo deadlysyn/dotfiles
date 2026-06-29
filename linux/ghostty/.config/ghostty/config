@@ -1,13 +1,13 @@
 background-opacity = 1.0
-font-family = SauceCodePro Nerd Font Mono
-font-size = 8
-#font-size = 14
+# font-family = SauceCodePro Nerd Font Mono
+font-family = Hack Nerd Font Mono
+font-size = 12
 gtk-custom-css = ~/.config/ghostty/custom.css
 gtk-titlebar = false
 mouse-hide-while-typing = true
 # 10MB
 scrollback-limit = 10485760
-theme = Catppuccin Mocha
+theme = Kanagawa Dragon
 unfocused-split-opacity = 0.8
 window-decoration = false
 
