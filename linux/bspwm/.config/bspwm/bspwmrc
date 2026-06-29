@@ -14,8 +14,8 @@ xrdb -merge .Xresources
 # wallpaper
 # feh --no-fehbg --bg-scale ~/.config/wallpaper/black-wave.jpg &
 # feh --no-fehbg --bg-scale ~/.config/wallpaper/mountain-fog.jpg &
-feh --no-fehbg --bg-fill ~/.config/wallpaper/triangles.jpg &
-# feh --no-fehbg --bg-scale ~/.config/wallpaper/kanagawa.jpg &
+# feh --no-fehbg --bg-fill ~/.config/wallpaper/triangles.jpg &
+feh --no-fehbg --bg-scale ~/.config/wallpaper/kanagawa.jpg &
 
 # screensaver
 xset s 600 &
@@ -59,7 +59,7 @@ bspc monitor -d 1 2 3 4 5
 
 bspc config window_gap 10
 bspc config top_padding 30
-bspc config border_width 1
+bspc config border_width 3
 
 bspc config borderless_monocle true
 bspc config single_monocle true

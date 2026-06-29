@@ -1,9 +1,5 @@
 {
-  "reload_style_on_change": true,
-  "layer": "top",
   "position": "top",
-  "spacing": 0,
-  "height": 30,
   "modules-left": [
     "hyprland/workspaces"
   ],
@@ -19,10 +15,6 @@
     "clock"
   ],
   "hyprland/workspaces": {
-    "disable-scroll": true,
-    "all-outputs": true,
-    "cursor": true,
-    "format": "{icon}",
     "persistent-workspaces": {
       "*": 5
     }
@@ -54,9 +46,28 @@
   "clock": {
     "format": "<span foreground='#c8c093'>{:%A %d %B %H:%M}</span>",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#c8c093'><b>{}</b></span>",
+        "days": "<span color='#dca561'><b>{}</b></span>",
+        "weeks": "<span color='#98bb6c'><b>W{}</b></span>",
+        "weekdays": "<span color='#d27e99'><b>{}</b></span>",
+        "today": "<span color='#ff5d62'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      // "on-scroll-up": "tz_up",
+      // "on-scroll-down": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
   },
-  "hyprland/window": {
-    "format": "{}",
-    "max-length": 45
+  "tray": {
+    "icon-size": 14
   }
 }

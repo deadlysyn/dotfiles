@@ -42,6 +42,18 @@ vim.lsp.config('bashls', {
 })
 vim.lsp.enable('bashls')
 
+vim.lsp.config('cssls', {
+    cmd = { 'vscode-css-language-server', '--stdio' },
+    filetypes = { 'css', 'scss', 'less' },
+    init_options = { provideFormatter = true }, -- needed to enable formatting capabilities
+    settings = {
+        css = { validate = true },
+        scss = { validate = true },
+        less = { validate = true },
+    },
+})
+vim.lsp.enable('cssls')
+
 -- https://github.com/mrjosh/helm-ls
 vim.lsp.config('helmls', {
     cmd = { 'helm_ls', 'serve' },
@@ -63,12 +75,11 @@ vim.lsp.config('helmls', {
 vim.lsp.enable('helmls')
 
 vim.lsp.config('jsonls', {
-    cmd = { 'vscode-json-language-server' },
+    cmd = { 'vscode-json-language-server', '--stdio' },
     filetypes = { 'json', 'jsonc' },
     init_options = {
         provideFormatter = true,
     },
-    root_markers = { '.git' },
     settings = {
         settings = {
             json = {
