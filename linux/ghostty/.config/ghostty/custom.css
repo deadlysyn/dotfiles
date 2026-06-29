@@ -14,18 +14,18 @@ tabbar tabbox {
   margin: 0;
   padding: 0;
   min-height: 10px;
-  background-color: #0d0c0c;
-  font-family: "SauceCodePro Nerd Font Mono";
+  background-color: #16161d;
+  font-family: "Hack Nerd Font Mono";
 }
 
 tabbar tabbox tab {
   margin: 0;
   padding: 0;
-  color: #cdd6f4;
+  color: #c8c093;
 }
 
 tabbar tabbox tab:selected {
-  background-color: #1d1c19;
+  background-color: #1f1f28;
 }
 
 tabbar tabbox tab label {

@@ -1,6 +1,5 @@
-background-opacity = 1.0
 font-family = Hack Nerd Font Mono
-font-size = 10
+font-size = 8
 gtk-custom-css = ~/.config/ghostty/custom.css
 gtk-titlebar = false
 mouse-hide-while-typing = true

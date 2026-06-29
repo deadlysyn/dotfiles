@@ -54,6 +54,17 @@ vim.lsp.config('cssls', {
 })
 vim.lsp.enable('cssls')
 
+vim.lsp.config('gopls', {
+    cmd = { 'gopls' },
+    filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+    settings = {
+        gopls = {
+            semanticTokens = true,
+        },
+    },
+})
+vim.lsp.enable('gopls')
+
 -- https://github.com/mrjosh/helm-ls
 vim.lsp.config('helmls', {
     cmd = { 'helm_ls', 'serve' },
@@ -73,6 +84,18 @@ vim.lsp.config('helmls', {
     },
 })
 vim.lsp.enable('helmls')
+
+vim.lsp.config('htmlls', {
+    cmd = { 'vscode-html-language-server', '--stdio' },
+    filetypes = { 'html' },
+    settings = {},
+    init_options = {
+        provideFormatter = true,
+        embeddedLanguages = { css = true, javascript = true },
+        configurationSection = { 'html', 'css', 'javascript' },
+    },
+})
+vim.lsp.enable('htmlls')
 
 vim.lsp.config('jsonls', {
     cmd = { 'vscode-json-language-server', '--stdio' },
@@ -138,6 +161,24 @@ vim.lsp.config('terraformls', {
     end,
 })
 vim.lsp.enable('terraformls')
+
+vim.lsp.config('ts_ls', {
+    cmd = { 'typescript-language-server', '--stdio' },
+    filetypes = {
+        'javascript',
+        'javascriptreact',
+        'typescript',
+        'typescriptreact',
+    },
+    root_markers = {
+        'package-lock.json',
+        'yarn.lock',
+        'pnpm-lock.yaml',
+        'bun.lockb',
+        'bun.lock',
+    },
+})
+vim.lsp.enable('ts_ls')
 
 vim.lsp.config('yamlls', {
     cmd = { 'yaml-language-server', '--stdio' },
