@@ -13,9 +13,9 @@ xsetroot -cursor_name left_ptr &
 xrdb -merge .Xresources
 # wallpaper
 # feh --no-fehbg --bg-scale ~/.config/wallpaper/black-wave.jpg &
-# feh --no-fehbg --bg-scale ~/.config/wallpaper/mountain-fog.jpg &
+feh --no-fehbg --bg-fill ~/.config/wallpaper/mountain-fog.jpg &
 # feh --no-fehbg --bg-fill ~/.config/wallpaper/triangles.jpg &
-feh --no-fehbg --bg-scale ~/.config/wallpaper/kanagawa.jpg &
+# feh --no-fehbg --bg-scale ~/.config/wallpaper/kanagawa.jpg &
 
 # screensaver
 xset s 600 &
