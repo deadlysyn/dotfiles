@@ -37,12 +37,10 @@ vim.api.nvim_create_autocmd('InsertEnter', {
                 documentation = { auto_show = false },
             },
             sources = {
-                -- default = { 'lsp', 'path', 'snippets', 'buffer' },
-                default = { 'lsp', 'path', 'buffer' },
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
             },
             fuzzy = { implementation = 'prefer_rust_with_warning' },
-            -- snippets = { preset = 'luasnip' },
-            signature = { enabled = true },
+            -- signature = { enabled = true },
         })
     end,
 })
