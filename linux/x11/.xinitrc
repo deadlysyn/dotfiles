@@ -51,7 +51,8 @@ export BROWSER="/bin/chromium --high-dpi-support=1 --force-device-scale-factor=1
 export PRIVATE_BROWSER="$BROWSER --incognito"
 # export BROWSER="/bin/firefox"
 # export PRIVATE_BROWSER="$BROWSER --private-window"
-export EDITOR="lvim"
+# set in shell profile
+#export EDITOR="lvim"
 export MIXER="/bin/pulsemixer"
 # export TERMINAL="/usr/local/bin/st"
 # export TERMINAL="/bin/wezterm"

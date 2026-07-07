@@ -4,14 +4,9 @@
 vim.g.loaded_perl_provider = 0 -- disable perl provider
 vim.g.loaded_ruby_provider = 0 -- disable ruby provider
 
--- set before loading plugins
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
--- https://github.com/neovim/neovim/commit/ab9a2c49253413dbbb31756a3eeddb354a663035
-vim.g.editorconfig_enable = true
-
 -- options
 vim.o.autoindent = true -- auto indent for new line
+vim.o.autocomplete = true -- native autocompletion
 vim.o.background = 'dark'
 vim.o.backspace = 'indent,eol,start' -- what backspace can traverse
 vim.o.backup = false -- no .bak
@@ -28,16 +23,21 @@ vim.o.expandtab = true -- expand tabs to spaces
 vim.o.fileencodings = 'utf-8' -- available encodings
 vim.o.fileencoding = 'utf-8' -- buffer encoding
 vim.o.foldenable = false
+vim.o.grepformat = '%f:%l:%c:%m'
+vim.o.grepprg = 'rg --vimgrep'
 vim.o.hidden = true -- hide abandoned buffers
 vim.o.hlsearch = true -- highlight search
 vim.o.ignorecase = true -- case insensitive search
 vim.o.inccommand = 'split' -- live substitute preview
 vim.o.incsearch = true -- ncseincremental search
 vim.o.joinspaces = false -- no double spaces on join
+vim.o.laststatus = 3 -- single global statusline
+vim.o.maxmempattern = 20000
 vim.o.modeline = false -- check for modelines; security risk!
 vim.o.mouse = 'a' -- useful to resize splits
 vim.o.number = true
 vim.o.pumheight = 10 -- popup menu height
+vim.o.redrawtime = 10000
 vim.o.relativenumber = true
 vim.o.ruler = true -- show line/column numbers
 vim.o.scrolloff = 7 -- vertical scroll viewport
@@ -54,26 +54,31 @@ vim.o.smartindent = true -- "smart" autoindenting
 vim.o.softtabstop = 2 -- soft tab stop
 vim.o.splitbelow = true -- split to below
 vim.o.splitright = true -- split to right
+vim.o.splitkeep = 'screen'
 vim.o.swapfile = false -- no .swap
-vim.o.switchbuf = 'useopen,usetab,newtab' -- what to consider when switching bufs
+-- vim.o.switchbuf = 'useopen,usetab,newtab' -- what to consider when switching bufs
+vim.o.switchbuf = 'usetab,newtab' -- what to consider when switching bufs
+vim.o.synmaxcol = 300 -- syntax highlighting limit
 vim.o.tabstop = 2 -- tab stop
 vim.o.termguicolors = true
 vim.o.timeoutlen = 500 -- sequence wait time
 -- vim.o.ttimeoutlen = 300
 -- vim.o.ttimeout = true
 vim.o.undofile = true -- use undo file
-vim.o.updatetime = 500 -- faster completion
+vim.o.updatetime = 300 -- faster completion
 vim.o.visualbell = false -- no annoying flash on errors
 vim.o.warn = true -- warn on unsved changes
 vim.o.wildignorecase = true
 vim.o.wildmenu = true -- wildmenu, auto complete for commands
 vim.o.wildmode = 'longest,full'
+vim.o.winborder = 'rounded'
 vim.o.wrap = false -- disable line wrap
+vim.o.writebackup = false -- don't create backup before writing
 
 vim.o.list = true -- show tabs with listchars
 vim.opt.listchars = { tab = '» ', nbsp = '_', trail = '·' }
 
-vim.opt.completeopt = { 'menuone', 'noselect' }
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect', 'popup' }
 vim.opt.whichwrap:append('b,h,l,s,<,>,[,]') -- cursor scrolls past/over line end
 vim.opt.wildignore:append('**/cache/*,**/tmp/*,**/.git/*,**/node_modules/*')
 -- keep this last; if spalsh screen appears there are parse issues

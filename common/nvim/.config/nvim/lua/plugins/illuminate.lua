@@ -1,31 +1,23 @@
-return {
-    'RRethy/vim-illuminate',
-    enabled = true,
-    event = 'VimEnter',
-    config = function()
-        require('illuminate').configure({
-            delay = 300,
-            under_cursor = false,
-            providers = {
-                'lsp',
-                'treesitter',
-                'regex',
-            },
-            filetypes_denylist = {
-                'dirvish',
-                'fugitive',
-                'alpha',
-                'NvimTree',
-                'lazy',
-                'neogitstatus',
-                'Trouble',
-                'lir',
-                'Outline',
-                'spectre_panel',
-                'toggleterm',
-                'DressingSelect',
-                'TelescopePrompt',
-            },
-        })
-    end,
-}
+vim.pack.add({
+    {
+        src = 'https://github.com/RRethy/vim-illuminate',
+        version = 'master',
+    },
+})
+
+require('illuminate').configure({
+    delay = 300,
+    under_cursor = false,
+    providers = {
+        'lsp',
+        'treesitter',
+        'regex',
+    },
+    filetypes_denylist = {
+        'dirbuf',
+        'dirvish',
+        'NvimTree',
+        'lazy',
+        'TelescopePrompt',
+    },
+})

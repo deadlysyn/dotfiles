@@ -1,15 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
 
--- temp hack https://github.com/neovim/neovim/issues/36257
-autocmd({ 'LspAttach' }, {
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client and client.server_capabilities then
-      client.server_capabilities.semanticTokensProvider = nil
-    end
-  end,
-})
-
 -- highlight on yank
 autocmd({ 'TextYankPost' }, {
     callback = function()
@@ -56,30 +46,6 @@ autocmd({ 'FileType' }, {
         vim.opt_local.tabstop = 4
     end,
 })
-
--- auto format -- handled by conform
--- autocmd({ 'BufWritePre' }, {
---     pattern = {
---         '*.lua',
---         '*.sh',
---         '*.go',
---         '*.hcl',
---         '*.html',
---         '*.css',
---         '*.js',
---         '*.jsx',
---         '*.md',
---         '*.ts',
---         '*.tsx',
---         '*.tf',
---         '*.json',
---         '*.yml',
---         '*.yaml',
---     },
---     callback = function()
---         vim.lsp.buf.format()
---     end,
--- })
 
 autocmd({ 'BufRead', 'BufNewFile' }, {
     pattern = { '*.hcl', '.terraformrc', 'terraform.rc' },

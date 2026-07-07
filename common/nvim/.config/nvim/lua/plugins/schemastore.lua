@@ -1,5 +1,8 @@
-return {
-    'b0o/schemastore.nvim',
-    enabled = true,
-    event = 'User FileOpened',
-}
+vim.pack.add({
+    {
+
+        src = 'https://github.com/b0o/schemastore.nvim',
+        version = 'main',
+        name = 'schemastore',
+    },
+})

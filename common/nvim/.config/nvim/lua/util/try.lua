@@ -8,11 +8,12 @@ function M.try_require(name)
             'The configuration is not fully loaded. Requiring `%s` failed. Check the path and syntax.',
             name
         )
-        vim.api.nvim_echo(
-            { { 'init.lua', 'ErrorMsg' }, { ' ' .. msg } },
-            true,
-            {}
-        )
+        -- vim.api.nvim_echo(
+        --     { { 'init.lua', 'ErrorMsg' }, { ' ' .. msg } },
+        --     true,
+        --     {}
+        -- )
+        vim.notify(msg, vim.log.levels.ERROR, { title = 'require error' })
     end
 end
 
