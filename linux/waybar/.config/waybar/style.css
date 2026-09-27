@@ -31,7 +31,6 @@
 window#waybar {
     background: alpha(@dragonBlack3, 0.9);
     color: @dragonWhite;
-    border-radius: 10px;
 }
 
 /* Workspaces */
