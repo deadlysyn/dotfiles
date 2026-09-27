@@ -22,12 +22,10 @@ h.on("hyprland.start", function()
 	h.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 	h.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 	h.exec_cmd("systemctl --user start hyprpolkitagent")
-	h.exec_cmd("gnome-keyring-daemon --start --daemonize --components=ssh,secrets")
 	h.exec_cmd("dunst")
 	h.exec_cmd("hypridle")
 	h.exec_cmd("hyprpaper")
 	h.exec_cmd("waybar")
-	-- h.exec_cmd("eval $(ssh-agent -s)")
 end)
 
 -- https://wiki.hyprland.org/Configuring/Monitors
