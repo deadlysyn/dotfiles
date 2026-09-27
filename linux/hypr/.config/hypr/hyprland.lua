@@ -60,7 +60,7 @@ h.config({
 	-- https://wiki.hyprland.org/Configuring/Variables/#decoration
 	decoration = {
 		rounding = 4,
-		inactive_opacity = 0.90,
+		inactive_opacity = 0.95,
 		blur = {
 			enabled = true,
 		},
