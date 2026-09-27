@@ -121,7 +121,7 @@ Snacks.setup({
                 hidden = true,
                 ignored = true,
                 supports_live = true,
-                auto_close = true,
+                auto_close = false,
                 diagnostics = true,
                 diagnostics_open = false,
                 focus = 'list',

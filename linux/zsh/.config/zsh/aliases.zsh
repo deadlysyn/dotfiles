@@ -1,7 +1,6 @@
 # configure per-repo commit email
 function git_name() {
-  if [[ "$#" -ne 1 ]]
-  then
+  if [[ "$#" -ne 1 ]]; then
     echo "USAGE: $0 <email>"
     return
   fi
@@ -11,8 +10,7 @@ function git_name() {
 
 # check ssl cert validity
 function check_cert() {
-  if [[ "$#" -ne 1 ]]
-  then
+  if [[ "$#" -ne 1 ]]; then
     echo "USAGE: $0 <fqdn>"
     return
   fi
@@ -22,17 +20,17 @@ alias cs="check_cert"
 
 # search doppler secrets
 function doppler_search() {
-  if [[ "$#" -ne 3 ]]
-  then
+  if [[ "$#" -ne 3 ]]; then
     echo "USAGE: $0 <project> <environment> <search_term>"
     return
   fi
   _proj="$1"
   _env="$2"
   _val="$3"
-  for app in $(doppler -p "${_proj}" --environment "${_env}" configs --json | jq -r '.[].name')
-  do
-    echo;echo "==> ${_proj}:${app}";echo
+  for app in $(doppler -p "${_proj}" --environment "${_env}" configs --json | jq -r '.[].name'); do
+    echo
+    echo "==> ${_proj}:${app}"
+    echo
     doppler run -p "${_proj}" -c "${app}" -- env | grep "${_val}"
   done
 }
@@ -54,8 +52,9 @@ alias luamake='/home/mrh/src/lua-language-server/3rd/luamake/luamake'
 alias reader='devour zathura'
 #alias reboot='killall chromium --wait && reboot'
 alias tf='terraform'
-alias thumb='devour nsxiv -t .'
 # alias tg='terragrunt'
+alias tglog="jq '.terragrunt_report[] | select(.Reason != null)' step_output.json"
+alias thumb='devour nsxiv -t .'
 alias xclass='xprop | grep WM_CLASS' # display xprop class
 
 alias ls='ls --color'
@@ -77,7 +76,7 @@ alias rm='rm -iv'
 alias vi="cat /dev/null > ${HOME}/.local/state/nvim/lsp.log && nvim"
 alias vim='nvim'
 alias svim='sudoedit'
-# log the keystrokes 
+# log the keystrokes
 alias nviml='nvim -w ${HOME}/vim.log "$@"'
 # launch nvim without any plugin or config (debug)
 alias nvimd='nvim --noplugin -u NONE'
@@ -128,7 +127,7 @@ alias gmerge='b=$(git rev-parse --abbrev-ref HEAD); git checkout main; gl; git c
 
 # golang
 alias gob='go build'
-alias gor='go run' 
+alias gor='go run'
 alias goc='go clean -i'
 # go test all
 alias gta='go test ./...'
@@ -150,13 +149,13 @@ alias gia='go install ./...'
 #alias paccc='sudo pacman -Scc'            # empty the whole cache
 
 # yay
-alias yayi='yay -S'     # install
-alias yayhi='yay -Ql'   # Yay Has Installed - what files where installed in a package
-alias yays='yay -Ss'    # search
-alias yayu='yay -Syu'   # update
-alias yayr='yay -R'     # remove package but not dependencies
-alias yayrr='yay -Rs'   # remove package with unused dependencies by other softwares
-alias yayrc='yay -Sc'   # remove yay's cache
+alias yayi='yay -S'   # install
+alias yayhi='yay -Ql' # Yay Has Installed - what files where installed in a package
+alias yays='yay -Ss'  # search
+alias yayu='yay -Syu' # update
+alias yayr='yay -R'   # remove package but not dependencies
+alias yayrr='yay -Rs' # remove package with unused dependencies by other softwares
+alias yayrc='yay -Sc' # remove yay's cache
 alias yayls="yay -Qe"
 
 alias pkgclean='pacman -Rns $(pacman -Qtdq)'

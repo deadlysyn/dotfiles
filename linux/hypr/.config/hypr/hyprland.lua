@@ -14,16 +14,20 @@ h.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 h.env("XDG_SESSION_TYPE", "wayland")
 h.env("XDG_CURRENT_DESKTOP", "Hyprland")
 h.env("XDG_SESSION_DESKTOP", "Hyprland")
+h.env("SSH_KEY_PATH", "~/.ssh/id_ed25519")
+h.env("SSH_AUTH_SOCK", "~/.ssh/agent.sock")
 
 h.on("hyprland.start", function()
 	h.exec_cmd("hyprctl setcursor xcursor-pro 24")
 	h.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 	h.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 	h.exec_cmd("systemctl --user start hyprpolkitagent")
+	h.exec_cmd("gnome-keyring-daemon --start --daemonize --components=ssh,secrets")
 	h.exec_cmd("dunst")
 	h.exec_cmd("hypridle")
 	h.exec_cmd("hyprpaper")
 	h.exec_cmd("waybar")
+	-- h.exec_cmd("eval $(ssh-agent -s)")
 end)
 
 -- https://wiki.hyprland.org/Configuring/Monitors
@@ -38,7 +42,7 @@ h.config({
 	-- https://wiki.hyprland.org/Configuring/Variables/#general
 	general = {
 		gaps_out = 8,
-		gaps_in = 8,
+		gaps_in = 4,
 		col = {
 			active_border = "#54546d",
 			inactive_border = "#16161d",
@@ -57,20 +61,20 @@ h.config({
 	},
 	-- https://wiki.hyprland.org/Configuring/Variables/#decoration
 	decoration = {
-		rounding = 8,
-		inactive_opacity = 0.88,
+		rounding = 4,
+		inactive_opacity = 0.90,
 		blur = {
 			enabled = true,
 		},
 		shadow = {
-			enabled = true,
-			color = "#16161d",
+			enabled = false,
+			-- color = "#16161d",
 		},
 		glow = {
-			enabled = true,
-			color = "#54546d",
-			color_inactive = "#16161d",
-			range = 8,
+			enabled = false,
+			-- color = "#54546d",
+			-- color_inactive = "#16161d",
+			-- range = 8,
 		},
 	},
 	-- https://wiki.hyprland.org/Configuring/Variables/#ecosystem

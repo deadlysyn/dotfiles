@@ -43,6 +43,8 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_SCALE_FACTOR=1
 # export QT_FONT_DPI=96
 export SXHKD_SHELL="/bin/bash"
+# https://wiki.archlinux.org/title/Hardware_video_acceleration#Configuring_Vulkan_Video
+export ANV_DEBUG="video-decode,video-encode"
 
 # default apps
 # when changing default browser be aware of

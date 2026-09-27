@@ -121,6 +121,7 @@ fi
 
 # setup direnv
 eval "$(direnv hook zsh)"
+# eval "$(/home/mrh/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
 [ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
 if [ -e '/usr/share/nvm' ]; then
@@ -136,6 +137,8 @@ else
   echo "ERROR: failed sourcing aliases"
 fi
 
+eval $(keychain --eval --quiet --nogui --noask --ssh-agent-socket ~/.ssh/agent.sock id_ed25519)
+
 # keep these last
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
@@ -143,4 +146,3 @@ export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#777777'
 
-eval "$(/home/mrh/.local/bin/mise activate zsh)" # added by https://mise.run/zsh

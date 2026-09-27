@@ -75,7 +75,7 @@ bspc config honor_size_hints false
 #bspc config ignore_ewmh_focus true
 
 # color settings
-bspc config presel_feedback_color "#dcd7ba"
+bspc config presel_feedback_color "#16161d"
 bspc config focused_border_color "#54546d"
 bspc config normal_border_color "#16161d"
 
@@ -92,14 +92,13 @@ bspc config focus_follows_pointer true
 bspc rule -a Characters state=floating layer=normal follow=on
 bspc rule -a chromium private=on state=tiled layer=normal
 bspc rule -a Gimp state=floating layer=normal follow=on
+bspc rule -a kdenlive desktop='^3' state=floating layer=normal follow=on
 bspc rule -a libreoffice state=floating layer=normal
 bspc rule -a mpv state=floating layer=normal
 bspc rule -a org.gnome.Nautilus state=floating layer=normal follow=on
 bspc rule -a Peek state=floating layer=normal follow=on
-# bspc rule -a Slack desktop='^8' state=tiled layer=normal follow=off focus=on
-bspc rule -a Slack desktop='^4' state=tiled layer=normal follow=off
+bspc rule -a slack desktop='^2' state=tiled layer=normal follow=off
 bspc rule -a Spotify desktop='^5' state=tiled layer=normal follow=off
-bspc rule -a XCalc state=floating layer=normal follow=on
 bspc rule -a zoom state=floating layer=normal follow=on
 
 # external rules
