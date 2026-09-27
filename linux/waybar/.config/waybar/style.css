@@ -1,163 +1,135 @@
+/* ~/.config/waybar/style.css
+   Kanagawa (dragon) theme
+   Scoped to modules in use: workspaces, window, cpu, memory,
+   temperature, network, wireplumber, clock
+   Palette reference: https://github.com/rebelot/kanagawa.nvim
+*/
+
+@define-color dragonBlack0  #0D0C0C; /* darkest bg (statusline) */
+@define-color dragonBlack3  #181616; /* default bg */
+@define-color dragonBlack5  #393836; /* cursorline / hover bg */
+@define-color dragonWhite   #C5C9C5; /* default fg */
+@define-color oldWhite      #C8C093; /* dark fg — matches your existing span color */
+@define-color dragonAsh     #737C73; /* comments / muted */
+@define-color dragonGray    #A6A69C; /* secondary fg */
+@define-color dragonBlue2   #8BA4B0; /* clock / titles accent */
+@define-color dragonTeal    #949FB5; /* secondary accent */
+@define-color dragonAqua    #8EA4A2; /* types */
+@define-color roninYellow   #FF9E3B; /* diagnostic warning */
+@define-color samuraiRed    #E82424; /* diagnostic error / critical */
+@define-color autumnRed     #C34043; /* disconnected / error */
+@define-color waveBlue1     #223249; /* selection bg */
+
 * {
-  border: none;
-  border-radius: 0;
-  min-height: 0;
-  font-family: 'Hack Mono Nerd Font';
-  font-size: 14px;
-}
-
-.modules-left,
-.modules-center,
-.modules-right {
-  background-color: #16161d;
-  border-radius: 20px;
-  padding: 0px 5px;
-  margin: 10px 5px;
-  min-height: 30px;
-}
-
-.modules-left {
-  margin-left: 5px;
-}
-
-.modules-right {
-  margin-right: 5px;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", sans-serif;
+    font-size: 13px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
 }
 
 window#waybar {
-  background: transparent;
+    background: alpha(@dragonBlack3, 0.9);
+    color: @dragonWhite;
+    border-radius: 10px;
 }
 
-window#waybar.empty #window {
-  background: transparent;
-  color: transparent;
-  padding: 0;
-  margin: 0;
-  transition: .5s;
-}
-
+/* Workspaces */
 #workspaces {
-    background-color: alpha(#c8c093, .05);
-    border: none;
-    padding: 0px;
-    margin: 5px 6px;
-    margin-right: 0px;
-    border-radius: 15px;
+    background: transparent;
+    margin: 4px 4px;
+    padding: 0 4px;
 }
-
 
 #workspaces button {
-    padding: 0px 8px;
-    margin: 0px 2px;
-    color: #16161d;
-    border-radius: 15px;
-    background-color: alpha(#c8c093, .4);
+    padding: 0 8px;
+    margin: 0 2px;
+    color: @dragonGray;
+    background: transparent;
+    border-radius: 6px;
+    /* underline indicator: occupied workspaces get a dot, shown by default
+       and switched off for .empty / replaced by full highlight for .active */
+    box-shadow: inset 0 -2px 0 0 @dragonTeal;
+    transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
-#workspaces button.active {
-    padding: 0px 8px;
-    margin: 0px 2px;
-    background: #c8c093;
-    color: #16161d;
-    border-radius: 15px;
-    opacity: 1; 
-}
-
+/* Empty workspace: no windows running — dim, no indicator */
 #workspaces button.empty {
-    opacity: 0.2; 
+    color: @dragonAsh;
+    box-shadow: none;
 }
 
-#workspaces button.empty.active {
-opacity: 0.75; 
+/* Active workspace: fully highlighted, indicator replaced by background fill */
+#workspaces button.active {
+    color: @dragonWhite;
+    background: @waveBlue1;
+    box-shadow: none;
 }
 
-#workspaces button.active:hover,
 #workspaces button:hover {
-    background-color: alpha(#c8c093, .3);
-    color: #16161d;
-    opacity: 1; 
-    transition: .7s;
+    background: @dragonBlack5;
+    color: @dragonWhite;
 }
 
+/* Window title */
+#window {
+    color: @dragonGray;
+    padding: 0 10px;
+    font-weight: 500;
+}
+
+/* CPU / memory / temperature — the module's own <span> already colors the
+   number via config.jsonc, this just sets the "CPU"/"MEM"/"TEMP" label color
+   and spacing */
 #cpu,
 #memory,
-#temperature,
-#network,
-#wireplumber,
-#clock {
-  background-color: alpha(#c8c093, 0.1);
-  padding: 5px 12px;
-  margin: 5px 0;
-  border-radius: 0;
-}
-
-#cpu:hover,
-#memory:hover,
-#temperature:hover,
-#network:hover,
-#wireplumber:hover,
-#clock:hover {
-  background-color: alpha(#c8c093, .2);
-  transition: .7s;
-}
-
-#cpu {
-  padding: 0 15px 0 10px;
-  border-radius: 15px 15px 15px 15px;
-  margin-right: 0px;
-}
-
-#memory {
-  background-color: transparent;
-  margin: 5px;
-  padding: 0 2px;
-}
-
 #temperature {
-  padding: 0 15px 0 10px;
-  border-radius: 15px 15px 15px 15px;
-  margin-right: 0px;
+    padding: 0 8px;
+    color: @dragonAsh;
+    font-weight: 500;
 }
 
+#temperature.critical {
+    color: @samuraiRed;
+}
+
+/* Network */
 #network {
-  background-color: transparent;
-  border-radius: 15px 0 0 15px;
+    padding: 0 8px;
+    color: @dragonAsh;
+    font-weight: 500;
 }
 
+#network.disconnected {
+    color: @autumnRed;
+}
+
+/* Wireplumber (volume) */
 #wireplumber {
-  padding: 0 15px 0 10px;
-  border-radius: 15px 15px 15px 15px;
+    padding: 0 8px;
+    color: @dragonAsh;
+    font-weight: 500;
 }
 
+#wireplumber.muted {
+    color: @samuraiRed;
+}
+
+/* Clock */
 #clock {
-  border-radius: 15px;
-  padding: 0 15px;
-  margin: 5px 0px;
-  background-color: transparent;
+    font-weight: 600;
+    color: @dragonBlue2;
+    padding: 0 14px;
 }
 
-.hidden {
-  opacity: 0;
-}
-
-#window {
-  border-radius: 15px;
-  padding: 5px 10px;
-  margin-right: 0px;
-}
-
-#window {
-  margin-left: 5px;
-}
-
+/* Tooltips */
 tooltip {
-  border-radius: 15px;
-  background: #16161d;
-  border: 2px solid alpha(#c8c093, .5);
+    background: @dragonBlack0;
+    border: 1px solid @dragonBlack5;
+    border-radius: 8px;
+    padding: 6px;
 }
 
-@keyframes blink-recording {
-    to {
-        color: #c8c093;
-    }
+tooltip label {
+    color: @dragonWhite;
 }
