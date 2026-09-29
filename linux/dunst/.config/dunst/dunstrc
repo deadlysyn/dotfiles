@@ -1,17 +1,17 @@
 [global]
   # https://github.com/dunst-project/dunst/wiki/Guides
   # https://dunst-project.org/documentation/faq/
-  mouse_left_click = close_current
+  mouse_left_click = do_action, close_current
   mouse_middle_click = do_action
   #mouse_middle_click = context
 
   #font = Hack Nerd Font Mono 7
-  font = SauceCodePro Nerd Font Mono 7
+  font = SauceCodePro Nerd Font Mono 12
   frame_width = 1
 
-  frame_color = "#54546d"
+  frame_color = "#625e5a"
   separator_color = frame
-  highlight = "#dcd7ba"
+  highlight = "#8ba4b0"
   # round corners
   #corners = all
   #corner_radius = 8
@@ -133,11 +133,12 @@
   #  * frame: use the same color as the frame;
   #  * anything else will be interpreted as a X color.
   #separator_color = #263238
-  separator_color = auto
+  # (separator_color is set to `frame` at the top of [global]; `auto` here was overriding it)
+  #separator_color = auto
 
-  # dmenu path.
-  #dmenu = /bin/dmenu -p dunst:
-  dmenu = /bin/rofi -show run
+  # dmenu-compatible picker, used for the context menu when a notification
+  # has several actions and no default.
+  dmenu = /bin/hyprlauncher --dmenu
 
   # Browser for opening urls in context menu.
   browser = /bin/chromium
@@ -148,9 +149,9 @@
   # Paths to default icons.
   #icon_path = /usr/share/icons/Adwaita/24x24/status/:/usr/share/icons/Adwaita/24x24/devices/
   #icon_path = /usr/share/icons/Gruvbox-Material-Dark/24x24/status/:/usr/share/icons/Gruvbox-Material-Dark/24x24/devices/
-  icon_path = /usr/share/icons/simple/24x24/status/:/usr/share/icons/simple/24x24/devices/
+  #icon_path = /usr/share/icons/breeze-dark/24x24/status/:/usr/share/icons/breeze-dark/24x24/devices/
 
-  icon_theme = simple
+  icon_theme = breeze-dark
   enable_recursive_icon_lookup = true
 
   # Limit icons size.
@@ -159,22 +160,22 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#16161d"
-    foreground = "#dcd7ba"
-    icon = /usr/share/icons/simple/24x24/status/dialog-information.png
+    background = "#0d0c0c"
+    foreground = "#c5c9c5"
+    # icon = /usr/share/icons/breeze-dark/24x24/status/dialog-information.png
     timeout = 10
 
 [urgency_normal]
-    background = "#16161d"
-    foreground = "#dcd7ba"
-    icon = /usr/share/icons/simple/24x24/status/dialog-warning.png
+    background = "#0d0c0c"
+    foreground = "#c5c9c5"
+    # icon = /usr/share/icons/breeze-dark/24x24/status/dialog-warning.png
     timeout = 10
 
 [urgency_critical]
-    background = "#16161d"
-    foreground = "#dcd7ba"
+    background = "#0d0c0c"
+    foreground = "#c5c9c5"
     frame_color = "#c34043"
-    icon = /usr/share/icons/simple/24x24/status/dialog-error.png
+    # icon = /usr/share/icons/breeze-dark/24x24/status/dialog-error.png
     timeout = 0
 
 # Every section that isn't one of the above is interpreted as a rules to

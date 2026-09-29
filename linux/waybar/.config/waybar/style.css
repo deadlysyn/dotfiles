@@ -21,7 +21,7 @@
 @define-color waveBlue1     #223249; /* selection bg */
 
 * {
-    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", sans-serif;
+    font-family: "SauceCodePro Nerd Font Mono", monospace;
     font-size: 13px;
     min-height: 0;
     border: none;
@@ -31,6 +31,7 @@
 window#waybar {
     background: alpha(@dragonBlack3, 0.9);
     color: @dragonWhite;
+    border-radius: 10px;
 }
 
 /* Workspaces */

@@ -25,6 +25,7 @@ h.on("hyprland.start", function()
 	h.exec_cmd("dunst")
 	h.exec_cmd("hypridle")
 	h.exec_cmd("hyprpaper")
+	h.exec_cmd("hyprlauncher -d")
 	h.exec_cmd("waybar")
 end)
 
@@ -42,10 +43,10 @@ h.config({
 		gaps_out = 8,
 		gaps_in = 4,
 		col = {
-			active_border = "#54546d",
-			inactive_border = "#16161d",
-			nogroup_border_active = "#54546d",
-			nogroup_border = "#16161d",
+			active_border = "#625e5a",
+			inactive_border = "#0d0c0c",
+			nogroup_border_active = "#625e5a",
+			nogroup_border = "#0d0c0c",
 		},
 		resize_on_border = true,
 	},
@@ -55,24 +56,20 @@ h.config({
 	},
 	-- https://wiki.hyprland.org/Configuring/Variables/#cursor
 	cursor = {
-		inactive_timeout = 3,
+		inactive_timeout = 5,
 	},
 	-- https://wiki.hyprland.org/Configuring/Variables/#decoration
 	decoration = {
-		rounding = 4,
-		inactive_opacity = 0.95,
+		rounding = 8,
+		inactive_opacity = 0.90,
 		blur = {
 			enabled = true,
 		},
 		shadow = {
 			enabled = false,
-			-- color = "#16161d",
 		},
 		glow = {
 			enabled = false,
-			-- color = "#54546d",
-			-- color_inactive = "#16161d",
-			-- range = 8,
 		},
 	},
 	-- https://wiki.hyprland.org/Configuring/Variables/#ecosystem
@@ -89,6 +86,8 @@ h.config({
 	},
 	-- https://wiki.hyprland.org/Configuring/Variables/#misc
 	misc = {
+		font_family = "SauceCodePro Nerd Font Mono",
+		focus_on_activate = true,
 		force_default_wallpaper = 0,
 		disable_hyprland_logo = true,
 		disable_splash_rendering = true,
@@ -100,7 +99,8 @@ h.config({
 })
 
 -- https://wiki.hyprland.org/Configuring/Binds
-h.bind("SUPER + escape", h.dsp.exec_cmd("loginctl lock-session"))
+-- h.bind("SUPER + escape", h.dsp.exec_cmd("loginctl lock-session"))
+h.bind("SUPER + escape", h.dsp.exec_cmd("hyprlock"))
 h.bind("SUPER + return", h.dsp.exec_cmd("ghostty"))
 h.bind("SUPER + space", h.dsp.exec_cmd("hyprlauncher"))
 
