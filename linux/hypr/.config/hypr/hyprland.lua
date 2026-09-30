@@ -27,6 +27,7 @@ h.on("hyprland.start", function()
 	h.exec_cmd("hyprpaper")
 	h.exec_cmd("hyprlauncher -d")
 	h.exec_cmd("waybar")
+	h.exec_cmd("gammastep -r -l 37.98:-84.47")
 end)
 
 -- https://wiki.hyprland.org/Configuring/Monitors
@@ -60,8 +61,8 @@ h.config({
 	},
 	-- https://wiki.hyprland.org/Configuring/Variables/#decoration
 	decoration = {
-		rounding = 8,
-		inactive_opacity = 0.90,
+		rounding = 4,
+		inactive_opacity = 0.95,
 		blur = {
 			enabled = true,
 		},
@@ -99,25 +100,26 @@ h.config({
 })
 
 -- https://wiki.hyprland.org/Configuring/Binds
--- h.bind("SUPER + escape", h.dsp.exec_cmd("loginctl lock-session"))
 h.bind("SUPER + escape", h.dsp.exec_cmd("hyprlock"))
 h.bind("SUPER + return", h.dsp.exec_cmd("ghostty"))
 h.bind("SUPER + space", h.dsp.exec_cmd("hyprlauncher"))
+
+h.bind(
+	"SUPER + g",
+	h.dsp.exec_cmd(
+		'grim -g "$(slurp)" - | satty -f - --copy-command wl-copy -o "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"'
+	)
+)
 
 h.bind("SUPER + d", h.dsp.exec_cmd("dunstctl history-pop"))
 h.bind("SUPER + SHIFT + d", h.dsp.exec_cmd("dunstctl close-all"))
 
 h.bind("SUPER + b", h.dsp.exec_cmd("chromium"))
 h.bind("SUPER + i", h.dsp.exec_cmd("chromium --incognito"))
-h.bind(
-	"SUPER + p",
-	h.dsp.exec_cmd(
-		"chromium --user-data-dir=${XDG_CONFIG_HOME}/chromium-proxy-profile --proxy-server='socks5://localhost:9090'"
-	)
-)
+h.bind("SUPER + p", h.dsp.exec_cmd("ap"))
 h.bind("SUPER + f", h.dsp.exec_cmd("nautilus"))
-h.bind("SUPER + x", h.dsp.exec_cmd("slack"))
-h.bind("SUPER + s", h.dsp.exec_cmd("spotify"))
+h.bind("SUPER + s", h.dsp.exec_cmd("slack"))
+h.bind("SUPER + m", h.dsp.exec_cmd("spotify"))
 
 h.bind("SUPER + SHIFT + c", h.dsp.window.close("activewindow"))
 h.bind("SUPER + SHIFT + x", h.dsp.window.kill("activewindow"))
@@ -159,21 +161,11 @@ h.bind("SUPER + SHIFT + 5", h.dsp.window.move({ workspace = 5, follow = false })
 h.bind("SUPER + mouse:272", h.dsp.window.drag(), { mouse = true })
 h.bind("SUPER + mouse:273", h.dsp.window.resize(), { mouse = true })
 
-h.bind("XF86AudioRaiseVolume", h.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"))
-h.bind("XF86AudioLowerVolume", h.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
+h.bind("XF86AudioRaiseVolume", h.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+"))
+h.bind("XF86AudioLowerVolume", h.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"))
 h.bind("XF86AudioMute", h.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
 
 h.bind("XF86AudioNext", h.dsp.exec_cmd("playerctl next"))
 h.bind("XF86AudioPause", h.dsp.exec_cmd("playerctl play-pause"))
 h.bind("XF86AudioPlay", h.dsp.exec_cmd("playerctl play-pause"))
 h.bind("XF86AudioPrev", h.dsp.exec_cmd("playerctl previous"))
-
--- https://wiki.hyprland.org/Configuring/Window-Rules
--- https://wiki.hyprland.org/Configuring/Workspace-Rules
--- ignore maximize requests.
--- windowrulev2 = suppressevent maximize, class:.*
--- fix some dragging issues with XWayland
--- windowrulev2 = nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0
--- disable transparency
--- windowrulev2 = opaque,class:^(chromium)$
--- windowrulev2 = opaque,class:^(Slack)$

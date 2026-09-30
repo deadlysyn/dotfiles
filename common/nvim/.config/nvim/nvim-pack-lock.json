@@ -53,7 +53,7 @@
       "version": "'master'"
     },
     "neo-tree.nvim": {
-      "rev": "162f9b953a692b559afe43e38d60afee81e8e79b",
+      "rev": "020e50ff7fdaa0d76de23cfe5c485504729483b0",
       "src": "https://github.com/nvim-neo-tree/neo-tree.nvim",
       "version": "'main'"
     },
@@ -83,12 +83,12 @@
       "version": "'master'"
     },
     "schemastore": {
-      "rev": "76faabd8d091e4316ec8e1e90aa9371210b574b3",
+      "rev": "5553e77b8628b7a08fc2a5135c17647f11d828ee",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
     "schemastore.nvim": {
-      "rev": "76faabd8d091e4316ec8e1e90aa9371210b574b3",
+      "rev": "5553e77b8628b7a08fc2a5135c17647f11d828ee",
       "src": "https://github.com/b0o/schemastore.nvim",
       "version": "'main'"
     },
