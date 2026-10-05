@@ -114,21 +114,17 @@ h.bind(
 h.bind("SUPER + d", h.dsp.exec_cmd("dunstctl history-pop"))
 h.bind("SUPER + SHIFT + d", h.dsp.exec_cmd("dunstctl close-all"))
 
-h.bind("SUPER + b", h.dsp.exec_cmd("chromium"))
-h.bind("SUPER + i", h.dsp.exec_cmd("chromium --incognito"))
-h.bind("SUPER + p", h.dsp.exec_cmd("ap"))
+h.bind("SUPER + b", h.dsp.exec_cmd("firefox"))
+h.bind("SUPER + i", h.dsp.exec_cmd("firefox --private-window"))
 h.bind("SUPER + f", h.dsp.exec_cmd("nautilus"))
 h.bind("SUPER + s", h.dsp.exec_cmd("slack"))
-h.bind("SUPER + m", h.dsp.exec_cmd("spotify"))
+-- h.bind("SUPER + m", h.dsp.exec_cmd("spotify"))
+h.bind("SUPER + m", h.dsp.exec_cmd("spotify-launcher"))
 
 h.bind("SUPER + SHIFT + c", h.dsp.window.close("activewindow"))
 h.bind("SUPER + SHIFT + x", h.dsp.window.kill("activewindow"))
 h.bind("SUPER + SHIFT + f", h.dsp.window.float({ window = "activewindow" }))
--- h.bind("SUPER + SHIFT + f", resizeactive, exact 25% 25%
--- h.bind("SUPER + SHIFT + f", centerwindow,
 h.bind("SUPER + SHIFT + q", h.dsp.exec_cmd("hyprshutdown"))
--- h.bind("SUPER + SHIFT + s", layoutmsg, togglesplit
--- h.bind("SUPER + SHIFT + t", settiled,
 h.bind("SUPER + SHIFT + z", h.dsp.window.fullscreen({ window = "activewindow" }))
 
 h.bind("SUPER + ALT + d", h.dsp.exec_cmd("killall dunst && notify-send 'restarted dunst'"))
@@ -165,7 +161,7 @@ h.bind("XF86AudioRaiseVolume", h.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AU
 h.bind("XF86AudioLowerVolume", h.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"))
 h.bind("XF86AudioMute", h.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
 
-h.bind("XF86AudioNext", h.dsp.exec_cmd("playerctl next"))
-h.bind("XF86AudioPause", h.dsp.exec_cmd("playerctl play-pause"))
-h.bind("XF86AudioPlay", h.dsp.exec_cmd("playerctl play-pause"))
-h.bind("XF86AudioPrev", h.dsp.exec_cmd("playerctl previous"))
+h.bind("XF86AudioNext", h.dsp.exec_cmd("playerctl -p spotify next"))
+h.bind("XF86AudioPause", h.dsp.exec_cmd("playerctl -p spotify play-pause"))
+h.bind("XF86AudioPlay", h.dsp.exec_cmd("playerctl -p spotify play-pause"))
+h.bind("XF86AudioPrev", h.dsp.exec_cmd("playerctl -p spotify previous"))
