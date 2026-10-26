@@ -14,8 +14,6 @@ h.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 h.env("XDG_SESSION_TYPE", "wayland")
 h.env("XDG_CURRENT_DESKTOP", "Hyprland")
 h.env("XDG_SESSION_DESKTOP", "Hyprland")
-h.env("SSH_KEY_PATH", "~/.ssh/id_ed25519")
-h.env("SSH_AUTH_SOCK", "~/.ssh/agent.sock")
 
 h.on("hyprland.start", function()
 	h.exec_cmd("hyprctl setcursor xcursor-pro 24")

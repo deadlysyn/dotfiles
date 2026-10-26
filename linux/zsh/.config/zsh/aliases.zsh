@@ -1,3 +1,33 @@
+# work stuff
+export AWS_DEFAULT_REGION=us-east-1
+export AWS_SDK_LOAD_CONFIG=1
+
+function al() {
+  local _profile=$(printf "dev\nmanagement\nops\nprod\n" | fzf)
+  aws sso login --profile "$_profile"
+}
+
+function ap() {
+  local _profile=$(printf "dev\nmanagement\nops\nprod\n" | fzf)
+  export AWS_PROFILE="$_profile"
+  kubectx "$_profile"
+}
+
+function dev() {
+  export AWS_PROFILE=dev
+  kubectl config use-context dev
+}
+
+function prod() {
+  export AWS_PROFILE=prod
+  kubectl config use-context prod
+}
+
+function ops() {
+  export AWS_PROFILE=ops
+  kubectl config use-context ops
+}
+
 # configure per-repo commit email
 function git_name() {
   if [[ "$#" -ne 1 ]]; then
@@ -135,27 +165,29 @@ alias gta='go test ./...'
 alias gia='go install ./...'
 
 # pacman
-#alias paci='sudo pacman -S'               # install
-#alias pachi='sudo pacman -Ql'             # Pacman Has Installed - what files where installed in a package
-#alias pacs='sudo pacman -Ss'              # search
-#alias pacu='sudo pacman -Syu'             # update
-#alias pacr='sudo pacman -R'               # remove package but not dependencies
-#alias pacrr='sudo pacman -Rs'             # remove package with unused dependencies by other softwares
-#alias pacrc='sudo pacman -Sc'             # remove pacman's cache
-#alias pacro='pacman -Rns $(pacman -Qtdq)'
-#alias pacrl='rm /var/lib/pacman/db.lck'   # pacman remove locks
-#alias pacls="sudo pacman -Qe"
-#alias pacc='sudo pacman -Sc'
-#alias paccc='sudo pacman -Scc'            # empty the whole cache
+alias paci='sudo pacman -S'   # install
+alias pachi='sudo pacman -Ql' # Pacman Has Installed - what files where installed in a package
+alias pacs='sudo pacman -Ss'  # search
+alias pacu='sudo pacman -Syu' # update
+alias pacr='sudo pacman -R'   # remove package but not dependencies
+alias pacrr='sudo pacman -Rs' # remove package with unused dependencies by other softwares
+alias pacrc='sudo pacman -Sc' # remove pacman's cache
+alias pacro='pacman -Rns $(pacman -Qtdq)'
+alias pacrl='rm /var/lib/pacman/db.lck' # pacman remove locks
+alias pacls="sudo pacman -Qe"
+alias pacc='sudo pacman -Sc'
+alias paccc='sudo pacman -Scc' # empty the whole cache
 
 # yay
-alias yayi='yay -S'   # install
-alias yayhi='yay -Ql' # Yay Has Installed - what files where installed in a package
-alias yays='yay -Ss'  # search
-alias yayu='yay -Syu' # update
-alias yayr='yay -R'   # remove package but not dependencies
-alias yayrr='yay -Rs' # remove package with unused dependencies by other softwares
-alias yayrc='yay -Sc' # remove yay's cache
-alias yayls="yay -Qe"
+# alias yayi='yay -S'   # install
+# alias yayhi='yay -Ql' # Yay Has Installed - what files where installed in a package
+# alias yays='yay -Ss'  # search
+# alias yayu='yay -Syu' # update
+# alias yayr='yay -R'   # remove package but not dependencies
+# alias yayrr='yay -Rs' # remove package with unused dependencies by other softwares
+# alias yayrc='yay -Sc' # remove yay's cache
+# alias yayls="yay -Qe"
 
 alias pkgclean='pacman -Rns $(pacman -Qtdq)'
+alias vpnup='tailscale up --accept-dns=true --accept-routes=true --exit-node=tailscale-dev-router'
+alias vpndown='tailscale down'

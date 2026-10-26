@@ -1,9 +1,10 @@
 [user]
 	name = Mike Hoskins
-	email = mike@assured.claims
-	; email = me@deadlysyn.com
+	; email = mike@nebulock.io
+	; signingkey = /home/mrh/.ssh/id_ed25519-nebulock.pub
+	email = me@deadlysyn.com
 	; email = 4724461-deadlysyn@users.noreply.gitlab.com
-	signingkey = 8F6C00C08A0B4199
+  signingkey = /home/mrh/.ssh/id_ed25519.pub
 [core]
 	editor = nvim
 [color]
@@ -30,5 +31,9 @@
 ; https://golang.org/doc/faq#git_https
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
+; [commit]
+	; gpgsign = true
+[gpg]
+	format = ssh
 [commit]
 	gpgsign = true

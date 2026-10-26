@@ -137,7 +137,13 @@ else
   echo "ERROR: failed sourcing aliases"
 fi
 
-eval $(keychain --eval --quiet --nogui --noask --ssh-agent-socket ~/.ssh/agent.sock id_ed25519)
+if ! pidof ssh-agent >/dev/null 2>&1; then
+  /bin/ssh-agent -s > ~/.ssh/agent.env && eval $(cat ~/.ssh/agent.env)
+elif pidof ssh-agent >/dev/null 2>&1 && [ -e ~/.ssh/agent.env ]; then
+  eval $(cat ~/.ssh/agent.env)
+else
+  echo "ERROR: couldn't find ~/.ssh/agent.env"
+fi
 
 # keep these last
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -145,4 +151,3 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=true
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#777777'
-
