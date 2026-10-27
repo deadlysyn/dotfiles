@@ -1,24 +1,24 @@
 [user]
-	name = Mike Hoskins
-	email = me@deadlysyn.com
+  name = Mike Hoskins
+  email = me@deadlysyn.com
   signingkey = /home/mrh/.ssh/id_ed25519.pub
 [core]
-	editor = nvim
+  editor = nvim
 [color]
-	status = auto
-	branch = auto
-	interactive = auto
-	diff = auto
-	ui = true
+  status = auto
+  branch = auto
+  interactive = auto
+  diff = auto
+  ui = true
 [alias]
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [pull]
-	rebase = false
+  rebase = false
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
 [gpg]
-	format = ssh
+  format = ssh
 [commit]
-	gpgsign = true
+  gpgsign = true
